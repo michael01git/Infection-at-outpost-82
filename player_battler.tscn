@@ -1,0 +1,150 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmnacos40qlc5"]
+
+[ext_resource type="Script" path="res://player_battler.gd" id="1_s6hyn"]
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://icon.svg" id="1_t70dg"]
+[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/player_battler_1.tres" id="2_2arij"]
+
+[sub_resource type="Animation" id="Animation_c8vkj"]
+resource_name = "in_turn"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0i1k7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibnrp"]
+_data = {
+"RESET": SubResource("Animation_0i1k7"),
+"in_turn": SubResource("Animation_c8vkj")
+}
+
+[sub_resource type="Animation" id="Animation_bc8jo"]
+resource_name = "play"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.0001),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ldsy4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp21c"]
+_data = {
+"RESET": SubResource("Animation_ldsy4"),
+"play": SubResource("Animation_bc8jo")
+}
+
+[sub_resource type="Animation" id="Animation_fw4ub"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_80s2o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_t70dg")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_elme1"]
+_data = {
+"RESET": SubResource("Animation_80s2o"),
+"attack": SubResource("Animation_fw4ub")
+}
+
+[node name="PlayerBattler" type="Node2D" groups=["PlayerBattler"]]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_s6hyn")
+stats_resource = ExtResource("2_2arij")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t70dg")
+
+[node name="TurnIndicator" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TurnIndicatorAnimation" type="AnimationPlayer" parent="TurnIndicator"]
+libraries = {
+"": SubResource("AnimationLibrary_ibnrp")
+}
+
+[node name="HitFX" type="Sprite2D" parent="."]
+texture = ExtResource("1_t70dg")
+
+[node name="HitFXAnimation" type="AnimationPlayer" parent="HitFX"]
+libraries = {
+"": SubResource("AnimationLibrary_fp21c")
+}
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_top = -64.0
+offset_right = 4.0
+offset_bottom = -37.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_elme1")
+}

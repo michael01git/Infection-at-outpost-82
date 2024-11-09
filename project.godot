@@ -11,5 +11,19 @@ config_version=5
 [application]
 
 config/name="Infection at outpost 82"
+run/main_scene="res://BattlerStats/turn_based_combat_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=224
+window/size/mode=4
+window/stretch/mode="canvas_items"
+window/stretch/scale_mode="integer"
+
+[global_group]
+
+PlayerBattler=""
+EnemyBattler=""

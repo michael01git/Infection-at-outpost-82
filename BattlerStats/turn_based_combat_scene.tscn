@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://xnw7qsp66log"]
+
+[ext_resource type="Script" path="res://BattlerStats/battle_manager.gd" id="1_jfbor"]
+[ext_resource type="PackedScene" uid="uid://cmnacos40qlc5" path="res://player_battler.tscn" id="2_h0aho"]
+[ext_resource type="PackedScene" uid="uid://jyq4wji2feey" path="res://enemy_battler.tscn" id="3_q1vlw"]
+
+[node name="TurnBasedCombatScene" type="Node"]
+script = ExtResource("1_jfbor")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(128, 112)
+
+[node name="BackGround" type="Sprite2D" parent="."]
+
+[node name="PlayerBattler" parent="." instance=ExtResource("2_h0aho")]
+position = Vector2(57, 100)
+
+[node name="EnemyBattler" parent="." instance=ExtResource("3_q1vlw")]
+position = Vector2(196, 99)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TurnActionButtons" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 172.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Attack"
+
+[node name="SkipTurnButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skip Turn"
+
+[node name="BattleEndPanel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BattleEndLabel" type="Label" parent="CanvasLayer/BattleEndPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1

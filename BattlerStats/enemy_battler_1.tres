@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=2 format=3 uid="uid://dbs8snnacre4i"]
+
+[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="1_qwj77"]
+
+[resource]
+script = ExtResource("1_qwj77")
+type = 1
+max_hp = 10
+min_damage = 5
+max_damage = 5
+turn_speed = 5
