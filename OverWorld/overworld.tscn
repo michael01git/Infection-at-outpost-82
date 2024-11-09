@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://8s63o1w1wgt1"]
+
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/over_world_player.tscn" id="1_2uvwe"]
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="2_5rkcf"]
+[ext_resource type="PackedScene" uid="uid://bcvjap0oenqbl" path="res://OverWorld/enemy.tscn" id="3_u6tl0"]
+
+[node name="overworld" type="Node2D"]
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("1_2uvwe")]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(82, 2)
+texture = ExtResource("2_5rkcf")
+
+[node name="Enemy" parent="." instance=ExtResource("3_u6tl0")]
+position = Vector2(-100, -45)

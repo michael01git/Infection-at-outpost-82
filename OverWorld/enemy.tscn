@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcvjap0oenqbl"]
+
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_7pugu"]
+[ext_resource type="Script" path="res://OverWorld/enemy.gd" id="1_afcl0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0xm7e"]
+radius = 16.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldwn2"]
+radius = 49.0408
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_afcl0")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_7pugu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0xm7e")
+
+[node name="PlayerMonitor" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMonitor"]
+shape = SubResource("CircleShape2D_ldwn2")
+
+[connection signal="body_entered" from="PlayerMonitor" to="." method="_on_player_monitor_body_entered"]

@@ -1,4 +1,5 @@
 extends Node2D
+# NOTE: This handles the individual players health, damage, speed, etc. The turnmanager connects to this to get info and pass that over to ex. enemies as damage.
 
 @export var stats_resource: BattlerStats
 
@@ -7,7 +8,12 @@ extends Node2D
 @onready var animation_player = $AnimationPlayer
 @onready var hit_fx_animation = $HitFX/HitFXAnimation
 
+
+# NOTE: handle weapon and armor here.
 var current_hp: int
+
+var weapon_damage: int
+var armor_defense: int
 
 signal dead(this_battler: Node2D)
 signal turn_ended
@@ -15,9 +21,12 @@ signal turn_ended
 func _ready():
 	stop_turn()
 	
-	current_hp = stats_resource.max_hp
+	update_stats()
 	
 	update_health_bar()
+
+func update_stats() -> void:
+	current_hp = stats_resource.max_hp
 
 func update_health_bar() -> void:
 	health_bar.max_value = stats_resource.max_hp

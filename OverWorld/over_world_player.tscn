@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfqfl0mspjhl3"]
+
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_cugle"]
+[ext_resource type="Script" path="res://OverWorld/over_world_player.gd" id="1_on7e7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0liet"]
+radius = 16.0312
+
+[node name="OverWorldPlayer" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("1_on7e7")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_cugle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0liet")
+
+[node name="Camera2D" type="Camera2D" parent="."]

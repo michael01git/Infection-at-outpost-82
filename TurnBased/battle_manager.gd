@@ -1,4 +1,5 @@
 extends Node
+# NOTE: This handles passing data over to other enemies and players.
 
 @onready var turn_action_buttons = $CanvasLayer/TurnActionButtons
 @onready var attack_button = $CanvasLayer/TurnActionButtons/AttackButton
@@ -106,3 +107,9 @@ func show_battle_end_panel(message: String) -> void:
 	battle_end_panel.show()
 	if turn_action_buttons.visible:
 		turn_action_buttons.hide()
+	
+	await get_tree().create_timer(1).timeout
+	if enemy_battlers.is_empty():
+		GameManager.return_to_overworld()
+	else:
+		pass
