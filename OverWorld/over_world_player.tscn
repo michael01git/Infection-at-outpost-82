@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfqfl0mspjhl3"]
+[gd_scene load_steps=7 format=3 uid="uid://cfqfl0mspjhl3"]
 
 [ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_cugle"]
 [ext_resource type="Script" path="res://OverWorld/over_world_player.gd" id="1_on7e7"]
+[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_kudrg"]
+[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/player_battler_1.tres" id="3_s44bh"]
+[ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://overworld_menu.tscn" id="5_vqbcp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0liet"]
 radius = 16.0312
@@ -9,6 +12,7 @@ radius = 16.0312
 [node name="OverWorldPlayer" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_on7e7")
+pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh"), ExtResource("3_s44bh")])
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -18,3 +22,7 @@ texture = ExtResource("1_cugle")
 shape = SubResource("CircleShape2D_0liet")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="OverworldMenu" parent="CanvasLayer" instance=ExtResource("5_vqbcp")]

@@ -1,11 +1,21 @@
 extends CharacterBody2D
 
+@onready var overworld_menu = $CanvasLayer/OverworldMenu
+
+@export var pc: Array[BattlerStats]
 const SPEED = 300.0
 
 func _ready():
+	GameManager.player_characters = pc
+	
 	global_position = GameManager.last_player_pos
 
 func _physics_process(delta):
+	if !overworld_menu.menu_open:
+		move()
+
+
+func move():
 	var dir: Vector2 = input()
 	velocity = dir * SPEED
 	move_and_slide()
@@ -22,6 +32,9 @@ func input() -> Vector2:
 	direction = direction.normalized()
 	return direction
 
-func start_encounter():
+func start_encounter(enemies):
 	GameManager.last_player_pos = global_position
+	
+	# This is needed to start encounter.
+	GameManager.encounter_enemies = enemies
 	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)

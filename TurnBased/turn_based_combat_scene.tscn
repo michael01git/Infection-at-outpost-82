@@ -1,8 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://xnw7qsp66log"]
+[gd_scene load_steps=10 format=3 uid="uid://xnw7qsp66log"]
 
 [ext_resource type="Script" path="res://TurnBased/battle_manager.gd" id="1_3fk0c"]
+[ext_resource type="Script" path="res://TurnBased/player_battle_organizer.gd" id="2_tnov0"]
 [ext_resource type="PackedScene" uid="uid://cmnacos40qlc5" path="res://TurnBased/player_battler.tscn" id="2_wnruc"]
 [ext_resource type="PackedScene" uid="uid://jyq4wji2feey" path="res://TurnBased/enemy_battler.tscn" id="3_auti2"]
+[ext_resource type="Script" path="res://TurnBased/enemy_battle_organiser.gd" id="3_cijeu"]
+[ext_resource type="Script" path="res://TurnBased/turn_action_buttons.gd" id="6_c45y4"]
+[ext_resource type="Script" path="res://TurnBased/item_selected.gd" id="6_sw564"]
+[ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://menu_cursor.tscn" id="7_5rado"]
+[ext_resource type="Script" path="res://TurnBased/enemy_button.gd" id="8_ebvi6"]
 
 [node name="TurnBasedCombatScene" type="Node"]
 script = ExtResource("1_3fk0c")
@@ -12,53 +18,157 @@ position = Vector2(128, 112)
 
 [node name="BackGround" type="Sprite2D" parent="."]
 
-[node name="PlayerBattler" parent="." instance=ExtResource("2_wnruc")]
+[node name="PlayerBattleOrganizer" type="Node2D" parent="."]
+script = ExtResource("2_tnov0")
+
+[node name="PlayerBattler" parent="PlayerBattleOrganizer" instance=ExtResource("2_wnruc")]
 position = Vector2(39, 132)
 
-[node name="PlayerBattler2" parent="." instance=ExtResource("2_wnruc")]
+[node name="PlayerBattler2" parent="PlayerBattleOrganizer" instance=ExtResource("2_wnruc")]
 position = Vector2(108, 131)
 
-[node name="EnemyBattler2" parent="." instance=ExtResource("3_auti2")]
-position = Vector2(205, 48)
+[node name="PlayerBattler3" parent="PlayerBattleOrganizer" instance=ExtResource("2_wnruc")]
+position = Vector2(186, 131)
 
-[node name="EnemyBattler3" parent="." instance=ExtResource("3_auti2")]
-position = Vector2(44, 51)
+[node name="EnemyBattleOrganiser" type="Node2D" parent="."]
+script = ExtResource("3_cijeu")
 
-[node name="EnemyBattler" parent="." instance=ExtResource("3_auti2")]
+[node name="EnemyBattler" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
 position = Vector2(126, 38)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy1")
+
+[node name="EnemyBattler2" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
+position = Vector2(205, 48)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy2")
+
+[node name="EnemyBattler3" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
+position = Vector2(44, 51)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy3")
+
+[node name="EnemyBattler4" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
+position = Vector2(87, 58)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy4")
+
+[node name="EnemyBattler5" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
+position = Vector2(123, 67)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy5")
+
+[node name="EnemyBattler6" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
+position = Vector2(163, 61)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TurnActionButtons" type="HBoxContainer" parent="CanvasLayer"]
+[node name="TurnActionButtons" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 172.0
-offset_bottom = -2.0
+offset_top = 154.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("6_c45y4")
 
-[node name="AttackButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+[node name="TurnActions" type="GridContainer" parent="CanvasLayer/TurnActionButtons"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 2
+
+[node name="AttackButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Attack"
+script = ExtResource("6_sw564")
 
-[node name="SkipTurnButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+[node name="SkipTurnButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Skip Turn"
+script = ExtResource("6_sw564")
 
-[node name="UseItemButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+[node name="UseItemButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
 layout_mode = 2
 text = "Use Item"
+script = ExtResource("6_sw564")
 
-[node name="FleeButton" type="Button" parent="CanvasLayer/TurnActionButtons"]
+[node name="TestButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Flee"
+script = ExtResource("6_sw564")
+
+[node name="TurnCursor" parent="CanvasLayer/TurnActionButtons" instance=ExtResource("7_5rado")]
+layout_mode = 0
+offset_top = -21.0
+offset_bottom = -11.0
+menu_parent_path = NodePath("../TurnActions")
+
+[node name="MobSelectMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MobSelect" type="HBoxContainer" parent="CanvasLayer/MobSelectMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 164.0
+offset_right = 216.0
+offset_bottom = 178.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Enemy1" type="Button" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_ebvi6")
+own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler")
+
+[node name="Enemy2" type="Button" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_ebvi6")
+own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler2")
+
+[node name="Enemy3" type="Button" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_ebvi6")
+own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler3")
+
+[node name="Enemy4" type="Button" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_ebvi6")
+own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler4")
+
+[node name="Enemy5" type="Button" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_ebvi6")
+own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler5")
+
+[node name="Enemy6" type="Button" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_ebvi6")
+own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler6")
+
+[node name="MobCursor" parent="CanvasLayer/MobSelectMenu" instance=ExtResource("7_5rado")]
+visible = false
+layout_mode = 0
+menu_parent_path = NodePath("../MobSelect")
 
 [node name="BattleEndPanel" type="Panel" parent="CanvasLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -67,7 +177,6 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="BattleEndLabel" type="Label" parent="CanvasLayer/BattleEndPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,3 +186,15 @@ grow_vertical = 2
 text = "AAA"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="FlowContainer" type="FlowContainer" parent="CanvasLayer"]
+offset_top = 226.0
+offset_right = 126.0
+offset_bottom = 226.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VFlowContainer" type="VFlowContainer" parent="CanvasLayer/FlowContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="CanvasLayer/TurnActionButtons/TurnActions/TestButton" to="." method="_on_test_button_pressed"]

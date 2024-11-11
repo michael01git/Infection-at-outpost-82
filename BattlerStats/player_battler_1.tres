@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_7vt7f")
 type = 0
+infected = false
+character = "John"
 max_hp = 24
-min_damage = 100
-max_damage = 60
+current_hp = 24
+min_damage = 1
+max_damage = 1
+armor = 0
 turn_speed = 0

@@ -5,7 +5,11 @@
 [resource]
 script = ExtResource("1_qwj77")
 type = 1
-max_hp = 10
+infected = false
+character = "Dog"
+max_hp = 5
+current_hp = 5
 min_damage = 5
 max_damage = 5
+armor = 0
 turn_speed = 5

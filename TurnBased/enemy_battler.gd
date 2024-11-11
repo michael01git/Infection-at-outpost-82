@@ -1,32 +1,40 @@
 extends Node2D
 
-@export var stats_resource: BattlerStats
+@export var stats_resource: BattlerStats = null
+
+@export var own_button: Button
 
 @onready var health_bar = $HealthBar
 @onready var turn_indicator_animation = $TurnIndicator/TurnIndicatorAnimation
-@onready var select_target_button = $SelectTargetButton
 @onready var animation_player = $AnimationPlayer
 @onready var hit_fx_animation = $HitFX/HitFXAnimation
 
-var current_hp: int
+
 
 signal be_selected(this_target: Node2D)
 signal dead(this_enemy: Node2D)
 signal deal_damage(damage: int)
 
-func _ready():
-	select_target_button.hide()
+func check_deletion():
+	if stats_resource == null:
+		own_button.queue_free()
+		queue_free()
+
+func ready():
+	
+	
 	stop_turn()
 	
-	current_hp = stats_resource.max_hp
 	
-	select_target_button.pressed.connect(on_select_button_pressed)
 	
+	
+	
+	own_button.set_up(stats_resource.character)
 	update_health_bar()
 
 func update_health_bar() -> void:
 	health_bar.max_value = stats_resource.max_hp
-	health_bar.value = current_hp
+	health_bar.value = stats_resource.current_hp
 
 func start_turn() -> void:
 	turn_indicator_animation.play("in_turn")
@@ -38,13 +46,6 @@ func stop_turn() -> void:
 	turn_indicator_animation.play("RESET")
 	animation_player.play("RESET")
 	hit_fx_animation.play("RESET")
-
-
-func show_select_button() -> void:
-	select_target_button.show()
-
-func hide_select_button() -> void:
-	select_target_button.hide()
 
 func on_select_button_pressed() -> void:
 	be_selected.emit(self)
@@ -59,9 +60,9 @@ func play_hit_fx_anim() -> void:
 	hit_fx_animation.play("play")
 
 func be_damaged(amount: int) -> void:
-	current_hp -= amount
+	stats_resource.current_hp -= amount
 	update_health_bar()
-	if current_hp <= 0:
-		current_hp = 0
+	if stats_resource.current_hp <= 0:
+		stats_resource.current_hp = 0
 		dead.emit(self)
 		queue_free()

@@ -1,0 +1,111 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0fwanaepm4y3"]
+
+[ext_resource type="Script" path="res://overworld_menu.gd" id="1_dcdrl"]
+[ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://menu_cursor.tscn" id="1_foow0"]
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_iac28"]
+
+[node name="OverworldMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dcdrl")
+
+[node name="Menu" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 215.0
+offset_bottom = 110.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Sections" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+
+[node name="Options" type="GridContainer" parent="Menu/MarginContainer/Sections"]
+layout_mode = 2
+columns = 3
+
+[node name="MainCharacterButton" type="TextureButton" parent="Menu/MarginContainer/Sections/Options"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_iac28")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MainCharacterButton2" type="TextureButton" parent="Menu/MarginContainer/Sections/Options"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_iac28")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="MainCharacterButton3" type="TextureButton" parent="Menu/MarginContainer/Sections/Options"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture_normal = ExtResource("1_iac28")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Armor1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Armor"
+
+[node name="Armor2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Armor"
+
+[node name="Armor3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Armor"
+
+[node name="Weapon1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Weapon2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Weapon3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Weapon"
+
+[node name="Inventory" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Inventory"
+
+[node name="Map" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Map"
+
+[node name="Quit" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Quit"
+
+[node name="MenuCursor" parent="Menu" instance=ExtResource("1_foow0")]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 35.0
+offset_bottom = 35.0
+menu_parent_path = NodePath("../MarginContainer/Sections/Options")

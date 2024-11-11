@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://cmnacos40qlc5"]
+[gd_scene load_steps=12 format=3 uid="uid://cmnacos40qlc5"]
 
 [ext_resource type="Script" path="res://TurnBased/player_battler.gd" id="1_s6hyn"]
 [ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_t70dg"]
-[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/player_battler_1.tres" id="2_2arij"]
 
 [sub_resource type="Animation" id="Animation_0i1k7"]
 length = 0.001
@@ -117,7 +116,6 @@ _data = {
 [node name="PlayerBattler" type="Node2D" groups=["PlayerBattler"]]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_s6hyn")
-stats_resource = ExtResource("2_2arij")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_t70dg")

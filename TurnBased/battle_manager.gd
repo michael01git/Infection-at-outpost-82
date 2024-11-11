@@ -2,11 +2,14 @@ extends Node
 # NOTE: This handles passing data over to other enemies and players.
 
 @onready var turn_action_buttons = $CanvasLayer/TurnActionButtons
-@onready var attack_button = $CanvasLayer/TurnActionButtons/AttackButton
-@onready var skip_turn_button = $CanvasLayer/TurnActionButtons/SkipTurnButton
+@onready var attack_button = $CanvasLayer/TurnActionButtons/TurnActions/AttackButton
+@onready var skip_turn_button = $CanvasLayer/TurnActionButtons/TurnActions/SkipTurnButton
 
 @onready var battle_end_panel = $CanvasLayer/BattleEndPanel
 @onready var battle_end_label = $CanvasLayer/BattleEndPanel/BattleEndLabel
+
+@onready var enemy_battle_organiser = $EnemyBattleOrganiser
+@onready var player_battle_organizer = $PlayerBattleOrganizer
 
 var all_battlers = []
 var player_battlers = []
@@ -16,7 +19,17 @@ var current_turn: Node2D
 var current_turn_index: int
 
 func _ready() -> void:
-	turn_action_buttons.hide()
+	# Organize enemies and players here, otherwise get deleted nodes.
+	enemy_battle_organiser.organize()
+	player_battle_organizer.organize()
+	
+	print(GameManager.encounter_enemies)
+	print(GameManager.player_characters)
+	
+	# You have to wait a frame for non used battlers to be removed, otherwise it will be included in the get all nodes.
+	await get_tree().process_frame
+	
+	turn_action_buttons.hide_TA()
 	battle_end_panel.hide()
 	
 	player_battlers = get_tree().get_nodes_in_group("PlayerBattler")
@@ -48,15 +61,15 @@ func sort_turn_order_ascending(battler_1, battler_2) -> bool:
 
 func update_turn() -> void:
 	if current_turn.stats_resource.type == BattlerStats.BattlerType.PLAYER:
-		turn_action_buttons.show()
+		turn_action_buttons.show_TA()
 	else:
-		turn_action_buttons.hide()
+		turn_action_buttons.hide_TA()
 	
 	current_turn.start_turn()
 
 func next_turn() -> void:
 	if turn_action_buttons.visible:
-		turn_action_buttons.hide()
+		turn_action_buttons.hide_TA()
 	current_turn.stop_turn()
 	if check_for_battle_end() == false:
 		current_turn_index = (current_turn_index + 1) % all_battlers.size()
@@ -64,13 +77,14 @@ func next_turn() -> void:
 		update_turn()
 
 func show_target_buttons() -> void:
-	turn_action_buttons.hide()
-	for e in enemy_battlers:
-		e.show_select_button()
+	turn_action_buttons.hide_TA()
+	
+	turn_action_buttons.show_enemy_buttons(enemy_battlers)
+
+
 
 func hide_target_buttons() -> void:
-	for e in enemy_battlers:
-		e.hide_select_button()
+	turn_action_buttons.hide_enemy_buttons(enemy_battlers)
 
 func attack_selected_enemy(selected_enemy: Node2D) -> void:
 	hide_target_buttons()
@@ -106,10 +120,22 @@ func show_battle_end_panel(message: String) -> void:
 	battle_end_label.text = message
 	battle_end_panel.show()
 	if turn_action_buttons.visible:
-		turn_action_buttons.hide()
+		turn_action_buttons.hide_TA()
 	
 	await get_tree().create_timer(1).timeout
 	if enemy_battlers.is_empty():
 		GameManager.return_to_overworld()
 	else:
 		pass
+
+
+func _on_test_button_pressed():
+	var enemies: Array[BattlerStats]
+	for i in enemy_battlers:
+		print("append enemy")
+		enemies.append(i.stats_resource)
+	
+	enemies.append(GameManager.infected_players)
+	
+	GameManager.encounter_enemies = enemies
+	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", GameManager.lastScene)

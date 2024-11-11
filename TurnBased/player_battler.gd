@@ -1,36 +1,34 @@
 extends Node2D
 # NOTE: This handles the individual players health, damage, speed, etc. The turnmanager connects to this to get info and pass that over to ex. enemies as damage.
 
-@export var stats_resource: BattlerStats
+@export var stats_resource: BattlerStats = null
 
 @onready var health_bar = $HealthBar
 @onready var turn_indicator_animation = $TurnIndicator/TurnIndicatorAnimation
 @onready var animation_player = $AnimationPlayer
 @onready var hit_fx_animation = $HitFX/HitFXAnimation
 
-
-# NOTE: handle weapon and armor here.
-var current_hp: int
-
-var weapon_damage: int
-var armor_defense: int
+# NOTE: Character health is handled in its statistics.
 
 signal dead(this_battler: Node2D)
 signal turn_ended
 
-func _ready():
+func check_deletion():
+	if stats_resource == null:
+		queue_free()
+
+func ready():
+	
+	
 	stop_turn()
 	
-	update_stats()
 	
 	update_health_bar()
 
-func update_stats() -> void:
-	current_hp = stats_resource.max_hp
 
 func update_health_bar() -> void:
 	health_bar.max_value = stats_resource.max_hp
-	health_bar.value = current_hp
+	health_bar.value = stats_resource.current_hp
 
 func start_turn() -> void:
 	turn_indicator_animation.play("in_turn")
@@ -59,9 +57,9 @@ func play_hit_fx_anim() -> void:
 	hit_fx_animation.play("play")
 
 func be_damaged(amount: int) -> void:
-	current_hp -= amount
+	stats_resource.current_hp -= amount
 	update_health_bar()
-	if current_hp <= 0:
-		current_hp = 0
+	if stats_resource.current_hp <= 0:
+		stats_resource.current_hp = 0
 		dead.emit(self)
 		queue_free()
