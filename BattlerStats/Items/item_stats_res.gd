@@ -13,6 +13,7 @@ enum StatImprove{
 	DAMAGE
 }
 
+var equipped: bool = false
 
 @export_category("Item Type")
 ## What type of item this is. Useable items are consumed, Equiable are permanent.
@@ -20,7 +21,7 @@ enum StatImprove{
 
 @export_category("Name")
 ## Name of item.
-@export var item: String
+@export var item_name: String
 
 @export_category("Stat Improvement")
 @export var stat_improve: StatImprove

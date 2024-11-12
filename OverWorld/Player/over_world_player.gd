@@ -3,10 +3,13 @@ extends CharacterBody2D
 @onready var overworld_menu = $CanvasLayer/OverworldMenu
 
 @export var pc: Array[BattlerStats]
+@export var inv: Array[ItemStats]
 const SPEED = 300.0
 
 func _ready():
 	GameManager.player_characters = pc
+	GameManager.armor_items = inv
+	GameManager.weapon_items = inv
 	
 	global_position = GameManager.last_player_pos
 

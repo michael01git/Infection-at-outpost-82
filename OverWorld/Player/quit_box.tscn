@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://qg1npot2w6nb"]
+
+[ext_resource type="Script" path="res://OverWorld/Player/quit_box.gd" id="1_y5vh5"]
+
+[node name="QuitBox" type="Panel"]
+custom_minimum_size = Vector2(50, 50)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_y5vh5")
+
+[node name="QuitBoxText" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+text = "QUIT"

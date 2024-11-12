@@ -1,19 +1,26 @@
 extends Node
 
+## Scene Stuff
 var last_ID: int = 0
 
 var lastScene = null
 var currentScene = null
 
+var last_player_pos: Vector2
+
+var deadEnemies := Dictionary()
+
+## Player Stuff
 var encounter_enemies: Array[BattlerStats]
 var player_characters: Array[BattlerStats]
 
 var infected_players: BattlerStats = load("res://BattlerStats/enemy_battler_1.tres")
 
+## Inventory
+var weapon_items: Array[ItemStats]
+var armor_items: Array[ItemStats]
+var usable_items: Array[ItemStats]
 
-var last_player_pos: Vector2
-
-var deadEnemies := Dictionary()
 
 func _process(delta):
 	if Input.is_action_just_pressed("Escape"):

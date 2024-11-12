@@ -1,0 +1,177 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0fwanaepm4y3"]
+
+[ext_resource type="Script" path="res://OverWorld/Player/overworld_menu.gd" id="1_dcdrl"]
+[ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://menu_cursor.tscn" id="1_foow0"]
+[ext_resource type="PackedScene" uid="uid://dkhfaxlfviw70" path="res://OverWorld/Player/item_box.tscn" id="2_bjuj4"]
+[ext_resource type="PackedScene" uid="uid://qg1npot2w6nb" path="res://OverWorld/Player/quit_box.tscn" id="3_1o78b"]
+[ext_resource type="Script" path="res://TurnBased/item_selected.gd" id="3_v38ul"]
+[ext_resource type="Script" path="res://OverWorld/Player/player_stats_manager.gd" id="4_03j5b"]
+
+[node name="OverworldMenu" type="Control" groups=["OWMenu"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dcdrl")
+item_box_scene = ExtResource("2_bjuj4")
+quit_box_scene = ExtResource("3_1o78b")
+
+[node name="PlayerStatsManager" type="Control" parent="." node_paths=PackedStringArray("my_armor_button", "my_weapon_button", "my_character_button")]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_03j5b")
+my_armor_button = NodePath("../Menu/MarginContainer/Sections/Options/Armor1")
+my_weapon_button = NodePath("../Menu/MarginContainer/Sections/Options/Weapon1")
+my_character_button = NodePath("../Menu/MarginContainer/Sections/Options/MainCharacter1Button")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Sections" type="VBoxContainer" parent="Menu/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Options" type="GridContainer" parent="Menu/MarginContainer/Sections"]
+layout_mode = 2
+columns = 3
+
+[node name="MainCharacter1Button" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Guy"
+script = ExtResource("3_v38ul")
+
+[node name="MainCharacterButton2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Guy"
+script = ExtResource("3_v38ul")
+
+[node name="MainCharacterButton3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Guy"
+script = ExtResource("3_v38ul")
+
+[node name="Armor1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Armor"
+script = ExtResource("3_v38ul")
+
+[node name="Armor2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Armor"
+script = ExtResource("3_v38ul")
+
+[node name="Armor3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Armor"
+script = ExtResource("3_v38ul")
+
+[node name="Weapon1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Weapon"
+script = ExtResource("3_v38ul")
+
+[node name="Weapon2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Weapon"
+script = ExtResource("3_v38ul")
+
+[node name="Weapon3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Weapon"
+script = ExtResource("3_v38ul")
+
+[node name="Use1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Use"
+script = ExtResource("3_v38ul")
+
+[node name="Use2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Use"
+script = ExtResource("3_v38ul")
+
+[node name="Use3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Use"
+script = ExtResource("3_v38ul")
+
+[node name="Inventory" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Inventory"
+script = ExtResource("3_v38ul")
+
+[node name="Map" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Map"
+script = ExtResource("3_v38ul")
+
+[node name="Quit" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("3_v38ul")
+
+[node name="MenuCursor" parent="Menu" instance=ExtResource("1_foow0")]
+layout_mode = 2
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 35.0
+offset_bottom = 35.0
+menu_parent_path = NodePath("../MarginContainer/Sections/Options")
+
+[node name="MarginContainerInvFull" type="MarginContainer" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="InventoryView" type="Panel" parent="Menu/MarginContainerInvFull"]
+visible = false
+layout_mode = 2
+
+[node name="ItemFullGrid" type="GridContainer" parent="Menu/MarginContainerInvFull/InventoryView"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 3
+
+[node name="MenuCursor" parent="Menu/MarginContainerInvFull/InventoryView" instance=ExtResource("1_foow0")]
+layout_mode = 0
+menu_parent_path = NodePath("../ItemFullGrid")
+
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Inventory" to="." method="_on_inventory_pressed"]

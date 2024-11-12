@@ -5,7 +5,7 @@
 [resource]
 script = ExtResource("1_wkh7q")
 type = 0
-item = ""
+item_name = "SHOVEL"
 stat_improve = 0
 amount = 0
 is_permanent = false
