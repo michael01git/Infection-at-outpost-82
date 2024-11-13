@@ -22,9 +22,9 @@ GameManager="*res://game_manager.gd"
 [display]
 
 window/size/viewport_width=256
-window/size/viewport_height=224
+window/size/viewport_height=240
 window/size/mode=4
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
 [global_group]
@@ -32,6 +32,8 @@ window/stretch/scale_mode="integer"
 PlayerBattler=""
 EnemyBattler=""
 OWMenu=""
+Player=""
+tilemap=""
 
 [input]
 
@@ -80,3 +82,5 @@ menu={
 
 2d_physics/layer_1="Walls"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemies"
+2d_physics/layer_4="Interact"

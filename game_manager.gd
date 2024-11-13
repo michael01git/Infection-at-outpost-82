@@ -6,9 +6,11 @@ var last_ID: int = 0
 var lastScene = null
 var currentScene = null
 
-var last_player_pos: Vector2
+var last_player_pos: Vector2 = Vector2(8, 8)
 
 var deadEnemies := Dictionary()
+
+var next_room_position: Vector2
 
 ## Player Stuff
 var encounter_enemies: Array[BattlerStats]

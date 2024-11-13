@@ -8,24 +8,36 @@
 [ext_resource type="Resource" uid="uid://dp4fhur3imuyg" path="res://BattlerStats/Items/item_stats.tres" id="5_k1025"]
 [ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0liet"]
-radius = 16.0312
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3no4w"]
+size = Vector2(16, 16)
 
-[node name="OverWorldPlayer" type="CharacterBody2D"]
-collision_layer = 3
+[node name="OverWorldPlayer" type="Area2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 4
 script = ExtResource("1_on7e7")
 pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh"), ExtResource("3_s44bh")])
 inv = Array[ExtResource("4_27muv")]([ExtResource("5_k1025"), ExtResource("5_k1025"), ExtResource("5_k1025")])
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_cugle")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_0liet")
+shape = SubResource("RectangleShape2D_3no4w")
+
+[node name="CollisionRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+
+[node name="InteractRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="OverworldMenu" parent="CanvasLayer" instance=ExtResource("5_vqbcp")]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,33 +1,37 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcvjap0oenqbl"]
+[gd_scene load_steps=6 format=3 uid="uid://bcvjap0oenqbl"]
 
 [ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_7pugu"]
 [ext_resource type="Script" path="res://OverWorld/enemy.gd" id="1_afcl0"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_2m5fj"]
 [ext_resource type="Resource" uid="uid://dbs8snnacre4i" path="res://BattlerStats/enemy_battler_1.tres" id="3_gk8bo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0xm7e"]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_msuux"]
+size = Vector2(16, 16)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ldwn2"]
-radius = 49.0408
-
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_afcl0")
-encounter_enemies = Array[ExtResource("2_2m5fj")]([ExtResource("3_gk8bo"), ExtResource("3_gk8bo"), ExtResource("3_gk8bo"), ExtResource("3_gk8bo")])
+encounter_enemies = Array[ExtResource("2_2m5fj")]([ExtResource("3_gk8bo")])
 
 [node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_7pugu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_0xm7e")
+shape = SubResource("RectangleShape2D_msuux")
 
-[node name="PlayerMonitor" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-monitorable = false
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 16.0
+target_desired_distance = 16.0
+path_postprocessing = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerMonitor"]
-shape = SubResource("CircleShape2D_ldwn2")
+[node name="LookRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 100)
+collision_mask = 3
+collide_with_areas = true
 
-[connection signal="body_entered" from="PlayerMonitor" to="." method="_on_player_monitor_body_entered"]
+[node name="Icon2" type="Sprite2D" parent="LookRaycast"]
+position = Vector2(0, 8)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("1_7pugu")

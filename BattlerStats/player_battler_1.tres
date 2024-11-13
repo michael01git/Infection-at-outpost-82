@@ -10,6 +10,6 @@ character = "John"
 max_hp = 24
 current_hp = 24
 min_damage = 1
-max_damage = 1
+max_damage = 10
 armor = 0
 turn_speed = 0
