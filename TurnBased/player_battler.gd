@@ -51,7 +51,7 @@ func play_attack_anim() -> void:
 	animation_player.play("attack")
 
 func get_attack_damage() -> int:
-	return randi_range(stats_resource.min_damage, stats_resource.max_damage)
+	return stats_resource.damage
 
 func play_hit_fx_anim() -> void:
 	hit_fx_animation.play("play")

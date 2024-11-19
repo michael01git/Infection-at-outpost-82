@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource("1_wkh7q")
-type = 0
+type = 2
 item_name = "SHOVEL"
-stat_improve = 0
-amount = 0
+damage = 5
+armor = 0
 is_permanent = false
 uses = 0

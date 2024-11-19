@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://c7babmwbaf40c"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_7xpy6"]
+
+[resource]
+script = ExtResource("1_7xpy6")
+type = 2
+item_name = "BAT"
+damage = 10
+armor = 0
+is_permanent = false
+uses = 0

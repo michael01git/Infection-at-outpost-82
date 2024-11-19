@@ -13,6 +13,7 @@ config_version=5
 config/name="Infection at outpost 82"
 run/main_scene="res://OverWorld/overworld.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+run/max_fps=14
 config/icon="res://Assets/icon.svg"
 
 [autoload]
@@ -34,6 +35,7 @@ EnemyBattler=""
 OWMenu=""
 Player=""
 tilemap=""
+InventoryMenu=""
 
 [input]
 

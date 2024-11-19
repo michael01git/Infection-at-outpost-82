@@ -19,12 +19,12 @@ var player_characters: Array[BattlerStats]
 var infected_players: BattlerStats = load("res://BattlerStats/enemy_battler_1.tres")
 
 ## Inventory
-var weapon_items: Array[ItemStats]
-var armor_items: Array[ItemStats]
-var usable_items: Array[ItemStats]
+var items: Array[ItemStats]
 
 
 func _process(delta):
+	print(player_characters[0].damage)
+	
 	if Input.is_action_just_pressed("Escape"):
 		get_tree().quit()
 

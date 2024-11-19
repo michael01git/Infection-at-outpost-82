@@ -24,8 +24,8 @@ var equipped: bool = false
 @export var item_name: String
 
 @export_category("Stat Improvement")
-@export var stat_improve: StatImprove
-@export var amount: int
+@export var damage: int
+@export var armor: int
 
 @export_category("Uses")
 @export var is_permanent: bool

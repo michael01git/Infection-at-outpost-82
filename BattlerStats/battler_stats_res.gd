@@ -29,12 +29,14 @@ enum BattlerType{
 @export var current_hp: int
 
 @export_category("Damage")
-@export var min_damage: int
-@export var max_damage: int
+@export var damage: int
 
 @export_category("Armor")
-
 @export var armor: int
 
 @export_category("Speed")
 @export var turn_speed: int
+
+## Weapons
+var Armor: ItemStats
+var Weapon: ItemStats

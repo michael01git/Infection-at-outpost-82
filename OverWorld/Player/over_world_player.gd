@@ -17,8 +17,7 @@ var target_pathfind_pos: Vector2
 
 func _ready():
 	GameManager.player_characters = pc
-	GameManager.armor_items = inv
-	GameManager.weapon_items = inv
+	GameManager.items = inv
 	
 	
 	
@@ -30,6 +29,8 @@ func _ready():
 
 
 func _unhandled_input(event):
+	
+	
 	interact_raycast.target_position = ray.target_position
 	if event.is_action_pressed("use"):
 		if interact_raycast.is_colliding():
