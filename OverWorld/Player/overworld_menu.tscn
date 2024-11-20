@@ -174,6 +174,12 @@ layout_mode = 0
 menu_parent_path = NodePath("../InventoryGrid")
 
 [connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Armor1" to="ButtonParser" method="_on_armor_1_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Armor2" to="ButtonParser" method="_on_armor_2_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Armor3" to="ButtonParser" method="_on_armor_3_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Weapon1" to="ButtonParser" method="_on_weapon_1_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Weapon2" to="ButtonParser" method="_on_weapon_2_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Weapon3" to="ButtonParser" method="_on_weapon_3_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Use1" to="ButtonParser" method="_on_use_1_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Use2" to="ButtonParser" method="_on_use_2_pressed"]
+[connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Use3" to="ButtonParser" method="_on_use_3_pressed"]
 [connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Inventory" to="ButtonParser" method="_on_inventory_pressed"]

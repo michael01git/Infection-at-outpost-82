@@ -1,13 +1,15 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfqfl0mspjhl3"]
+[gd_scene load_steps=12 format=3 uid="uid://cfqfl0mspjhl3"]
 
 [ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_cugle"]
 [ext_resource type="Script" path="res://OverWorld/Player/over_world_player.gd" id="1_on7e7"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_kudrg"]
 [ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/player_battler_1.tres" id="3_s44bh"]
+[ext_resource type="Resource" uid="uid://cyk0humsgewri" path="res://BattlerStats/player_battler_2.tres" id="4_0exic"]
 [ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="4_27muv"]
 [ext_resource type="Resource" uid="uid://c7babmwbaf40c" path="res://BattlerStats/Items/bat.tres" id="5_04kp1"]
 [ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
 [ext_resource type="Resource" uid="uid://ca1j72ib5iguh" path="res://BattlerStats/Items/shovel.tres" id="6_rpkhu"]
+[ext_resource type="Resource" uid="uid://t6cii12jjs4o" path="res://BattlerStats/Items/heal.tres" id="8_510he"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3no4w"]
 size = Vector2(16, 16)
@@ -16,8 +18,8 @@ size = Vector2(16, 16)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_on7e7")
-pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh"), ExtResource("3_s44bh")])
-inv = Array[ExtResource("4_27muv")]([ExtResource("5_04kp1"), ExtResource("6_rpkhu")])
+pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh"), ExtResource("4_0exic")])
+inv = Array[ExtResource("4_27muv")]([ExtResource("5_04kp1"), ExtResource("6_rpkhu"), ExtResource("8_510he"), ExtResource("8_510he")])
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.12, 0.12)
@@ -41,4 +43,9 @@ collide_with_bodies = false
 
 [node name="OverworldMenu" parent="CanvasLayer" instance=ExtResource("5_vqbcp")]
 
+[node name="DangerLevelTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DangerLevelTimer" to="." method="_on_danger_level_timer_timeout"]

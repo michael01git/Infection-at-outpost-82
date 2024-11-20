@@ -196,5 +196,3 @@ size_flags_vertical = 3
 
 [node name="VFlowContainer" type="VFlowContainer" parent="CanvasLayer/FlowContainer"]
 layout_mode = 2
-
-[connection signal="pressed" from="CanvasLayer/TurnActionButtons/TurnActions/TestButton" to="." method="_on_test_button_pressed"]

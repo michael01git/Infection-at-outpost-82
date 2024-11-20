@@ -40,3 +40,7 @@ enum BattlerType{
 ## Weapons
 var Armor: ItemStats
 var Weapon: ItemStats
+
+func cap_health() -> void:
+	if current_hp > max_hp:
+		current_hp = max_hp

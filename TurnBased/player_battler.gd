@@ -7,6 +7,7 @@ extends Node2D
 @onready var turn_indicator_animation = $TurnIndicator/TurnIndicatorAnimation
 @onready var animation_player = $AnimationPlayer
 @onready var hit_fx_animation = $HitFX/HitFXAnimation
+@onready var turn_based_combat_scene = $"../.."
 
 # NOTE: Character health is handled in its statistics.
 
@@ -19,7 +20,6 @@ func check_deletion():
 
 func ready():
 	
-	
 	stop_turn()
 	
 	
@@ -31,6 +31,14 @@ func update_health_bar() -> void:
 	health_bar.value = stats_resource.current_hp
 
 func start_turn() -> void:
+	var enemies: Array[BattlerStats]
+	
+	for i in turn_based_combat_scene.enemy_battlers:
+		enemies.append(i.stats_resource)
+	
+	if GameManager.danger_enough_fight(enemies):
+		turn_based_combat_scene.start_encounter()
+	
 	turn_indicator_animation.play("in_turn")
 
 func stop_turn() -> void:

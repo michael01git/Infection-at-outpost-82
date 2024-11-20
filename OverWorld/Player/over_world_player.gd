@@ -4,6 +4,8 @@ extends Area2D
 @onready var ray = $CollisionRaycast
 @onready var interact_raycast = $InteractRaycast
 
+@onready var danger_level_timer = $DangerLevelTimer
+
 @export var pc: Array[BattlerStats]
 @export var inv: Array[ItemStats]
 
@@ -16,6 +18,8 @@ var moving = false
 var target_pathfind_pos: Vector2
 
 func _ready():
+	danger_level_timer.start()
+	
 	GameManager.player_characters = pc
 	GameManager.items = inv
 	
@@ -62,13 +66,13 @@ func move(dir):
 		
 		
 
-func start_encounter(enemies):
-	
-	
-	# This is needed to start encounter.
-	GameManager.encounter_enemies = enemies
-	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
+func _on_danger_level_timer_timeout():
+	if GameManager.danger_enough_overworld():
+		
+		GameManager.clear_out_infected()
+		GameManager.start_encounter(GameManager.infected)
 
+## When hit enemy
 func _on_area_entered(area):
 	area.kill_enemy()
-	start_encounter(area.encounter_enemies)
+	GameManager.start_encounter(area.encounter_enemies)

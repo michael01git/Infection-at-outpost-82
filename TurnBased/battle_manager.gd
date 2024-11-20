@@ -129,13 +129,14 @@ func show_battle_end_panel(message: String) -> void:
 		pass
 
 
-func _on_test_button_pressed():
+func start_encounter():
 	var enemies: Array[BattlerStats]
+	
 	for i in enemy_battlers:
-		print("append enemy")
 		enemies.append(i.stats_resource)
 	
-	enemies.append(GameManager.infected_players)
+	enemies += GameManager.infected
+	GameManager.clear_out_infected()
 	
 	GameManager.encounter_enemies = enemies
 	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", GameManager.lastScene)

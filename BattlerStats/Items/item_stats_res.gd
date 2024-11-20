@@ -26,7 +26,18 @@ var equipped: bool = false
 @export_category("Stat Improvement")
 @export var damage: int
 @export var armor: int
+@export var current_health: int
+
 
 @export_category("Uses")
-@export var is_permanent: bool
+@export var is_permanent: bool = true
 @export var uses: int
+
+func use() -> void:
+	uses -= 1
+
+func check_if_valid() -> bool:
+	if uses <= 0:
+		return false
+	else:
+		return true

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://t6cii12jjs4o"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_b046e"]
+
+[resource]
+script = ExtResource("1_b046e")
+type = 0
+item_name = "Bandage"
+damage = 0
+armor = 0
+current_health = 5
+is_permanent = false
+uses = 1

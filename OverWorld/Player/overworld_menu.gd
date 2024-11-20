@@ -8,6 +8,9 @@ extends Control
 @onready var inventory_view = $Menu/MarginContainerInvFull/InventoryView
 @onready var full_menu_cursor = $Menu/MarginContainerInvFull/InventoryView/FullMenuCursor
 
+@onready var main_character_1_button = $Menu/MarginContainer/Sections/Options/MainCharacter1Button
+@onready var main_character_button_2 = $Menu/MarginContainer/Sections/Options/MainCharacterButton2
+@onready var main_character_button_3 = $Menu/MarginContainer/Sections/Options/MainCharacterButton3
 
 var menu_open: bool = false
 var is_menu_paused: bool = false
@@ -32,11 +35,16 @@ func close_menu():
 	menu.process_mode = Node.PROCESS_MODE_DISABLED
 
 func open_menu():
+	setup_data()
+	
 	menu_cursor.cursor_index = 0
 	
 	menu_open = true
 	menu.show()
 	menu.process_mode = Node.PROCESS_MODE_INHERIT
+
+func setup_data():
+	main_character_1_button.text = GameManager.player_characters[0].character
 
 func pause_menu():
 	if is_menu_paused:

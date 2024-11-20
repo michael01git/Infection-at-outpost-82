@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=2 format=3 uid="uid://cyk0humsgewri"]
+
+[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="1_es88h"]
+
+[resource]
+script = ExtResource("1_es88h")
+type = 0
+infected = true
+character = "Mike"
+max_hp = 24
+current_hp = 24
+damage = 5
+armor = 0
+turn_speed = 0

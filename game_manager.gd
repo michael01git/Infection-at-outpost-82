@@ -16,10 +16,85 @@ var next_room_position: Vector2
 var encounter_enemies: Array[BattlerStats]
 var player_characters: Array[BattlerStats]
 
-var infected_players: BattlerStats = load("res://BattlerStats/enemy_battler_1.tres")
+var humans: Array[BattlerStats]
+var infected: Array[BattlerStats]
 
 ## Inventory
 var items: Array[ItemStats]
+
+# HANDLES DANGER LEVEL IE PLAYER TURNING
+func danger_enough_fight(enemies: Array[BattlerStats]) -> bool:
+	
+	figure_out_infected()
+	
+	
+	var fight_enemies: Array[BattlerStats] = infected + enemies
+	
+	
+	var danger: bool = calculate_danger_level(humans, fight_enemies)
+	return danger
+
+func danger_enough_overworld():
+	figure_out_infected()
+	
+	var danger: bool = calculate_danger_level(humans, infected)
+	return danger
+
+func figure_out_infected():
+	humans.clear()
+	infected.clear()
+	for i in player_characters:
+		if i.infected:
+			infected.append(i)
+		else:
+			humans.append(i)
+
+func clear_out_infected():
+	var inf_1: BattlerStats
+	var inf_2: BattlerStats
+	
+	if infected.size() >= 1:
+		inf_1 = infected[0]
+	if infected.size() >= 2:
+		inf_2 = infected[1]
+	
+	for i in player_characters:
+		if i == inf_1:
+			player_characters.erase(inf_1)
+		if i == inf_2:
+			player_characters.erase(inf_2)
+
+func calculate_danger_level(players: Array[BattlerStats], enemies: Array[BattlerStats]):
+	
+	## Its possible that there are no playercharacters that are infected. Do nothing
+	if infected.is_empty():
+		return false
+	
+	var human_level: int
+	var enemy_level: int
+	
+	for i in players:
+		human_level += i.current_hp
+		human_level += i.damage
+		human_level += i.turn_speed
+	
+	for i in enemies:
+		enemy_level += i.current_hp
+		enemy_level += i.damage
+		enemy_level += i.turn_speed
+	
+	if enemy_level > human_level:
+		return true
+	else:
+		return false
+
+## Moved from player
+func start_encounter(enemies):
+	
+	
+	# This is needed to start encounter.
+	GameManager.encounter_enemies = enemies
+	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
 
 
 func _process(delta):

@@ -68,7 +68,6 @@ func item_box_pressed(item_stat: ItemStats, Battler_num: int):
 	# If item is usable.
 	if item_stat.type == 0:
 		use_item(item_stat, battler)
-		close_inventory()
 		return
 	
 	## Check if is equipped
@@ -122,6 +121,11 @@ func equip_item(item_stat: ItemStats, battler: BattlerStats):
 	close_inventory()
 
 func use_item(item_stat: ItemStats, battler: BattlerStats):
+	battler.current_hp += item_stat.current_health
+	item_stat.use()
 	
+	if !item_stat.check_if_valid():
+		## The issue with this is that it will remove this type of item always. Have to create unique healing items.
+		GameManager.items.erase(item_stat)
 	
 	close_inventory()
