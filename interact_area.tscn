@@ -11,6 +11,7 @@ collision_layer = 8
 collision_mask = 0
 monitoring = false
 script = ExtResource("1_3sj5f")
+text_on_interact = Array[String](["Its an old table.", "Theres a health kit in it.", "You take it.", "@res://BattlerStats/Items/heal.tres"])
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.13, 0.13)

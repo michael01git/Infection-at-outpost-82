@@ -36,6 +36,7 @@ OWMenu=""
 Player=""
 tilemap=""
 InventoryMenu=""
+text_prompter=""
 
 [input]
 

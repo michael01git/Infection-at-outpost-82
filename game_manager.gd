@@ -22,6 +22,15 @@ var infected: Array[BattlerStats]
 ## Inventory
 var items: Array[ItemStats]
 
+func add_item(item_string_path: String) -> void:
+	var item = ResourceLoader.load(item_string_path).duplicate()
+	
+	if item == null:
+		return
+	
+	GameManager.items.append(item)
+
+
 # HANDLES DANGER LEVEL IE PLAYER TURNING
 func danger_enough_fight(enemies: Array[BattlerStats]) -> bool:
 	
@@ -93,8 +102,8 @@ func start_encounter(enemies):
 	
 	
 	# This is needed to start encounter.
-	GameManager.encounter_enemies = enemies
-	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
+	encounter_enemies = enemies
+	switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
 
 
 func _process(delta):
@@ -102,6 +111,8 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("Escape"):
 		get_tree().quit()
+
+## PERSISTANCE ##
 
 # set enemy id
 func get_ID(enemy):

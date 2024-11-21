@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cfqfl0mspjhl3"]
+[gd_scene load_steps=13 format=3 uid="uid://cfqfl0mspjhl3"]
 
 [ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="1_cugle"]
 [ext_resource type="Script" path="res://OverWorld/Player/over_world_player.gd" id="1_on7e7"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
 [ext_resource type="Resource" uid="uid://ca1j72ib5iguh" path="res://BattlerStats/Items/shovel.tres" id="6_rpkhu"]
 [ext_resource type="Resource" uid="uid://t6cii12jjs4o" path="res://BattlerStats/Items/heal.tres" id="8_510he"]
+[ext_resource type="PackedScene" uid="uid://b08cfcf37hcxe" path="res://text_prompter.tscn" id="10_p4xre"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3no4w"]
 size = Vector2(16, 16)
@@ -40,6 +41,10 @@ collide_with_bodies = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextPrompter" parent="CanvasLayer" instance=ExtResource("10_p4xre")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="OverworldMenu" parent="CanvasLayer" instance=ExtResource("5_vqbcp")]
 

@@ -65,4 +65,5 @@ func be_damaged(amount: int) -> void:
 	if stats_resource.current_hp <= 0:
 		stats_resource.current_hp = 0
 		dead.emit(self)
+		own_button.queue_free()
 		queue_free()

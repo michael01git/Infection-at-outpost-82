@@ -60,7 +60,9 @@ func sort_turn_order_ascending(battler_1, battler_2) -> bool:
 	return false
 
 func update_turn() -> void:
-	if current_turn.stats_resource.type == BattlerStats.BattlerType.PLAYER:
+	
+	## If current turn holder is a player. Show turn action buttons.
+	if current_turn.stats_resource.type == BattlerStats.BattlerType.PLAYER and !current_turn.stats_resource.infected:
 		turn_action_buttons.show_TA()
 	else:
 		turn_action_buttons.hide_TA()
@@ -126,17 +128,17 @@ func show_battle_end_panel(message: String) -> void:
 	if enemy_battlers.is_empty():
 		GameManager.return_to_overworld()
 	else:
-		pass
+		GameManager.switch_Scene("res://OverWorld/MenuScenes/death_scene.tscn", "res://OverWorld/MenuScenes/death_scene.tscn")
 
 
 func start_encounter():
-	var enemies: Array[BattlerStats]
+	var enemies: Array[BattlerStats] = GameManager.infected
+	GameManager.clear_out_infected()
 	
 	for i in enemy_battlers:
 		enemies.append(i.stats_resource)
 	
-	enemies += GameManager.infected
-	GameManager.clear_out_infected()
+	
 	
 	GameManager.encounter_enemies = enemies
 	GameManager.switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", GameManager.lastScene)

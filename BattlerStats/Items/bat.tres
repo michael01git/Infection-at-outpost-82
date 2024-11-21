@@ -8,5 +8,6 @@ type = 2
 item_name = "BAT"
 damage = 10
 armor = 0
+current_health = 0
 is_permanent = false
 uses = 0
