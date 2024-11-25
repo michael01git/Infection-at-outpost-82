@@ -1,6 +1,6 @@
 extends Control
 
-@onready var mob_select = $"../MobSelectMenu/MobSelect"
+@onready var mob_select = $"../MobSelectMenu"
 @onready var mob_cursor = $"../MobSelectMenu/MobCursor"
 
 @onready var turn_cursor = $TurnCursor
@@ -12,7 +12,7 @@ func _ready():
 	mob_cursor.process_mode = Node.PROCESS_MODE_DISABLED
 
 func show_TA():
-	await get_tree().create_timer(0.25).timeout
+	await get_tree().create_timer(1).timeout
 	turn_cursor.process_mode = Node.PROCESS_MODE_INHERIT
 	
 	turn_cursor.cursor_index = 0

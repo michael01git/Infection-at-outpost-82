@@ -1,11 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://b0fwanaepm4y3"]
+[gd_scene load_steps=9 format=3 uid="uid://b0fwanaepm4y3"]
 
 [ext_resource type="Script" path="res://OverWorld/Player/overworld_menu.gd" id="1_dcdrl"]
-[ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://menu_cursor.tscn" id="1_foow0"]
-[ext_resource type="PackedScene" uid="uid://dkhfaxlfviw70" path="res://OverWorld/Player/item_box.tscn" id="2_bjuj4"]
+[ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://OverWorld/Player/InventorySystem/Cursor/menu_cursor.tscn" id="1_foow0"]
+[ext_resource type="PackedScene" uid="uid://dkhfaxlfviw70" path="res://OverWorld/Player/InventorySystem/item_box.tscn" id="2_bjuj4"]
 [ext_resource type="Script" path="res://OverWorld/Player/button_parser.gd" id="2_odjtx"]
-[ext_resource type="PackedScene" uid="uid://qg1npot2w6nb" path="res://OverWorld/Player/quit_box.tscn" id="3_1o78b"]
-[ext_resource type="Script" path="res://TurnBased/item_selected.gd" id="3_v38ul"]
+[ext_resource type="PackedScene" uid="uid://qg1npot2w6nb" path="res://OverWorld/Player/InventorySystem/quit_box.tscn" id="3_1o78b"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="3_7hadp"]
+[ext_resource type="Script" path="res://OverWorld/Player/InventorySystem/Cursor/item_selected.gd" id="3_v38ul"]
 [ext_resource type="Script" path="res://OverWorld/Player/inventory_view.gd" id="6_xagdt"]
 
 [node name="OverworldMenu" type="Control" groups=["OWMenu"]]
@@ -16,6 +17,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dcdrl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="ButtonParser" type="Control" parent="."]
 anchors_preset = 0
@@ -38,10 +48,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="Sections" type="VBoxContainer" parent="Menu/MarginContainer"]
 layout_mode = 2
@@ -53,95 +63,160 @@ layout_mode = 2
 columns = 3
 
 [node name="MainCharacter1Button" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
 text = "Guy"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="MainCharacterButton2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
 text = "Guy"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="MainCharacterButton3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 6
 size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
 text = "Guy"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Armor1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Armor"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Armor2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Armor"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Armor3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Armor"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Weapon1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Weapon"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Weapon2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Weapon"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Weapon3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Weapon"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Use1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Use"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Use2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Use"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Use3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Use"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Inventory" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
-text = "Inventory"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
+text = "Inv."
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Map" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Map"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="Keys" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_7hadp")
 text = "Keys"
+flat = true
 script = ExtResource("3_v38ul")
 
 [node name="MenuCursor" parent="Menu" instance=ExtResource("1_foow0")]
 layout_mode = 2
-offset_left = 10.0
-offset_top = 10.0
-offset_right = 35.0
-offset_bottom = 35.0
 menu_parent_path = NodePath("../MarginContainer/Sections/Options")
 
 [node name="MarginContainerInvFull" type="MarginContainer" parent="Menu"]
@@ -151,23 +226,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 30
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 30
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="InventoryView" type="Panel" parent="Menu/MarginContainerInvFull" groups=["InventoryMenu"]]
+[node name="InventoryView" type="ColorRect" parent="Menu/MarginContainerInvFull" groups=["InventoryMenu"]]
 visible = false
 layout_mode = 2
+color = Color(0, 0, 0, 1)
 script = ExtResource("6_xagdt")
 item_box_scene = ExtResource("2_bjuj4")
 quit_box_scene = ExtResource("3_1o78b")
 
-[node name="InventoryGrid" type="GridContainer" parent="Menu/MarginContainerInvFull/InventoryView"]
+[node name="Panel" type="ColorRect" parent="Menu/MarginContainerInvFull/InventoryView"]
 layout_mode = 0
+offset_left = -56.0
+offset_top = -25.0
+offset_right = 242.0
+offset_bottom = 165.0
+color = Color(0, 0, 0, 1)
+
+[node name="InventoryGrid" type="GridContainer" parent="Menu/MarginContainerInvFull/InventoryView"]
+layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
-columns = 3
+columns = 4
 
 [node name="FullMenuCursor" parent="Menu/MarginContainerInvFull/InventoryView" instance=ExtResource("1_foow0")]
 layout_mode = 0

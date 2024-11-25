@@ -19,6 +19,8 @@ var current_turn: Node2D
 var current_turn_index: int
 
 func _ready() -> void:
+	
+	
 	# Organize enemies and players here, otherwise get deleted nodes.
 	enemy_battle_organiser.organize()
 	player_battle_organizer.organize()
@@ -28,6 +30,7 @@ func _ready() -> void:
 	
 	# You have to wait a frame for non used battlers to be removed, otherwise it will be included in the get all nodes.
 	await get_tree().process_frame
+	
 	
 	turn_action_buttons.hide_TA()
 	battle_end_panel.hide()
@@ -52,6 +55,9 @@ func _ready() -> void:
 		e.deal_damage.connect(attack_random_player_battler)
 	
 	current_turn = all_battlers[current_turn_index]
+	
+	
+	
 	update_turn()
 
 func sort_turn_order_ascending(battler_1, battler_2) -> bool:
@@ -128,7 +134,7 @@ func show_battle_end_panel(message: String) -> void:
 	if enemy_battlers.is_empty():
 		GameManager.return_to_overworld()
 	else:
-		GameManager.switch_Scene("res://OverWorld/MenuScenes/death_scene.tscn", "res://OverWorld/MenuScenes/death_scene.tscn")
+		GameManager.GameOver()
 
 
 func start_encounter():

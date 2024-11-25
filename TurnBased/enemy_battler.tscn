@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://jyq4wji2feey"]
 
 [ext_resource type="Script" path="res://TurnBased/enemy_battler.gd" id="1_7awni"]
-[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="2_sivh5"]
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="2_sivh5"]
 
 [sub_resource type="Animation" id="Animation_0i1k7"]
 length = 0.001
@@ -118,6 +118,7 @@ scale = Vector2(0.5, 0.5)
 script = ExtResource("1_7awni")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_sivh5")
 
 [node name="TurnIndicator" type="Panel" parent="."]
@@ -130,6 +131,7 @@ libraries = {
 }
 
 [node name="HitFX" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_sivh5")
 
 [node name="HitFXAnimation" type="AnimationPlayer" parent="HitFX"]

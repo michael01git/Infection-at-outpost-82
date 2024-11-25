@@ -11,8 +11,8 @@ func set_up_box_info(item_stat: ItemStats, usable: bool, battler: int):
 	print("set_up_info")
 	battler_number = battler
 	item_held = item_stat
-	$ItemBoxText.text = item_held.item_name
-	$CheckBox.button_pressed = item_held.equipped
+	$VBoxContainer/ItemBoxText.text = item_held.item_name
+	$VBoxContainer/CheckBox.button_pressed = item_held.equipped
 	is_usable = usable
 
 func cursor_select() -> void:

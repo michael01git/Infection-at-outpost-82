@@ -18,6 +18,7 @@ enum BattlerType{
 @export var type: BattlerType
 ## If player character is infected.
 @export var infected: bool
+var will_infect: bool = false
 
 @export_category("Name")
 ## Name that is show for statistics.

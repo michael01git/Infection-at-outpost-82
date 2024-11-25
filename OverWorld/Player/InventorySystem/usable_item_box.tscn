@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://boqxyqvesur5g"]
+
+[ext_resource type="Script" path="res://OverWorld/Player/InventorySystem/usable_item_box.gd" id="1_vhmt5"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="2_js60u"]
+
+[node name="UsableItemBox" type="Panel"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vhmt5")
+
+[node name="ItemBoxText" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("2_js60u")
+text = "Item"

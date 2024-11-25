@@ -1,5 +1,7 @@
 extends Control
 
+@onready var prompt = get_tree().get_first_node_in_group("text_prompter")
+
 @onready var menu = $Menu
 @onready var menu_cursor = $Menu/MenuCursor
 
@@ -19,10 +21,15 @@ func _ready():
 	close_menu()
 
 func _process(delta):
+	if !prompt.prompts_empty:
+		return
+	
 	if is_menu_paused:
 		return
 	
 	if Input.is_action_just_pressed("menu"):
+		
+		
 		if menu.visible:
 			close_menu()
 		else:
@@ -30,11 +37,17 @@ func _process(delta):
 		
 
 func close_menu():
+	hide()
+	GameManager.pause_mobs = false
+	
 	menu_open = false
 	menu.hide()
 	menu.process_mode = Node.PROCESS_MODE_DISABLED
 
 func open_menu():
+	show()
+	GameManager.pause_mobs = true
+	
 	setup_data()
 	
 	menu_cursor.cursor_index = 0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6jttkuemcqrp"]
+
+[ext_resource type="Script" path="res://OverWorld/Level/Interact/door.gd" id="1_yi2nt"]
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="2_2gcwo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vteho"]
+size = Vector2(16, 16)
+
+[node name="DoorArea" type="Area2D"]
+collision_layer = 8
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_yi2nt")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("2_2gcwo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vteho")

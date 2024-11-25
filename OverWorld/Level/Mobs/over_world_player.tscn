@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://cfqfl0mspjhl3"]
+
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="1_cugle"]
+[ext_resource type="Script" path="res://OverWorld/Level/Mobs/over_world_player.gd" id="1_on7e7"]
+[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_kudrg"]
+[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/Players/player_battler_1.tres" id="3_s44bh"]
+[ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
+[ext_resource type="Texture2D" uid="uid://dtd25fhkld5vk" path="res://Assets/Sprites/FlashLight.png" id="7_y1hlh"]
+[ext_resource type="PackedScene" uid="uid://b08cfcf37hcxe" path="res://OverWorld/Player/text_prompter.tscn" id="10_p4xre"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3no4w"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo0op"]
+size = Vector2(10, 10)
+
+[node name="OverWorldPlayer" type="Area2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_on7e7")
+pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh")])
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_cugle")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3no4w")
+
+[node name="CollisionRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+
+[node name="InteractRaycast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collision_mask = 8
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="TextPrompter" parent="CanvasLayer" instance=ExtResource("10_p4xre")]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OverworldMenu" parent="CanvasLayer" instance=ExtResource("5_vqbcp")]
+
+[node name="DangerLevelTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Follower1" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wo0op")
+
+[node name="FollowerSprite" type="Sprite2D" parent="Follower1"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_cugle")
+
+[node name="Follower2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wo0op")
+
+[node name="FollowerSprite" type="Sprite2D" parent="Follower2"]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("1_cugle")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
+texture = ExtResource("7_y1hlh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="DangerLevelTimer" to="." method="_on_danger_level_timer_timeout"]

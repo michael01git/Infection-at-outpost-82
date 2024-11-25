@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c50jgnbvmwy70"]
+
+[ext_resource type="Script" path="res://OverWorld/Player/InventorySystem/Cursor/menu_cursor.gd" id="1_5ygeo"]
+[ext_resource type="Texture2D" uid="uid://bdyhtuqoj64u8" path="res://Assets/Sprites/CursorSelect.png" id="1_cxiw5"]
+
+[node name="MenuCursor" type="TextureRect"]
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("1_cxiw5")
+expand_mode = 1
+script = ExtResource("1_5ygeo")

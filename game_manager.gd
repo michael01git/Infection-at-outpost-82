@@ -6,11 +6,23 @@ var last_ID: int = 0
 var lastScene = null
 var currentScene = null
 
-var last_player_pos: Vector2 = Vector2(8, 8)
+# Used to spawn player in same position after fight
+var last_player_pos: Vector2 = Vector2.ZERO
 
+# Interacted items.
+var interacted_array: Array[String]
+
+# Dictionary of dead enemies. Handled by persistance.
 var deadEnemies := Dictionary()
 
-var next_room_position: Vector2
+# Handles special infectee spawn. Not implemented currently.
+var spawn_all_special_infected: bool = false
+
+## NEEDED? var next_room_position: Vector2
+
+# Used to spawn player at door in room.
+var room_positions := Dictionary()
+var pause_mobs: bool = false
 
 ## Player Stuff
 var encounter_enemies: Array[BattlerStats]
@@ -21,6 +33,14 @@ var infected: Array[BattlerStats]
 
 ## Inventory
 var items: Array[ItemStats]
+
+func add_party_member(member_string_path: String) -> void:
+	var member = ResourceLoader.load(member_string_path)
+	
+	if member == null:
+		return
+	
+	GameManager.player_characters.append(member)
 
 func add_item(item_string_path: String) -> void:
 	var item = ResourceLoader.load(item_string_path).duplicate()
@@ -44,12 +64,34 @@ func danger_enough_fight(enemies: Array[BattlerStats]) -> bool:
 	return danger
 
 func danger_enough_overworld():
+	
 	figure_out_infected()
 	
 	var danger: bool = calculate_danger_level(humans, infected)
 	return danger
 
+func check_battle_inf():
+	for i in player_characters:
+		if i.will_infect == true:
+			i.will_infect = false
+			i.infected = true
+
+func if_all_infected():
+	var all_inf: int
+	for i in player_characters:
+		if i.infected == true:
+			all_inf += 1
+	
+	if all_inf == player_characters.size():
+		return true
+	else:
+		return false
+
 func figure_out_infected():
+	
+	
+	
+	
 	humans.clear()
 	infected.clear()
 	for i in player_characters:
@@ -69,8 +111,18 @@ func clear_out_infected():
 	
 	for i in player_characters:
 		if i == inf_1:
+			if inf_1.Armor != null:
+				items.erase(inf_1.Armor)
+			if inf_1.Weapon != null:
+				items.erase(inf_1.Weapon)
+			
 			player_characters.erase(inf_1)
+		
 		if i == inf_2:
+			if inf_2.Armor != null:
+				items.erase(inf_2.Armor)
+			if inf_2.Weapon != null:
+				items.erase(inf_2.Weapon)
 			player_characters.erase(inf_2)
 
 func calculate_danger_level(players: Array[BattlerStats], enemies: Array[BattlerStats]):
@@ -105,9 +157,7 @@ func start_encounter(enemies):
 	encounter_enemies = enemies
 	switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
 
-
 func _process(delta):
-	print(player_characters[0].damage)
 	
 	if Input.is_action_just_pressed("Escape"):
 		get_tree().quit()
@@ -140,8 +190,15 @@ func check_defeated_enemies(scene_name: String, ID: int) -> bool:
 # HANDLES SCENE SWITCH
 
 
+func change_room(next_scene: String, pos: Vector2, room_name: String):
+	## Add a key to room. Room name and players pos at door.
+	room_positions[room_name] = pos
+	
+	switch_Scene(next_scene, next_scene)
+
 
 func _ready():
+	
 	var root = get_tree().root
 	currentScene = root.get_child(root.get_child_count() - 1)
 

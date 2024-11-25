@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://dw6fwr5e3c7kh"]
+[gd_scene load_steps=2 format=3 uid="uid://dw6fwr5e3c7kh"]
+
+[ext_resource type="Script" path="res://OverWorld/MenuScenes/death_scene.gd" id="1_myexv"]
 
 [node name="DeathScene" type="Control"]
 layout_mode = 3
@@ -7,9 +9,17 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_myexv")
+reset_scene = "res://OverWorld/MenuScenes/restart_scene.tscn"
 
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "You died."
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You died. Press E to reset console."
+autowrap_mode = 2
+
+[node name="Timer" type="Timer" parent="."]

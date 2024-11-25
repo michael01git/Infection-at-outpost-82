@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://diswdor1hw0ue"]
+
+[ext_resource type="Script" path="res://OverWorld/MenuScenes/restart_scene.gd" id="1_8fx5s"]
+
+[node name="RestartScene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fx5s")
+next_scene = "res://OverWorld/MenuScenes/start_screen.tscn"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "RESTARTING"
+
+[node name="RestartScreenTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="RestartScreenTimer" to="." method="_on_restart_screen_timer_timeout"]

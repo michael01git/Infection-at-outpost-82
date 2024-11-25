@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="KeyItem" load_steps=2 format=3 uid="uid://botrq6lvk6l88"]
+
+[ext_resource type="Script" path="res://BattlerStats/Keys/key.gd" id="1_cujmf"]
+
+[resource]
+script = ExtResource("1_cujmf")

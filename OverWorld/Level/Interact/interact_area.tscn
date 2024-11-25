@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cpogqt0y20no6"]
 
-[ext_resource type="Script" path="res://interact_area.gd" id="1_3sj5f"]
-[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/icon.svg" id="2_cg4fv"]
+[ext_resource type="Script" path="res://OverWorld/Level/Interact/interact_area.gd" id="1_3sj5f"]
+[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="2_cg4fv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vteho"]
 size = Vector2(16, 16)
@@ -12,6 +12,7 @@ collision_mask = 0
 monitoring = false
 script = ExtResource("1_3sj5f")
 text_on_interact = Array[String](["Its an old table.", "Theres a health kit in it.", "You take it.", "@res://BattlerStats/Items/heal.tres"])
+already_interact = Array[String](["You already took everything from this old box."])
 
 [node name="Icon" type="Sprite2D" parent="."]
 scale = Vector2(0.13, 0.13)

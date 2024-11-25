@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://b08cfcf37hcxe"]
+[gd_scene load_steps=7 format=3 uid="uid://b08cfcf37hcxe"]
 
-[ext_resource type="Script" path="res://text_prompter.gd" id="1_riclo"]
+[ext_resource type="Script" path="res://OverWorld/Player/text_prompter.gd" id="1_riclo"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="2_681ri"]
 
 [sub_resource type="Animation" id="Animation_cidii"]
 length = 0.001
@@ -66,23 +67,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_riclo")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.8
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Text" type="RichTextLabel" parent="Panel"]
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "AAA"
+color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="RichTextLabel" parent="Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_681ri")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

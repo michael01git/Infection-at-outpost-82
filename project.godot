@@ -11,10 +11,10 @@ config_version=5
 [application]
 
 config/name="Infection at outpost 82"
-run/main_scene="res://OverWorld/overworld.tscn"
+run/main_scene="res://OverWorld/MenuScenes/start_screen.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-run/max_fps=14
-config/icon="res://Assets/icon.svg"
+run/max_fps=24
+config/icon="res://Assets/Sprites/icon.svg"
 
 [autoload]
 
@@ -22,8 +22,8 @@ GameManager="*res://game_manager.gd"
 
 [display]
 
-window/size/viewport_width=256
-window/size/viewport_height=240
+window/size/viewport_width=192
+window/size/viewport_height=160
 window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
@@ -87,3 +87,8 @@ menu={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemies"
 2d_physics/layer_4="Interact"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_clear_color=Color(0.230315, 0.230315, 0.230315, 1)
