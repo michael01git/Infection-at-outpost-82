@@ -22,7 +22,7 @@ position = Vector2(56, 24)
 [node name="InteractArea2" parent="." instance=ExtResource("4_td26m")]
 position = Vector2(72, 56)
 queue_free_on_use = true
-can_fit_in_party_text = Array[String](["Hello i join u", "£res://BattlerStats/Players/player_battler_3.tres"])
+can_fit_in_party_text = Array[String](["Hello i join u", "£res://BattlerStats/Players/Doc.tres"])
 
 [node name="DoorArea" parent="." instance=ExtResource("5_6f0dv")]
 position = Vector2(136, 72)

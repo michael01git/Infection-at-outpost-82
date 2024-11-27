@@ -84,11 +84,11 @@ func next_turn() -> void:
 		current_turn = all_battlers[current_turn_index]
 		update_turn()
 
+## Show attackable targets.
 func show_target_buttons() -> void:
 	turn_action_buttons.hide_TA()
 	
 	turn_action_buttons.show_enemy_buttons(enemy_battlers)
-
 
 
 func hide_target_buttons() -> void:

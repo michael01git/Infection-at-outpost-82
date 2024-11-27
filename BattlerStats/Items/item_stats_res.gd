@@ -7,17 +7,25 @@ enum ItemType{
 	WEAPON
 }
 
+# Need?
 enum StatImprove{
 	HEALTH,
 	DEFENSE,
 	DAMAGE
 }
 
-var equipped: bool = false
+enum UseType{
+	HEAL,
+	DAMAGE,
+	TEST
+}
+
+var equipped_by: String = "NULL"
 
 @export_category("Item Type")
 ## What type of item this is. Useable items are consumed, Equiable are permanent.
 @export var type: ItemType
+@export var use_type: UseType
 
 @export_category("Name")
 ## Name of item.
@@ -26,18 +34,5 @@ var equipped: bool = false
 @export_category("Stat Improvement")
 @export var damage: int
 @export var armor: int
-@export var current_health: int
-
-
-@export_category("Uses")
-@export var is_permanent: bool = true
-@export var uses: int
-
-func use() -> void:
-	uses -= 1
-
-func check_if_valid() -> bool:
-	if uses <= 0:
-		return false
-	else:
-		return true
+@export var turn_speed: int
+@export var health: int

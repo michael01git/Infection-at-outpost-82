@@ -2,7 +2,7 @@ extends Node2D
 
 @export var stats_resource: BattlerStats = null
 
-@export var own_button: Button
+@export var own_button: Label
 
 @onready var health_bar = $HealthBar
 @onready var turn_indicator_animation = $TurnIndicator/TurnIndicatorAnimation

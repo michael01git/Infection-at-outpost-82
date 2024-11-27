@@ -5,7 +5,7 @@ uniform vec4 White : source_color;
 
 void fragment() {
 	vec4 input_color = texture(TEXTURE, UV);
-	
+
 	if (input_color == Black){
 		COLOR = White;
 	}
@@ -13,4 +13,3 @@ void fragment() {
 		COLOR = Black;
 	}
 }
-

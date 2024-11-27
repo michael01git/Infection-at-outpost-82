@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://xen64f5dods3"]
+[gd_scene load_steps=6 format=4 uid="uid://xen64f5dods3"]
 
 [ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_vs8wi"]
 [ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_wr14c"]
 [ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_bohrv"]
+[ext_resource type="Script" path="res://OverWorld/ROOMS/canvas_modulate.gd" id="5_42jht"]
 [ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="5_tv2fm"]
 
 [node name="mainhall" type="Node2D"]
@@ -24,4 +25,6 @@ position = Vector2(72, 248)
 next_scene = "res://OverWorld/ROOMS/startroom.tscn"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
+script = ExtResource("5_42jht")

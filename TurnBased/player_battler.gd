@@ -2,6 +2,7 @@ extends Node2D
 # NOTE: This handles the individual players health, damage, speed, etc. The turnmanager connects to this to get info and pass that over to ex. enemies as damage.
 
 @export var stats_resource: BattlerStats = null
+@export var own_button: Label
 
 @onready var health_bar = $HealthBar
 @onready var turn_indicator_animation = $TurnIndicator/TurnIndicatorAnimation
@@ -16,12 +17,14 @@ signal turn_ended
 
 func check_deletion():
 	if stats_resource == null:
+		own_button.queue_free()
 		queue_free()
 
 func ready():
 	
 	stop_turn()
 	
+	own_button.set_up(self)
 	
 	update_health_bar()
 

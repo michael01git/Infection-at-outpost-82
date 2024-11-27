@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0fwanaepm4y3"]
+[gd_scene load_steps=10 format=3 uid="uid://b0fwanaepm4y3"]
 
 [ext_resource type="Script" path="res://OverWorld/Player/overworld_menu.gd" id="1_dcdrl"]
 [ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://OverWorld/Player/InventorySystem/Cursor/menu_cursor.tscn" id="1_foow0"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://qg1npot2w6nb" path="res://OverWorld/Player/InventorySystem/quit_box.tscn" id="3_1o78b"]
 [ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="3_7hadp"]
 [ext_resource type="Script" path="res://OverWorld/Player/InventorySystem/Cursor/item_selected.gd" id="3_v38ul"]
+[ext_resource type="Texture2D" uid="uid://dudco7norpb36" path="res://Assets/Sprites/Inventory/blank32.png" id="4_nnew4"]
 [ext_resource type="Script" path="res://OverWorld/Player/inventory_view.gd" id="6_xagdt"]
 
 [node name="OverworldMenu" type="Control" groups=["OWMenu"]]
@@ -55,168 +56,356 @@ theme_override_constants/margin_bottom = 8
 
 [node name="Sections" type="VBoxContainer" parent="Menu/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+
+[node name="CharacterIcons" type="HBoxContainer" parent="Menu/MarginContainer/Sections"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MCIcon1" type="PanelContainer" parent="Menu/MarginContainer/Sections/CharacterIcons"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MCIcon1" type="VBoxContainer" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon1"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
+
+[node name="MCSprite1" type="TextureRect" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon1/MCIcon1"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_nnew4")
+stretch_mode = 3
+
+[node name="MCName1" type="Label" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon1/MCIcon1"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "AAA"
+horizontal_alignment = 1
+
+[node name="MCIcon2" type="PanelContainer" parent="Menu/MarginContainer/Sections/CharacterIcons"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
+
+[node name="MCIcon2" type="VBoxContainer" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon2"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
+
+[node name="MCSprite2" type="TextureRect" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon2/MCIcon2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_nnew4")
+stretch_mode = 3
+
+[node name="MCName2" type="Label" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon2/MCIcon2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "AAA"
+horizontal_alignment = 1
+
+[node name="MCIcon3" type="PanelContainer" parent="Menu/MarginContainer/Sections/CharacterIcons"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
+
+[node name="MCIcon3" type="VBoxContainer" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon3"]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
+
+[node name="MCSprite3" type="TextureRect" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("4_nnew4")
+stretch_mode = 3
+
+[node name="MCName3" type="Label" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "AAA"
+horizontal_alignment = 1
 
 [node name="Options" type="GridContainer" parent="Menu/MarginContainer/Sections"]
 layout_mode = 2
+size_flags_vertical = 3
 columns = 3
 
-[node name="MainCharacter1Button" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="Armor1" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_7hadp")
+script = ExtResource("3_v38ul")
+
+[node name="ArmorIcon" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Armor1"]
 texture_filter = 1
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Guy"
-flat = true
-script = ExtResource("3_v38ul")
 
-[node name="MainCharacterButton2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
-texture_filter = 1
-custom_minimum_size = Vector2(0, 25)
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Armor1/ArmorIcon"]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_vertical = 3
+text = "Armor :"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Armor1Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Armor1/ArmorIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EMPTY"
+horizontal_alignment = 1
+
+[node name="Armor2" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Guy"
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="MainCharacterButton3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
-texture_filter = 1
-custom_minimum_size = Vector2(0, 25)
+[node name="ArmorIcon" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Armor2"]
 layout_mode = 2
-size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Armor2/ArmorIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Armor :"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Armor2Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Armor2/ArmorIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EMPTY"
+horizontal_alignment = 1
+
+[node name="Armor3" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Guy"
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="Armor1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="ArmorIcon" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Armor3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Armor3/ArmorIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Armor :"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Armor3Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Armor3/ArmorIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EMPTY"
+horizontal_alignment = 1
+
+[node name="Weapon1" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Armor"
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="Armor2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="WeaponIcon" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Weapon1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Weapon1/WeaponIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Weapon :"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Weapon1Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Weapon1/WeaponIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EMPTY"
+horizontal_alignment = 1
+
+[node name="Weapon2" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Armor"
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="Armor3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="WeaponIcon" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Weapon2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Weapon2/WeaponIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Weapon :"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Weapon2Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Weapon2/WeaponIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EMPTY"
+horizontal_alignment = 1
+
+[node name="Weapon3" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Armor"
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="Weapon1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="WeaponIcon" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Weapon3"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Weapon3/WeaponIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Weapon :"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Weapon3Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Weapon3/WeaponIcon"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "EMPTY"
+horizontal_alignment = 1
+
+[node name="Use1" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Weapon"
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="Weapon2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
-texture_filter = 1
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Use1"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_7hadp")
-text = "Weapon"
-flat = true
-script = ExtResource("3_v38ul")
-
-[node name="Weapon3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_7hadp")
-text = "Weapon"
-flat = true
-script = ExtResource("3_v38ul")
-
-[node name="Use1" type="Button" parent="Menu/MarginContainer/Sections/Options"]
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource("3_7hadp")
+size_flags_vertical = 1
 text = "Use"
-flat = true
-script = ExtResource("3_v38ul")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Use2" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="Use2" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
+script = ExtResource("3_v38ul")
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Use2"]
+layout_mode = 2
+size_flags_vertical = 1
 text = "Use"
-flat = true
-script = ExtResource("3_v38ul")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Use3" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="Use3" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
+script = ExtResource("3_v38ul")
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Use3"]
+layout_mode = 2
+size_flags_vertical = 1
 text = "Use"
-flat = true
-script = ExtResource("3_v38ul")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Inventory" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="Inventory" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Inv."
-flat = true
 script = ExtResource("3_v38ul")
 
-[node name="Map" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Inventory"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Inv.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Map" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
+script = ExtResource("3_v38ul")
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Map"]
+layout_mode = 2
+size_flags_vertical = 1
 text = "Map"
-flat = true
-script = ExtResource("3_v38ul")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Keys" type="Button" parent="Menu/MarginContainer/Sections/Options"]
+[node name="Keys" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
+self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
-text = "Keys"
-flat = true
 script = ExtResource("3_v38ul")
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Keys"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Keys"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MenuCursor" parent="Menu" instance=ExtResource("1_foow0")]
 layout_mode = 2
+offset_right = 4.0
+offset_bottom = 4.0
 menu_parent_path = NodePath("../MarginContainer/Sections/Options")
 
 [node name="MarginContainerInvFull" type="MarginContainer" parent="Menu"]
@@ -255,6 +444,8 @@ columns = 4
 
 [node name="FullMenuCursor" parent="Menu/MarginContainerInvFull/InventoryView" instance=ExtResource("1_foow0")]
 layout_mode = 0
+offset_right = 4.0
+offset_bottom = 4.0
 menu_parent_path = NodePath("../InventoryGrid")
 
 [connection signal="pressed" from="Menu/MarginContainer/Sections/Options/Armor1" to="ButtonParser" method="_on_armor_1_pressed"]

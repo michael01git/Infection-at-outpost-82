@@ -19,6 +19,10 @@ var follower_pos_array: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO, Vector2.ZE
 @export var inv: Array[ItemStats]
 @export var light: bool = true
 
+@onready var icon = $Icon
+@onready var follower_sprite = $Follower1/FollowerSprite
+@onready var follower_sprite2 = $Follower2/FollowerSprite
+
 var tile_size = 16
 var inputs = {"right": Vector2.RIGHT, "left": Vector2.LEFT, "up": Vector2.UP, "down": Vector2.DOWN}
 
@@ -29,8 +33,9 @@ var target_pathfind_pos: Vector2
 
 
 func _ready():
-	if light:
-		$PointLight2D.enabled = true
+	
+	
+	
 	
 	$CanvasLayer.show()
 	
@@ -52,10 +57,12 @@ func _ready():
 		global_position = GameManager.last_player_pos
 		GameManager.last_player_pos = Vector2.ZERO
 		
-		global_position = global_position.snapped(Vector2.ONE * tile_size)
-		global_position += Vector2.ONE * tile_size/2
+		#global_position = global_position.snapped(Vector2.ONE * tile_size)
+		#global_position += Vector2.ONE * tile_size/2
 	
+	## Handles sprites and overworld visible party size.
 	change_follower_size()
+	
 
 func change_follower_size() -> void:
 	if GameManager.player_characters.size() == 1:
@@ -65,18 +72,27 @@ func change_follower_size() -> void:
 		follower_2.hide()
 		follower_2.process_mode = Node.PROCESS_MODE_DISABLED
 		
+		icon.texture = GameManager.player_characters[0].overworld_sprite
+		
 	elif GameManager.player_characters.size() == 2:
 		follower_2.hide()
 		follower_2.process_mode = Node.PROCESS_MODE_DISABLED
 		
 		follower.show()
 		follower.process_mode = Node.PROCESS_MODE_INHERIT
+		
+		icon.texture = GameManager.player_characters[0].overworld_sprite
+		follower_sprite.texture = GameManager.player_characters[1].overworld_sprite
 	elif GameManager.player_characters.size() == 3:
 		follower.show()
 		follower.process_mode = Node.PROCESS_MODE_INHERIT
 		
 		follower_2.show()
 		follower_2.process_mode = Node.PROCESS_MODE_INHERIT
+		
+		icon.texture = GameManager.player_characters[0].overworld_sprite
+		follower_sprite.texture = GameManager.player_characters[1].overworld_sprite
+		follower_sprite2.texture = GameManager.player_characters[2].overworld_sprite
 
 
 func check_if_previously_in_room():
@@ -109,6 +125,8 @@ func _unhandled_input(event):
 		
 		for dir in inputs.keys():
 			if event.is_action(dir):
+				
+				
 				move(dir)
 
 func move(dir):
@@ -133,8 +151,11 @@ func move(dir):
 		await tween.finished
 		moving = false
 		
+		GameManager.last_player_pos = global_position
+		
 		follower.global_position = follower_pos_array[2]
 		follower_2.global_position = follower_pos_array[1]
+	
 	
 	move_timer.start()
 
@@ -155,5 +176,4 @@ func GameOver():
 ## When hit enemy
 func _on_area_entered(area):
 	area.kill_enemy()
-	GameManager.last_player_pos = global_position
 	GameManager.start_encounter(area.encounter_enemies)

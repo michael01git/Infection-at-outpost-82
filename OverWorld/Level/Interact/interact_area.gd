@@ -14,15 +14,17 @@ extends Area2D
 
 
 func interact():
-	if !prompter.finished_showing:
+	if !prompter.prompts_empty:
 		return
 	
-	# If has interacted before.
+	## If has not interacted before.
 	if !GameManager.interacted_array.has(get_parent().name+name):
 		## Does not have.
 		GameManager.interacted_array.append(get_parent().name+name)
 		
-		if !cant_fit_in_party_text.size() == 0 or !can_fit_in_party_text.size() == 0:
+		
+		## If join party text exists.
+		if cant_fit_in_party_text.size() != 0 or can_fit_in_party_text.size() != 0:
 			member_text()
 		else:
 			prompter.prompt_array(text_on_interact)
@@ -30,6 +32,8 @@ func interact():
 		if queue_free_on_use:
 			queue_free()
 		
+	
+	## Has interacted before.
 	else:
 		
 		

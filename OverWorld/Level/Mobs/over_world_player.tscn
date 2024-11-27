@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfqfl0mspjhl3"]
+[gd_scene load_steps=14 format=3 uid="uid://cfqfl0mspjhl3"]
 
 [ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="1_cugle"]
 [ext_resource type="Script" path="res://OverWorld/Level/Mobs/over_world_player.gd" id="1_on7e7"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_kudrg"]
-[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/Players/player_battler_1.tres" id="3_s44bh"]
+[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/Players/McKinley.tres" id="3_s44bh"]
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="4_ccrel"]
+[ext_resource type="Resource" uid="uid://cyk0humsgewri" path="res://BattlerStats/Players/Hound.tres" id="4_lrtx4"]
+[ext_resource type="Resource" uid="uid://t6cii12jjs4o" path="res://BattlerStats/Items/heal.tres" id="5_aoip2"]
 [ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
+[ext_resource type="Resource" uid="uid://c7babmwbaf40c" path="res://BattlerStats/Items/bat.tres" id="6_tjnnl"]
 [ext_resource type="Texture2D" uid="uid://dtd25fhkld5vk" path="res://Assets/Sprites/FlashLight.png" id="7_y1hlh"]
 [ext_resource type="PackedScene" uid="uid://b08cfcf37hcxe" path="res://OverWorld/Player/text_prompter.tscn" id="10_p4xre"]
 
@@ -18,11 +22,8 @@ size = Vector2(10, 10)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_on7e7")
-pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh")])
-
-[node name="Icon" type="Sprite2D" parent="."]
-scale = Vector2(0.12, 0.12)
-texture = ExtResource("1_cugle")
+pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh"), ExtResource("4_lrtx4")])
+inv = Array[ExtResource("4_ccrel")]([ExtResource("5_aoip2"), ExtResource("6_tjnnl")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3no4w")
@@ -60,18 +61,17 @@ autostart = true
 shape = SubResource("RectangleShape2D_wo0op")
 
 [node name="FollowerSprite" type="Sprite2D" parent="Follower1"]
-scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_cugle")
 
 [node name="Follower2" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wo0op")
 
 [node name="FollowerSprite" type="Sprite2D" parent="Follower2"]
-scale = Vector2(0.12, 0.12)
 texture = ExtResource("1_cugle")
 
+[node name="Icon" type="Sprite2D" parent="."]
+
 [node name="PointLight2D" type="PointLight2D" parent="."]
-enabled = false
 texture = ExtResource("7_y1hlh")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

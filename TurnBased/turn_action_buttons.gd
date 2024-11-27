@@ -5,6 +5,9 @@ extends Control
 
 @onready var turn_cursor = $TurnCursor
 
+@onready var menu_cursor = $"../UseActionButtons/MenuCursor"
+@onready var use_action_buttons = $"../UseActionButtons"
+
 func _ready():
 	turn_cursor.cursor_index = 0
 	mob_cursor.cursor_index = 0

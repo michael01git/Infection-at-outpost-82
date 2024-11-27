@@ -49,6 +49,7 @@ func add_item(item_string_path: String) -> void:
 		return
 	
 	GameManager.items.append(item)
+	
 
 
 # HANDLES DANGER LEVEL IE PLAYER TURNING
@@ -194,7 +195,9 @@ func change_room(next_scene: String, pos: Vector2, room_name: String):
 	## Add a key to room. Room name and players pos at door.
 	room_positions[room_name] = pos
 	
+	last_player_pos = Vector2.ZERO
 	switch_Scene(next_scene, next_scene)
+	
 
 
 func _ready():
@@ -205,6 +208,7 @@ func _ready():
 func switch_Scene(next_scene: String, this_scene: String):
 	lastScene = this_scene
 	call_deferred("_deferred_switch_scene", next_scene)
+	
 
 
 func _deferred_switch_scene(res_path):

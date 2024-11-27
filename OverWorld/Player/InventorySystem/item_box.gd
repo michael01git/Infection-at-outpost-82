@@ -5,16 +5,26 @@ extends Control
 @onready var inventory: Control = get_tree().get_first_node_in_group("InventoryMenu")
 var is_usable: bool = false
 var item_held: ItemStats
-var battler_number: int
+var battler_name: String
+var battler_num_safe: int
 
-func set_up_box_info(item_stat: ItemStats, usable: bool, battler: int):
+func set_up_box_info(item_stat: ItemStats, usable: bool, battler: String, battler_num: int):
 	print("set_up_info")
-	battler_number = battler
+	battler_name = battler
 	item_held = item_stat
+	battler_num_safe = battler_num
 	$VBoxContainer/ItemBoxText.text = item_held.item_name
-	$VBoxContainer/CheckBox.button_pressed = item_held.equipped
+	
+	if item_stat.type == 0:
+		$VBoxContainer/User.visible = false
+		$VBoxContainer/ItemBoxText.vertical_alignment = 1
+	elif item_stat.equipped_by == "NULL":
+		$VBoxContainer/User.text = "Unequipped"
+	else:
+		$VBoxContainer/User.text = item_stat.equipped_by
+	
 	is_usable = usable
 
 func cursor_select() -> void:
 	if is_usable:
-		inventory.item_box_pressed(item_held, battler_number)
+		inventory.item_box_pressed(item_held, battler_num_safe)

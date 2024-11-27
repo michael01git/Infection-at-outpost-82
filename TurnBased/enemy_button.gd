@@ -1,4 +1,4 @@
-extends Button
+extends Label
 
 @export var own_enemy: Node2D
 

@@ -5,9 +5,8 @@
 [resource]
 script = ExtResource("1_b046e")
 type = 0
+use_type = 0
 item_name = "Bandage"
 damage = 0
 armor = 0
 current_health = 5
-is_permanent = false
-uses = 1

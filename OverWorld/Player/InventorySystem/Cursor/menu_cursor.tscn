@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bdyhtuqoj64u8" path="res://Assets/Sprites/CursorSelect.png" id="1_cxiw5"]
 
 [node name="MenuCursor" type="TextureRect"]
+custom_minimum_size = Vector2(4, 4)
 offset_right = 8.0
 offset_bottom = 8.0
 texture = ExtResource("1_cxiw5")

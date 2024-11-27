@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn0o828y7j40v"]
+
+[ext_resource type="Script" path="res://OverWorld/Player/InventorySystem/battle_use_box.gd" id="1_v8jgq"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="2_rks2u"]
+
+[node name="UseBox" type="PanelContainer"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(50, 50)
+offset_right = 50.0
+offset_bottom = 50.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_v8jgq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ItemBoxText" type="Label" parent="VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme = ExtResource("2_rks2u")
+text = "AAA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="VBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+icon_alignment = 1

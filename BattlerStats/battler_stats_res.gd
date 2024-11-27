@@ -38,6 +38,10 @@ var will_infect: bool = false
 @export_category("Speed")
 @export var turn_speed: int
 
+@export_subgroup("Textures")
+@export var overworld_sprite: Texture2D
+@export var portrait_sprite: Texture2D
+
 ## Weapons
 var Armor: ItemStats
 var Weapon: ItemStats

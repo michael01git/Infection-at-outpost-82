@@ -31,9 +31,12 @@ func button_pressed(type: String, number: int):
 				for i in GameManager.items:
 					if i.type == 0:
 						all_items.append(i)
-	open_inventory(all_items, usable, number)
+	
+	var battler = GameManager.player_characters[(number-1)].character
+	
+	open_inventory(all_items, usable, battler, number)
 
-func open_inventory(items: Array[ItemStats], usable: bool, battler: int):
+func open_inventory(items: Array[ItemStats], usable: bool, battler: String, battler_num: int):
 	
 	# Enable cursors
 	full_menu_cursor.cursor_index = 0
@@ -42,16 +45,16 @@ func open_inventory(items: Array[ItemStats], usable: bool, battler: int):
 	
 	
 	for i in items:
-		spawn_box(i, inventory_grid, usable, battler)
+		spawn_box(i, inventory_grid, usable, battler, battler_num)
 	
 	var quit_box = quit_box_scene.instantiate()
 	inventory_grid.add_child(quit_box)
 	
 	inventory_view.show()
 
-func spawn_box(item_stat: ItemStats, parent: Control, usable: bool, battler: int):
+func spawn_box(item_stat: ItemStats, parent: Control, usable: bool, battler: String, battler_num: int):
 	var item_box_mob = item_box_scene.instantiate()
-	item_box_mob.set_up_box_info(item_stat, usable, battler)
+	item_box_mob.set_up_box_info(item_stat, usable, battler, battler_num)
 	parent.add_child(item_box_mob)
 
 func close_inventory():
@@ -63,15 +66,20 @@ func close_inventory():
 	overworld_menu.pause_menu()
 
 func item_box_pressed(item_stat: ItemStats, Battler_num: int):
-	var battler: BattlerStats = GameManager.player_characters[(Battler_num - 1)]
+	var battler: BattlerStats = GameManager.player_characters[(Battler_num-1)]
+	
+	
 	
 	# If item is usable.
 	if item_stat.type == 0:
 		use_item(item_stat, battler)
 		return
 	
+	
+	
 	## Check if is equipped
-	if item_stat.equipped:
+	if !item_stat.equipped_by == "NULL":
+		## IE NOT EQUIPPED
 		
 		# If is player held item.
 		if battler.Weapon == item_stat or battler.Armor == item_stat:
@@ -80,6 +88,7 @@ func item_box_pressed(item_stat: ItemStats, Battler_num: int):
 		
 		
 		return
+	
 	
 	## Check if is free slot
 	match item_stat.type:
@@ -103,11 +112,20 @@ func unequip_item(item_stat: ItemStats, battler: BattlerStats):
 	
 	
 	battler.damage -= item_stat.damage
+	battler.armor -= item_stat.armor
+	battler.turn_speed -= item_stat.turn_speed
+	battler.max_hp -= item_stat.health
+	battler.current_hp -= item_stat.health
 	
-	item_stat.equipped = false
+	item_stat.equipped_by = "NULL"
+	
+	battler.cap_health()
+	
 	close_inventory()
 
 func equip_item(item_stat: ItemStats, battler: BattlerStats):
+	
+	
 	match item_stat.type:
 		1:
 			battler.Armor = item_stat
@@ -116,16 +134,23 @@ func equip_item(item_stat: ItemStats, battler: BattlerStats):
 	
 	
 	battler.damage += item_stat.damage
+	battler.armor += item_stat.armor
+	battler.turn_speed += item_stat.turn_speed
+	battler.max_hp += item_stat.health
+	battler.current_hp += item_stat.health
 	
-	item_stat.equipped = true
+	item_stat.equipped_by = battler.character
+	
+	battler.cap_health()
+	
 	close_inventory()
 
 func use_item(item_stat: ItemStats, battler: BattlerStats):
-	battler.current_hp += item_stat.current_health
-	item_stat.use()
+	battler.current_hp += item_stat.health
 	
-	if !item_stat.check_if_valid():
-		## The issue with this is that it will remove this type of item always. Have to create unique healing items.
-		GameManager.items.erase(item_stat)
+	## NO MULTIPLE USES, JUST ONCE. 
+	GameManager.items.erase(item_stat)
+	
+	battler.cap_health()
 	
 	close_inventory()
