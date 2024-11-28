@@ -2,8 +2,10 @@ extends Node
 # NOTE: This handles passing data over to other enemies and players.
 
 @onready var turn_action_buttons = $CanvasLayer/TurnActionButtons
-@onready var attack_button = $CanvasLayer/TurnActionButtons/TurnActions/AttackButton
-@onready var skip_turn_button = $CanvasLayer/TurnActionButtons/TurnActions/SkipTurnButton
+@onready var attack_button = $CanvasLayer/TurnActionButtons/MarginContainer/TurnActions/AttackButton
+#@onready var skip_turn_button = $CanvasLayer/TurnActionButtons/TurnActions/SkipTurnButton
+@onready var use_item_button = $CanvasLayer/TurnActionButtons/MarginContainer/TurnActions/UseItemButton
+@onready var heal_menu = $CanvasLayer/HealMenu
 
 @onready var battle_end_panel = $CanvasLayer/BattleEndPanel
 @onready var battle_end_label = $CanvasLayer/BattleEndPanel/BattleEndLabel
@@ -42,8 +44,10 @@ func _ready() -> void:
 	
 	all_battlers.sort_custom(sort_turn_order_ascending)
 	
-	skip_turn_button.pressed.connect(next_turn)
+	## Used to exist. No more.
+	#skip_turn_button.pressed.connect(next_turn)
 	attack_button.pressed.connect(show_target_buttons)
+	use_item_button.pressed.connect(show_use_buttons)
 	
 	for p in player_battlers:
 		p.turn_ended.connect(next_turn)
@@ -90,9 +94,20 @@ func show_target_buttons() -> void:
 	
 	turn_action_buttons.show_enemy_buttons(enemy_battlers)
 
-
 func hide_target_buttons() -> void:
 	turn_action_buttons.hide_enemy_buttons(enemy_battlers)
+
+## Show heal targets
+func show_use_buttons() -> void:
+	turn_action_buttons.hide_TA()
+	
+	heal_menu.show_use_targets()
+
+func hide_use_buttons() -> void:
+	heal_menu.hide_use_targets()
+	turn_action_buttons.show_TA()
+
+
 
 func attack_selected_enemy(selected_enemy: Node2D) -> void:
 	hide_target_buttons()

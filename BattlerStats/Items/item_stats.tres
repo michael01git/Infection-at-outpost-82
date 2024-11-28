@@ -9,4 +9,5 @@ use_type = 0
 item_name = "SHOVEL"
 damage = 5
 armor = 0
-current_health = 0
+turn_speed = 0
+health = 0

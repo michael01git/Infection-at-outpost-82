@@ -46,6 +46,8 @@ var will_infect: bool = false
 var Armor: ItemStats
 var Weapon: ItemStats
 
+var test_danger: int = 0
+
 func cap_health() -> void:
 	if current_hp > max_hp:
 		current_hp = max_hp

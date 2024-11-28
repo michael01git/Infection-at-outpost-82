@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("3_3enhc")
 type = 0
-infected = false
+infected = true
 character = "Hound"
 max_hp = 24
 current_hp = 24

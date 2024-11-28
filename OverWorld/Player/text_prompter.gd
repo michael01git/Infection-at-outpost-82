@@ -34,7 +34,8 @@ func prompt_array(array: Array[String]) -> void:
 
 
 func process_prompts_array():
-	
+	if prompts_empty:
+		return
 	
 	if process_next:
 		process_next = false
@@ -43,6 +44,8 @@ func process_prompts_array():
 		
 		# If prompt is final, leave propmts screen.
 		if first_prompt == "FINALPROMPT":
+			text.text = ""
+			prompts_array.remove_at(0)
 			end_prompts()
 		
 		# If prompt includes this character, add an item.
@@ -55,6 +58,12 @@ func process_prompts_array():
 			GameManager.add_party_member(first_prompt.erase(0))
 			change_text()
 			player.change_follower_size()
+		
+		elif first_prompt[0] == "%":
+			if !GameManager.keys.has(first_prompt.erase(0)):
+				GameManager.keys.append(first_prompt.erase(0))
+			change_text()
+			
 		
 		else:
 			prompt(first_prompt)
@@ -71,13 +80,17 @@ func end_prompts():
 
 ## Get Shown percentage from timer.
 func _process(delta):
-	if prompts_empty:
-		return
+	print(prompts_empty, process_next)
+	
+	
+	
 	
 	
 	## Go thru propmts array and show them.
 	process_prompts_array()
 	
+	
+	return
 	if Input.is_action_just_pressed("use"):
 		if animation_player.current_animation != "wait":
 			animation_player.play("wait")

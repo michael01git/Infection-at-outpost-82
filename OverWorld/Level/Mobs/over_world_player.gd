@@ -13,7 +13,7 @@ extends Area2D
 
 @onready var follower = $Follower1
 @onready var follower_2 = $Follower2
-var follower_pos_array: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO, Vector2.ZERO]
+@onready var follower_pos_array: Array[Vector2] = [global_position, global_position, global_position]
 
 @export var pc: Array[BattlerStats]
 @export var inv: Array[ItemStats]
@@ -65,6 +65,9 @@ func _ready():
 	
 
 func change_follower_size() -> void:
+	
+	
+	
 	if GameManager.player_characters.size() == 1:
 		follower.hide()
 		follower.process_mode = Node.PROCESS_MODE_DISABLED
@@ -159,11 +162,16 @@ func move(dir):
 	
 	move_timer.start()
 
+## If infected players exist. Battle them.
 func _on_danger_level_timer_timeout():
+	## Every x time checks if the power level of infected players is enough. A test forces this to happen by adding an arbitary +1000 to this.
+	
+	## If every player is infected, do not start fight as this would break the game and code. Game over.
 	if GameManager.if_all_infected():
 		GameOver()
 		return
 	
+	## If danger level is enough.
 	elif GameManager.danger_enough_overworld():
 		
 		GameManager.clear_out_infected()

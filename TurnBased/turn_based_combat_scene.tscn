@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://xnw7qsp66log"]
+[gd_scene load_steps=14 format=3 uid="uid://xnw7qsp66log"]
 
 [ext_resource type="Script" path="res://TurnBased/battle_manager.gd" id="1_3fk0c"]
+[ext_resource type="Texture2D" uid="uid://dcdo3vyx2trhb" path="res://Assets/Sprites/mainbattlescene.png" id="2_51246"]
 [ext_resource type="Script" path="res://TurnBased/player_battle_organizer.gd" id="2_tnov0"]
 [ext_resource type="PackedScene" uid="uid://cmnacos40qlc5" path="res://TurnBased/player_battler.tscn" id="2_wnruc"]
 [ext_resource type="PackedScene" uid="uid://jyq4wji2feey" path="res://TurnBased/enemy_battler.tscn" id="3_auti2"]
@@ -17,253 +18,327 @@
 script = ExtResource("1_3fk0c")
 
 [node name="BackGround" type="Sprite2D" parent="."]
+position = Vector2(96, 58)
+texture = ExtResource("2_51246")
 
 [node name="PlayerBattleOrganizer" type="Node2D" parent="."]
 script = ExtResource("2_tnov0")
 
 [node name="PlayerBattler" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
-position = Vector2(39, 132)
-own_button = NodePath("../../CanvasLayer/HealMenu/PlayerSelect/Player1")
+position = Vector2(39, 94)
+own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player1")
 
 [node name="PlayerBattler2" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
-position = Vector2(108, 131)
-own_button = NodePath("../../CanvasLayer/HealMenu/PlayerSelect/Player2")
+position = Vector2(96, 93)
+own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player2")
 
 [node name="PlayerBattler3" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
-position = Vector2(156, 129)
-own_button = NodePath("../../CanvasLayer/HealMenu/PlayerSelect/Player3")
+position = Vector2(151, 97)
+own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player3")
 
 [node name="EnemyBattleOrganiser" type="Node2D" parent="."]
 script = ExtResource("3_cijeu")
 
 [node name="EnemyBattler" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(96, 26)
-own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy1")
+position = Vector2(93, 58)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy1")
 
 [node name="EnemyBattler2" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(58, 25)
-own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy2")
+position = Vector2(56, 60)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy2")
 
 [node name="EnemyBattler3" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(44, 51)
-own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy3")
+position = Vector2(22, 61)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy3")
 
 [node name="EnemyBattler4" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(87, 58)
-own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy4")
+position = Vector2(131, 62)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy4")
 
 [node name="EnemyBattler5" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(123, 67)
-own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy5")
+position = Vector2(168, 63)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy5")
 
 [node name="EnemyBattler6" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(163, 61)
-own_button = NodePath("../../CanvasLayer/MobSelectMenu/MobSelect/Enemy6")
+position = Vector2(172, 58)
+own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TurnActionButtons" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
+[node name="ActionBG" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(192, 45)
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="TurnActionButtons" type="ColorRect" parent="CanvasLayer"]
+custom_minimum_size = Vector2(192, 45)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 script = ExtResource("6_c45y4")
 
-[node name="TurnActions" type="GridContainer" parent="CanvasLayer/TurnActionButtons"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TurnActionButtons"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="TurnActions" type="VBoxContainer" parent="CanvasLayer/TurnActionButtons/MarginContainer"]
+layout_mode = 2
 mouse_filter = 2
 
-[node name="AttackButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
+[node name="AttackButton" type="Button" parent="CanvasLayer/TurnActionButtons/MarginContainer/TurnActions"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 mouse_filter = 2
 theme = ExtResource("7_esjta")
 text = "Attack"
+flat = true
 script = ExtResource("6_sw564")
 
-[node name="UseItemButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
+[node name="UseItemButton" type="Button" parent="CanvasLayer/TurnActionButtons/MarginContainer/TurnActions"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 mouse_filter = 2
 theme = ExtResource("7_esjta")
 text = "Heal"
-script = ExtResource("6_sw564")
-
-[node name="SkipTurnButton" type="Button" parent="CanvasLayer/TurnActionButtons/TurnActions"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-theme = ExtResource("7_esjta")
-text = "Skip Turn"
+flat = true
 script = ExtResource("6_sw564")
 
 [node name="TurnCursor" parent="CanvasLayer/TurnActionButtons" instance=ExtResource("7_5rado")]
 layout_mode = 0
-offset_top = -21.0
-offset_bottom = -11.0
+offset_left = 74.0
+offset_top = 10.0
+offset_right = 78.0
+offset_bottom = 14.0
 mouse_filter = 2
-menu_parent_path = NodePath("../TurnActions")
+menu_parent_path = NodePath("../MarginContainer/TurnActions")
 
 [node name="MobSelectMenu" type="ColorRect" parent="CanvasLayer"]
 visible = false
-anchors_preset = 15
+custom_minimum_size = Vector2(192, 45)
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="MobSelect" type="GridContainer" parent="CanvasLayer/MobSelectMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MobSelectMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MobSelect" type="GridContainer" parent="CanvasLayer/MobSelectMenu/MarginContainer"]
+layout_mode = 2
 mouse_filter = 2
+columns = 2
 
-[node name="Enemy1" type="Label" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+[node name="Enemy1" type="Label" parent="CanvasLayer/MobSelectMenu/MarginContainer/MobSelect" node_paths=PackedStringArray("own_enemy")]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
+text = "ENEMY"
+horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("8_ebvi6")
-own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler")
+own_enemy = NodePath("../../../../../EnemyBattleOrganiser/EnemyBattler")
 
-[node name="Enemy2" type="Label" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+[node name="Enemy2" type="Label" parent="CanvasLayer/MobSelectMenu/MarginContainer/MobSelect" node_paths=PackedStringArray("own_enemy")]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
+text = "ENEMY"
+horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("8_ebvi6")
-own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler2")
+own_enemy = NodePath("../../../../../EnemyBattleOrganiser/EnemyBattler2")
 
-[node name="Enemy3" type="Label" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+[node name="Enemy3" type="Label" parent="CanvasLayer/MobSelectMenu/MarginContainer/MobSelect" node_paths=PackedStringArray("own_enemy")]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
+text = "ENEMY"
+horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("8_ebvi6")
-own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler3")
+own_enemy = NodePath("../../../../../EnemyBattleOrganiser/EnemyBattler3")
 
-[node name="Enemy4" type="Label" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+[node name="Enemy4" type="Label" parent="CanvasLayer/MobSelectMenu/MarginContainer/MobSelect" node_paths=PackedStringArray("own_enemy")]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
+text = "ENEMY"
+horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("8_ebvi6")
-own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler4")
+own_enemy = NodePath("../../../../../EnemyBattleOrganiser/EnemyBattler4")
 
-[node name="Enemy5" type="Label" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+[node name="Enemy5" type="Label" parent="CanvasLayer/MobSelectMenu/MarginContainer/MobSelect" node_paths=PackedStringArray("own_enemy")]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
+text = "ENEMY"
+horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("8_ebvi6")
-own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler5")
+own_enemy = NodePath("../../../../../EnemyBattleOrganiser/EnemyBattler5")
 
-[node name="Enemy6" type="Label" parent="CanvasLayer/MobSelectMenu/MobSelect" node_paths=PackedStringArray("own_enemy")]
+[node name="Enemy6" type="Label" parent="CanvasLayer/MobSelectMenu/MarginContainer/MobSelect" node_paths=PackedStringArray("own_enemy")]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 10
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
+text = "ENEMY"
+horizontal_alignment = 2
+vertical_alignment = 1
 script = ExtResource("8_ebvi6")
-own_enemy = NodePath("../../../../EnemyBattleOrganiser/EnemyBattler6")
+own_enemy = NodePath("../../../../../EnemyBattleOrganiser/EnemyBattler6")
 
 [node name="MobCursor" parent="CanvasLayer/MobSelectMenu" instance=ExtResource("7_5rado")]
-visible = false
 layout_mode = 0
+offset_left = 60.0
+offset_top = 7.0
+offset_right = 64.0
+offset_bottom = 11.0
 mouse_filter = 2
-menu_parent_path = NodePath("../MobSelect")
+menu_parent_path = NodePath("../MarginContainer/MobSelect")
 
 [node name="HealMenu" type="ColorRect" parent="CanvasLayer"]
-anchors_preset = 15
+visible = false
+custom_minimum_size = Vector2(192, 45)
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 script = ExtResource("11_45fui")
 
-[node name="PlayerSelect" type="GridContainer" parent="CanvasLayer/HealMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/HealMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="PlayerSelect" type="GridContainer" parent="CanvasLayer/HealMenu/MarginContainer"]
+layout_mode = 2
 columns = 2
 
-[node name="Player1" type="Label" parent="CanvasLayer/HealMenu/PlayerSelect"]
+[node name="Player1" type="Label" parent="CanvasLayer/HealMenu/MarginContainer/PlayerSelect"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
-theme_override_font_sizes/font_size = 16
 text = "AAA"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("12_y1sg8")
 
-[node name="Player2" type="Label" parent="CanvasLayer/HealMenu/PlayerSelect"]
+[node name="Player2" type="Label" parent="CanvasLayer/HealMenu/MarginContainer/PlayerSelect"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
-theme_override_font_sizes/font_size = 16
 text = "AAA"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("12_y1sg8")
 
-[node name="Player3" type="Label" parent="CanvasLayer/HealMenu/PlayerSelect"]
+[node name="Player3" type="Label" parent="CanvasLayer/HealMenu/MarginContainer/PlayerSelect"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
-theme_override_font_sizes/font_size = 16
 text = "AAA"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("12_y1sg8")
 
-[node name="Exit" type="Label" parent="CanvasLayer/HealMenu/PlayerSelect"]
+[node name="Exit" type="Label" parent="CanvasLayer/HealMenu/MarginContainer/PlayerSelect"]
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 6
+size_flags_vertical = 6
 theme = ExtResource("7_esjta")
-theme_override_font_sizes/font_size = 16
 text = "Exit"
-horizontal_alignment = 1
+horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("6_sw564")
 
 [node name="MenuCursor" parent="CanvasLayer/HealMenu" instance=ExtResource("7_5rado")]
 layout_mode = 0
-menu_parent_path = NodePath("../PlayerSelect")
+offset_left = 40.0
+offset_top = 14.0
+offset_right = 44.0
+offset_bottom = 18.0
+menu_parent_path = NodePath("../MarginContainer/PlayerSelect")
 
 [node name="BattleEndPanel" type="ColorRect" parent="CanvasLayer"]
 visible = false
-anchors_preset = 15
+custom_minimum_size = Vector2(192, 45)
+anchors_preset = 12
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
@@ -274,18 +349,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("7_esjta")
 text = "AAA"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FlowContainer" type="FlowContainer" parent="CanvasLayer"]
-offset_top = 226.0
-offset_right = 126.0
-offset_bottom = 226.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-
-[node name="VFlowContainer" type="VFlowContainer" parent="CanvasLayer/FlowContainer"]
-layout_mode = 2
-mouse_filter = 2
+[connection signal="pressed" from="CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Exit" to="CanvasLayer/HealMenu" method="_on_exit_pressed"]

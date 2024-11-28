@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b0fwanaepm4y3"]
+[gd_scene load_steps=11 format=3 uid="uid://b0fwanaepm4y3"]
 
 [ext_resource type="Script" path="res://OverWorld/Player/overworld_menu.gd" id="1_dcdrl"]
 [ext_resource type="PackedScene" uid="uid://c50jgnbvmwy70" path="res://OverWorld/Player/InventorySystem/Cursor/menu_cursor.tscn" id="1_foow0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="3_7hadp"]
 [ext_resource type="Script" path="res://OverWorld/Player/InventorySystem/Cursor/item_selected.gd" id="3_v38ul"]
 [ext_resource type="Texture2D" uid="uid://dudco7norpb36" path="res://Assets/Sprites/Inventory/blank32.png" id="4_nnew4"]
+[ext_resource type="Script" path="res://OverWorld/Player/key_label.gd" id="6_hllyu"]
 [ext_resource type="Script" path="res://OverWorld/Player/inventory_view.gd" id="6_xagdt"]
 
 [node name="OverworldMenu" type="Control" groups=["OWMenu"]]
@@ -395,12 +396,23 @@ size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
 script = ExtResource("3_v38ul")
 
-[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Keys"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/MarginContainer/Sections/Options/Keys"]
 layout_mode = 2
-size_flags_vertical = 1
-text = "Keys"
+
+[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Keys/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Keys:"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="KeyLabel" type="Label" parent="Menu/MarginContainer/Sections/Options/Keys/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "KEY"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("6_hllyu")
 
 [node name="MenuCursor" parent="Menu" instance=ExtResource("1_foow0")]
 layout_mode = 2

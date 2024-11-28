@@ -2,6 +2,7 @@ extends Control
 
 @onready var prompt = get_tree().get_first_node_in_group("text_prompter")
 
+
 @onready var menu = $Menu
 @onready var menu_cursor = $Menu/MenuCursor
 
@@ -26,6 +27,7 @@ extends Control
 @onready var weapon_2_label = $Menu/MarginContainer/Sections/Options/Weapon2/WeaponIcon/Weapon2Label
 @onready var weapon_3_label = $Menu/MarginContainer/Sections/Options/Weapon3/WeaponIcon/Weapon3Label
 
+@onready var key_label = $Menu/MarginContainer/Sections/Options/Keys/VBoxContainer/KeyLabel
 
 var menu_open: bool = false
 var is_menu_paused: bool = false
@@ -72,7 +74,7 @@ func open_menu():
 ## Setup character view.
 func setup_data():
 	
-	
+	key_label.show_keys()
 	
 	mc_name_1.text = "NONE"
 	mc_name_2.text = "NONE"

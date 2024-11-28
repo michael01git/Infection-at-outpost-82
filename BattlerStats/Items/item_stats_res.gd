@@ -16,7 +16,6 @@ enum StatImprove{
 
 enum UseType{
 	HEAL,
-	DAMAGE,
 	TEST
 }
 

@@ -1,5 +1,7 @@
 extends Control
 
+@onready var player = get_tree().get_first_node_in_group("Player")
+
 @export var item_box_scene: PackedScene
 @export var quit_box_scene: PackedScene
 
@@ -146,11 +148,21 @@ func equip_item(item_stat: ItemStats, battler: BattlerStats):
 	close_inventory()
 
 func use_item(item_stat: ItemStats, battler: BattlerStats):
-	battler.current_hp += item_stat.health
-	
-	## NO MULTIPLE USES, JUST ONCE. 
-	GameManager.items.erase(item_stat)
-	
-	battler.cap_health()
-	
-	close_inventory()
+	match item_stat.use_type:
+		0:
+			battler.current_hp += item_stat.health
+			
+			## NO MULTIPLE USES, JUST ONCE. 
+			GameManager.items.erase(item_stat)
+			
+			battler.cap_health()
+			
+			close_inventory()
+		1:
+			if battler.infected:
+				battler.test_danger = 1000
+				player._on_danger_level_timer_timeout()
+				close_inventory()
+				overworld_menu.close_menu()
+			else:
+				pass

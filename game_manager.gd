@@ -33,6 +33,10 @@ var infected: Array[BattlerStats]
 
 ## Inventory
 var items: Array[ItemStats]
+var keys: Array[String]
+
+var events: Array[String]
+
 
 func add_party_member(member_string_path: String) -> void:
 	var member = ResourceLoader.load(member_string_path)
@@ -64,8 +68,10 @@ func danger_enough_fight(enemies: Array[BattlerStats]) -> bool:
 	var danger: bool = calculate_danger_level(humans, fight_enemies)
 	return danger
 
-func danger_enough_overworld():
+## Calculate danger level in overworld. Return a true or false
+func danger_enough_overworld() -> bool:
 	
+	## We find out infected
 	figure_out_infected()
 	
 	var danger: bool = calculate_danger_level(humans, infected)
@@ -88,11 +94,8 @@ func if_all_infected():
 	else:
 		return false
 
+## Go thru player characters and update the humans and infected.
 func figure_out_infected():
-	
-	
-	
-	
 	humans.clear()
 	infected.clear()
 	for i in player_characters:
@@ -101,9 +104,15 @@ func figure_out_infected():
 		else:
 			humans.append(i)
 
+
+## Go thru infected and remove them from players.
 func clear_out_infected():
 	var inf_1: BattlerStats
 	var inf_2: BattlerStats
+	
+	
+	
+	figure_out_infected()
 	
 	if infected.size() >= 1:
 		inf_1 = infected[0]
@@ -111,21 +120,39 @@ func clear_out_infected():
 		inf_2 = infected[1]
 	
 	for i in player_characters:
-		if i == inf_1:
-			if inf_1.Armor != null:
-				items.erase(inf_1.Armor)
-			if inf_1.Weapon != null:
-				items.erase(inf_1.Weapon)
-			
-			player_characters.erase(inf_1)
 		
-		if i == inf_2:
-			if inf_2.Armor != null:
-				items.erase(inf_2.Armor)
-			if inf_2.Weapon != null:
-				items.erase(inf_2.Weapon)
-			player_characters.erase(inf_2)
+		if inf_1 != null:
+			if i.character == inf_1.character:
+				
+				print("inf_1foudn1")
+				
+				## Remove infected from party
+				player_characters.erase(i)
+				
+					## Same with gear
+				if inf_1.Armor != null:
+					items.erase(inf_1.Armor)
+				if inf_1.Weapon != null:
+					items.erase(inf_1.Weapon)
+				
+				
+		
+		if inf_2 != null:
+			if i.character == inf_2.character:
+				print("inf_2foudn1")
+				
+				## Remove infected from party
+				player_characters.erase(i)
+				
+				if inf_2.Armor != null:
+					items.erase(inf_2.Armor)
+				if inf_2.Weapon != null:
+					items.erase(inf_2.Weapon)
+	
+	print("Currently in party:", GameManager.player_characters)
 
+
+## Get the danger level.
 func calculate_danger_level(players: Array[BattlerStats], enemies: Array[BattlerStats]):
 	
 	## Its possible that there are no playercharacters that are infected. Do nothing
@@ -144,6 +171,7 @@ func calculate_danger_level(players: Array[BattlerStats], enemies: Array[Battler
 		enemy_level += i.current_hp
 		enemy_level += i.damage
 		enemy_level += i.turn_speed
+		enemy_level += i.test_danger
 	
 	if enemy_level > human_level:
 		return true
@@ -159,7 +187,6 @@ func start_encounter(enemies):
 	switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
 
 func _process(delta):
-	
 	if Input.is_action_just_pressed("Escape"):
 		get_tree().quit()
 

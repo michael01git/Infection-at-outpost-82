@@ -68,9 +68,27 @@ func play_hit_fx_anim() -> void:
 	hit_fx_animation.play("play")
 
 func be_damaged(amount: int) -> void:
-	stats_resource.current_hp -= amount
+	var damage_dealt: int = amount - stats_resource.armor
+	if damage_dealt < 0:
+		damage_dealt = 0
+	
+	stats_resource.current_hp -= damage_dealt
+	
+	check_infection()
+	
 	update_health_bar()
 	if stats_resource.current_hp <= 0:
 		stats_resource.current_hp = 0
 		dead.emit(self)
 		queue_free()
+
+func check_infection() -> void:
+	var infection_resistance: int = randi_range(0, 10) + stats_resource.armor
+	var random: int = randi_range(0, 10)
+	if random > infection_resistance:
+		## Get infected
+		if randi_range(0,1) == 1:
+			## Last Chance
+			stats_resource.will_infect = true
+	
+	

@@ -14,6 +14,8 @@ extends Area2D
 
 
 func interact():
+	print("interacted")
+	
 	if !prompter.prompts_empty:
 		return
 	
