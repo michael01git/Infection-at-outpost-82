@@ -77,6 +77,8 @@ func update_turn() -> void:
 	else:
 		turn_action_buttons.hide_TA()
 	
+	$CanvasLayer/ActionBG/TurnLabel.text = "Current turn: "+current_turn.stats_resource.character
+	
 	current_turn.start_turn()
 
 func next_turn() -> void:
@@ -151,13 +153,19 @@ func show_battle_end_panel(message: String) -> void:
 	else:
 		GameManager.GameOver()
 
-
+## If danger level is high enough in battle. Done on a players turn.
 func start_encounter():
-	var enemies: Array[BattlerStats] = GameManager.infected
+	print("encounter in battle")
+	GameManager.figure_out_infected()
 	GameManager.clear_out_infected()
+	
+	var enemies: Array[BattlerStats] = GameManager.infected
+	
 	
 	for i in enemy_battlers:
 		enemies.append(i.stats_resource)
+	
+	
 	
 	
 	

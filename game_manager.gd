@@ -71,9 +71,10 @@ func danger_enough_fight(enemies: Array[BattlerStats]) -> bool:
 ## Calculate danger level in overworld. Return a true or false
 func danger_enough_overworld() -> bool:
 	
-	## We find out infected
+	## We find out infected. assign them to infected and human variables.
 	figure_out_infected()
 	
+	## Get danger level on health, armor, etc. If more with infected, return true.
 	var danger: bool = calculate_danger_level(humans, infected)
 	return danger
 
@@ -83,6 +84,8 @@ func check_battle_inf():
 			i.will_infect = false
 			i.infected = true
 
+
+## Go thru all players and see if they are all infected.
 func if_all_infected():
 	var all_inf: int
 	for i in player_characters:
@@ -119,8 +122,22 @@ func clear_out_infected():
 	if infected.size() >= 2:
 		inf_2 = infected[1]
 	
+	
 	for i in player_characters:
 		
+		if inf_2 != null:
+			if i.character == inf_2.character:
+				print("inf_2foudn1")
+				
+				## Remove infected from party
+				player_characters.erase(i)
+				
+				if inf_2.Armor != null:
+					items.erase(inf_2.Armor)
+				if inf_2.Weapon != null:
+					items.erase(inf_2.Weapon)
+	
+	for i in player_characters:
 		if inf_1 != null:
 			if i.character == inf_1.character:
 				
@@ -137,17 +154,8 @@ func clear_out_infected():
 				
 				
 		
-		if inf_2 != null:
-			if i.character == inf_2.character:
-				print("inf_2foudn1")
-				
-				## Remove infected from party
-				player_characters.erase(i)
-				
-				if inf_2.Armor != null:
-					items.erase(inf_2.Armor)
-				if inf_2.Weapon != null:
-					items.erase(inf_2.Weapon)
+	
+	
 	
 	print("Currently in party:", GameManager.player_characters)
 

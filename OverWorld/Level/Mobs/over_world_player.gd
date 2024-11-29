@@ -7,6 +7,7 @@ extends Area2D
 @onready var overworld_menu = $CanvasLayer/OverworldMenu
 @onready var ray = $CollisionRaycast
 @onready var interact_raycast = $InteractRaycast
+@onready var point_light_2d = $PointLight2D
 
 @onready var danger_level_timer = $DangerLevelTimer
 @onready var move_timer = $MoveTimer
@@ -41,8 +42,9 @@ func _ready():
 	
 	danger_level_timer.start()
 	
-	GameManager.player_characters = pc
-	GameManager.items = inv
+	if GameManager.player_characters.is_empty():
+		GameManager.player_characters = pc
+		GameManager.items = inv
 	
 	GameManager.check_battle_inf()
 	
@@ -114,6 +116,7 @@ func _unhandled_input(event):
 	
 	
 	interact_raycast.target_position = ray.target_position
+	
 	if event.is_action_pressed("use"):
 		if interact_raycast.is_colliding():
 			var interactable = interact_raycast.get_collider()
@@ -131,6 +134,9 @@ func _unhandled_input(event):
 				
 				
 				move(dir)
+				
+				## Just to give an indication on where player is looking.
+				point_light_2d.global_position = interact_raycast.target_position + global_position
 
 func move(dir):
 	
@@ -162,6 +168,8 @@ func move(dir):
 	
 	move_timer.start()
 
+## --- OVERWORLD INFECTION ---
+
 ## If infected players exist. Battle them.
 func _on_danger_level_timer_timeout():
 	## Every x time checks if the power level of infected players is enough. A test forces this to happen by adding an arbitary +1000 to this.
@@ -174,9 +182,13 @@ func _on_danger_level_timer_timeout():
 	## If danger level is enough.
 	elif GameManager.danger_enough_overworld():
 		
+		## Remove infected from party.
 		GameManager.clear_out_infected()
+		
+		## Start an encounter with infected individuals.
 		GameManager.start_encounter(GameManager.infected)
 
+## Switch scene to game over.
 func GameOver():
 	GameManager.switch_Scene("res://OverWorld/MenuScenes/death_scene.tscn", "res://OverWorld/MenuScenes/death_scene.tscn")
 

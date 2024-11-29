@@ -18,7 +18,7 @@
 script = ExtResource("1_3fk0c")
 
 [node name="BackGround" type="Sprite2D" parent="."]
-position = Vector2(96, 58)
+position = Vector2(96, 57.5)
 texture = ExtResource("2_51246")
 
 [node name="PlayerBattleOrganizer" type="Node2D" parent="."]
@@ -74,6 +74,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
+
+[node name="TurnLabel" type="Label" parent="CanvasLayer/ActionBG"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -134.5
+offset_bottom = -125.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_esjta")
+text = "Current Turn"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TurnActionButtons" type="ColorRect" parent="CanvasLayer"]
 custom_minimum_size = Vector2(192, 45)

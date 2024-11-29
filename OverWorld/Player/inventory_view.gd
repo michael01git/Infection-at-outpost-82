@@ -149,7 +149,7 @@ func equip_item(item_stat: ItemStats, battler: BattlerStats):
 
 func use_item(item_stat: ItemStats, battler: BattlerStats):
 	match item_stat.use_type:
-		0:
+		0: ## Heal
 			battler.current_hp += item_stat.health
 			
 			## NO MULTIPLE USES, JUST ONCE. 
@@ -158,11 +158,15 @@ func use_item(item_stat: ItemStats, battler: BattlerStats):
 			battler.cap_health()
 			
 			close_inventory()
-		1:
+		1: ## Test
 			if battler.infected:
 				battler.test_danger = 1000
+				GameManager.items.erase(item_stat)
 				player._on_danger_level_timer_timeout()
 				close_inventory()
 				overworld_menu.close_menu()
+				## SFX HERE
 			else:
-				pass
+				
+				GameManager.items.erase(item_stat)
+				close_inventory()
