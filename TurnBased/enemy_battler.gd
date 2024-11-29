@@ -60,6 +60,8 @@ func play_hit_fx_anim() -> void:
 	hit_fx_animation.play("play")
 
 func be_damaged(amount: int) -> void:
+	AudioManager.play_sfx(1)
+	
 	stats_resource.current_hp -= amount
 	update_health_bar()
 	if stats_resource.current_hp <= 0:

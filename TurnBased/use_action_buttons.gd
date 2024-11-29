@@ -29,8 +29,6 @@ func hide_use_targets():
 	use_cursor.hide()
 	hide()
 	
-	if !check_if_heals():
-		no_healing_more()
 
 func _ready():
 	turn_cursor.cursor_index = 0
@@ -41,18 +39,26 @@ func _ready():
 		no_healing_more()
 
 func check_if_heals() -> bool:
+	if healing_items == false:
+		return false
+	
 	var if_heal: bool = false
 	
 	for i in GameManager.items:
-		if i.type == 0:
+		if i.use_type == 0 and i.type == 0:
 			if_heal = true
 	
 	return if_heal
 
 func no_healing_more():
+	if healing_items == false:
+		return
+	
 	healing_items = false
 	
-	use_item_button.pressed.disconnect(turn_based_combat_scene.show_use_buttons)
+	var call = Callable(turn_based_combat_scene, "show_use_buttons")
+	use_item_button.disconnect("pressed", call)
+	
 	use_item_button.text = "No Healing Items"
 
 
@@ -63,14 +69,16 @@ func use_action(own_player: Node2D):
 	var deleted_item: bool = false
 	for i in GameManager.items:
 		if !deleted_item:
-			if i.type == 0:
+			if i.use_type == 0 and i.type == 0:
 				deleted_item = true
 				GameManager.items.erase(i)
 	
 	
+	if !check_if_heals():
+		no_healing_more()
 	
 	turn_based_combat_scene.hide_use_buttons()
-	turn_based_combat_scene.next_turn()
+
 
 func _on_exit_pressed():
 	turn_based_combat_scene.hide_use_buttons()

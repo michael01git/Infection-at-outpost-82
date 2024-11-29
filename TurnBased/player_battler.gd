@@ -48,6 +48,8 @@ func start_turn() -> void:
 	
 	## Encounter check.
 	if GameManager.danger_enough_fight(enemies):
+		
+		AudioManager.play_sfx(3)
 		turn_based_combat_scene.start_encounter()
 
 
@@ -75,6 +77,8 @@ func play_hit_fx_anim() -> void:
 	hit_fx_animation.play("play")
 
 func be_damaged(amount: int) -> void:
+	AudioManager.play_sfx(1)
+	
 	var damage_dealt: int = amount - stats_resource.armor
 	if damage_dealt < 0:
 		damage_dealt = 0

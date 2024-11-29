@@ -34,6 +34,7 @@ var will_infect: bool = false
 @export_subgroup("Textures")
 @export var overworld_sprite: Texture2D
 @export var portrait_sprite: Texture2D
+@export var battle_sprite: Texture2D
 
 ## Weapons
 var Armor: ItemStats

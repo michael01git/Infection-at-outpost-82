@@ -193,6 +193,8 @@ func _on_danger_level_timer_timeout():
 		## Remove infected from party.
 		GameManager.clear_out_infected()
 		
+		AudioManager.play_sfx(3)
+		
 		## Start an encounter with infected individuals.
 		GameManager.start_encounter(GameManager.infected)
 

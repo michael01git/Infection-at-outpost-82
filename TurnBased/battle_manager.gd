@@ -64,7 +64,6 @@ func _ready() -> void:
 	current_turn = all_battlers[current_turn_index]
 	
 	## Play music
-	
 	AudioManager.play_music(1)
 	for i in enemy_battlers:
 		if i.stats_resource.type == 0:

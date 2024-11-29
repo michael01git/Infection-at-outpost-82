@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=3 format=3 uid="uid://dbs8snnacre4i"]
+
+[ext_resource type="Texture2D" uid="uid://dvqw5yct8752e" path="res://Assets/Sprites/Enemies/dog.png" id="1_eqrl5"]
+[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_k6mll"]
+
+[resource]
+script = ExtResource("2_k6mll")
+type = 1
+infected = false
+character = "Dog"
+max_hp = 10
+current_hp = 10
+damage = 3
+armor = 0
+turn_speed = 5
+overworld_sprite = ExtResource("1_eqrl5")

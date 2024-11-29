@@ -162,11 +162,17 @@ func use_item(item_stat: ItemStats, battler: BattlerStats):
 			if battler.infected:
 				battler.test_danger = 1000
 				GameManager.items.erase(item_stat)
+				
+				AudioManager.play_sfx(2)
+				
 				player._on_danger_level_timer_timeout()
 				close_inventory()
 				overworld_menu.close_menu()
-				## SFX HERE
+				
 			else:
 				
 				GameManager.items.erase(item_stat)
+				
+				AudioManager.play_sfx(1)
+				
 				close_inventory()

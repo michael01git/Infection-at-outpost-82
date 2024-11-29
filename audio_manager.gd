@@ -56,7 +56,7 @@ func play_music(track: int) -> void:
 			music_player.volume_db = 0
 		2:
 			music_player.pitch_scale = 1
-			music_player.volume_db = 0
+			music_player.volume_db = -5
 		3:
 			music_player.pitch_scale = 0.5
 			music_player.volume_db = -5

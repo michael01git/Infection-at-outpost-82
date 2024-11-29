@@ -7,6 +7,7 @@ extends Area2D
 @onready var player: Area2D = get_tree().get_first_node_in_group("Player")
 @onready var tilemap: TileMapLayer = get_tree().get_first_node_in_group("tilemap")
 @onready var look_raycast = $LookRaycast
+@onready var icon = $Icon
 
 var current_path: Array[Vector2i]
 var target_position: Vector2
@@ -16,6 +17,14 @@ const time_to_move: float = 1.00
 var time_now: float = 0
 
 var look_for_player_state: bool = false
+
+func _ready():
+	if GameManager.check_defeated_enemies(get_parent().name, ID):
+		queue_free()
+	
+	GameManager.get_ID(self)
+	
+	icon.texture = encounter_enemies[0].overworld_sprite
 
 func _physics_process(delta):
 	if GameManager.pause_mobs:
@@ -92,11 +101,7 @@ func walk(pos: Vector2):
 	
 
 
-func _ready():
-	if GameManager.check_defeated_enemies(get_parent().name, ID):
-		queue_free()
-	
-	GameManager.get_ID(self)
+
 
 func kill_enemy():
 	GameManager.insert_dead_enemy(get_parent().name, ID)

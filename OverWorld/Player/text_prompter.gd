@@ -64,7 +64,11 @@ func process_prompts_array():
 			if !GameManager.keys.has(first_prompt.erase(0)):
 				GameManager.keys.append(first_prompt.erase(0))
 			change_text()
-			
+		
+		elif first_prompt[0] == "$":
+			if !GameManager.events.has(first_prompt.erase(0)):
+				GameManager.events.append(first_prompt.erase(0))
+			change_text()
 		
 		else:
 			prompt(first_prompt)
