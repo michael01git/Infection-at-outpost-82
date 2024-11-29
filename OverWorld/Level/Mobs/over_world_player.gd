@@ -37,22 +37,27 @@ func _ready():
 	
 	
 	
-	
+	## Show canvas.
 	$CanvasLayer.show()
 	
+	## Start checking party infected
 	danger_level_timer.start()
 	
+	## Debug
 	if GameManager.player_characters.is_empty():
 		GameManager.player_characters = pc
 		GameManager.items = inv
 	
+	## Set infected after fight
 	GameManager.check_battle_inf()
 	
+	## Room positions between rooms
 	check_if_previously_in_room()
 	
+	## Play track 3 ambiance
+	AudioManager.play_music(3)
 	
-	
-	
+	## After fight
 	if GameManager.last_player_pos != Vector2.ZERO:
 		
 		
@@ -119,6 +124,7 @@ func _unhandled_input(event):
 	
 	if event.is_action_pressed("use"):
 		if interact_raycast.is_colliding():
+			AudioManager.play_sfx(4)
 			var interactable = interact_raycast.get_collider()
 			interactable.interact()
 	
@@ -159,6 +165,8 @@ func move(dir):
 		moving = true
 		await tween.finished
 		moving = false
+		
+		AudioManager.play_sfx(4)
 		
 		GameManager.last_player_pos = global_position
 		

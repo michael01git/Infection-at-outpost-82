@@ -4,8 +4,7 @@ extends Control
 
 @onready var text = $Panel/Text
 @onready var color_rect = $ColorRect
-
-@onready var animation_player = $AnimationPlayer
+@onready var use_timer = $UseTimer
 
 var show_percentage: float = 0
 
@@ -14,6 +13,8 @@ var prompts_array: Array[String]
 var prompts_empty: bool = true
 
 var process_next: bool = true
+
+var can_use: bool = true
 
 func prompt_array(array: Array[String]) -> void:
 	## Get an array of propmts to process
@@ -90,18 +91,17 @@ func _process(delta):
 	process_prompts_array()
 	
 	
-	return
-	if Input.is_action_just_pressed("use"):
-		if animation_player.current_animation != "wait":
-			animation_player.play("wait")
+	if Input.is_action_just_pressed("use") and can_use:
+		can_use = false
+		use_timer.start()
+		change_text()
 
 ## Show text
 func prompt(text_to_add: String) -> void:
 	show()
 	
 	text.text = ""
-	text.text += text_to_add 
-	animation_player.play("show_text")
+	text.text += text_to_add
 
 ## Show new text.
 func change_text():
@@ -113,9 +113,5 @@ func change_text():
 	# Can process next prompt
 	process_next = true
 
-
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "wait":
-		change_text()
-	else:
-		animation_player.play("wait")
+func _on_use_timer_timeout():
+	can_use = true

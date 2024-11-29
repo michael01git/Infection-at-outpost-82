@@ -23,6 +23,7 @@ var current_turn_index: int
 func _ready() -> void:
 	
 	
+	
 	# Organize enemies and players here, otherwise get deleted nodes.
 	enemy_battle_organiser.organize()
 	player_battle_organizer.organize()
@@ -34,6 +35,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 	
 	
+	
+	## Hide actions.
 	turn_action_buttons.hide_TA()
 	battle_end_panel.hide()
 	
@@ -60,7 +63,12 @@ func _ready() -> void:
 	
 	current_turn = all_battlers[current_turn_index]
 	
+	## Play music
 	
+	AudioManager.play_music(1)
+	for i in enemy_battlers:
+		if i.stats_resource.type == 0:
+			AudioManager.play_music(2)
 	
 	update_turn()
 

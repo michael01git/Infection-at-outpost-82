@@ -1,62 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://b08cfcf37hcxe"]
+[gd_scene load_steps=3 format=3 uid="uid://b08cfcf37hcxe"]
 
 [ext_resource type="Script" path="res://OverWorld/Player/text_prompter.gd" id="1_riclo"]
 [ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="2_681ri"]
-
-[sub_resource type="Animation" id="Animation_cidii"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/Text:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="Animation" id="Animation_hg2u7"]
-resource_name = "show_text"
-length = 2.0
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/Text:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 1.0]
-}
-
-[sub_resource type="Animation" id="Animation_tw27q"]
-resource_name = "wait"
-step = 1.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/Text:visible_ratio")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_24hum"]
-_data = {
-"RESET": SubResource("Animation_cidii"),
-"show_text": SubResource("Animation_hg2u7"),
-"wait": SubResource("Animation_tw27q")
-}
 
 [node name="TextPrompter" type="Control" groups=["text_prompter"]]
 layout_mode = 3
@@ -96,9 +41,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_681ri")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_24hum")
-}
+[node name="UseTimer" type="Timer" parent="."]
+wait_time = 0.5
 
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="UseTimer" to="." method="_on_use_timer_timeout"]

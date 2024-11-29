@@ -1,13 +1,6 @@
 extends Resource
 class_name BattlerStats
 
-enum Character{
-	ENEMY,
-	JOHN,
-	MCCREADY,
-	WINDOWS
-}
-
 enum BattlerType{
 	PLAYER,
 	ENEMY

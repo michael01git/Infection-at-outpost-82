@@ -19,6 +19,7 @@ config/icon="res://Assets/Sprites/icon.svg"
 [autoload]
 
 GameManager="*res://game_manager.gd"
+AudioManager="*res://audio_manager.tscn"
 
 [display]
 

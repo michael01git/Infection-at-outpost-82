@@ -189,6 +189,7 @@ func calculate_danger_level(players: Array[BattlerStats], enemies: Array[Battler
 ## Moved from player
 func start_encounter(enemies):
 	
+	AudioManager.play_sfx(4)
 	
 	# This is needed to start encounter.
 	encounter_enemies = enemies

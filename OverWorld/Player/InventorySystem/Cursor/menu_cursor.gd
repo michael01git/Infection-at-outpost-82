@@ -12,12 +12,16 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("up"):
 		input.y -= 1
+		
 	if Input.is_action_just_pressed("down"):
 		input.y += 1
+		
 	if Input.is_action_just_pressed("left"):
 		input.x -= 1
+		
 	if Input.is_action_just_pressed("right"):
 		input.x += 1
+		
 	
 	
 	if menu_parent is VBoxContainer:
@@ -32,6 +36,8 @@ func _process(delta):
 		if current_menu_item != null:
 			if current_menu_item.has_method("cursor_select"):
 				current_menu_item.cursor_select()
+				
+				AudioManager.play_sfx(4)
 
 func get_menu_item_at_index(index: int) -> Control:
 	if menu_parent == null:
