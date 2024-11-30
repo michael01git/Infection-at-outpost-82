@@ -201,25 +201,19 @@ func _process(delta):
 
 ## PERSISTANCE ##
 
-# set enemy id
-func get_ID(enemy):
-	enemy.ID = last_ID
-	
-	last_ID += 1
-
 # add enemy to deadlist
-func insert_dead_enemy(scene_name: String, ID: int) -> void:
+func insert_dead_enemy(scene_name: String, mob_name: String) -> void:
 	print(scene_name)
 	if deadEnemies.has(scene_name):
-		deadEnemies[scene_name].append(ID)
+		deadEnemies[scene_name].append(mob_name)
 	else:
-		deadEnemies[scene_name] = [ID]
+		deadEnemies[scene_name] = [mob_name]
 
 # check if enemy in deadlist
-func check_defeated_enemies(scene_name: String, ID: int) -> bool:
+func check_defeated_enemies(scene_name: String, mob_name: String) -> bool:
 	print(scene_name)
 	if deadEnemies.has(scene_name):
-		return deadEnemies[scene_name].has(ID)
+		return deadEnemies[scene_name].has(mob_name)
 	return false
 
 # ---

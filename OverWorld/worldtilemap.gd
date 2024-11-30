@@ -6,17 +6,7 @@ var tile_size = Vector2(16,16)
 
 func _ready():
 	setup_grid()
-	
-	assign_enemy_id()
 
-func assign_enemy_id():
-	
-	var ID: int = 0
-	
-	for i in get_parent().get_children():
-		if i.is_in_group("Enemy"):
-			i.ID = ID
-			ID += 1
 
 func setup_grid():
 	var tilemap_size: Vector2i = get_used_rect().end - get_used_rect().position
