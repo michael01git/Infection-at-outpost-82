@@ -1,6 +1,8 @@
-[gd_resource type="Resource" script_class="BattlerStats" load_steps=4 format=3 uid="uid://cyk0humsgewri"]
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=6 format=3 uid="uid://cyk0humsgewri"]
 
-[ext_resource type="Texture2D" uid="uid://b5n1rdh3glq80" path="res://Assets/Sprites/Players/Hound.png" id="1_y5kl7"]
+[ext_resource type="Texture2D" uid="uid://bt8b8f2cscj3j" path="res://Assets/Sprites/Players/HoundFight.png" id="1_njrn8"]
+[ext_resource type="Texture2D" uid="uid://b5n1rdh3glq80" path="res://Assets/Sprites/Players/OW/Hound.png" id="1_y5kl7"]
+[ext_resource type="Texture2D" uid="uid://4e03db2gr7eo" path="res://Assets/Sprites/Players/HoundTurn.png" id="2_pku7r"]
 [ext_resource type="Texture2D" uid="uid://bik3qk0wk37t7" path="res://Assets/Sprites/Players/HoundInvSprite.png" id="2_tp1o4"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="3_3enhc"]
 
@@ -16,3 +18,5 @@ armor = 0
 turn_speed = 0
 overworld_sprite = ExtResource("1_y5kl7")
 portrait_sprite = ExtResource("2_tp1o4")
+battle_sprite = ExtResource("1_njrn8")
+enemy_battle_sprite = ExtResource("2_pku7r")

@@ -35,6 +35,7 @@ var will_infect: bool = false
 @export var overworld_sprite: Texture2D
 @export var portrait_sprite: Texture2D
 @export var battle_sprite: Texture2D
+@export var enemy_battle_sprite: Texture2D
 
 ## Weapons
 var Armor: ItemStats

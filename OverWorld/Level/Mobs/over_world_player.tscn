@@ -1,16 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfqfl0mspjhl3"]
+[gd_scene load_steps=10 format=3 uid="uid://cfqfl0mspjhl3"]
 
 [ext_resource type="Script" path="res://OverWorld/Level/Mobs/over_world_player.gd" id="1_on7e7"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_kudrg"]
 [ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/Players/McKinley.tres" id="3_s44bh"]
-[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="4_ccrel"]
-[ext_resource type="Resource" uid="uid://t6cii12jjs4o" path="res://BattlerStats/Items/heal.tres" id="5_aoip2"]
 [ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
-[ext_resource type="Resource" uid="uid://c7babmwbaf40c" path="res://BattlerStats/Items/bat.tres" id="6_tjnnl"]
 [ext_resource type="Texture2D" uid="uid://dtd25fhkld5vk" path="res://Assets/Sprites/FlashLight.png" id="7_y1hlh"]
-[ext_resource type="Resource" uid="uid://bqqtf8gx4xty0" path="res://BattlerStats/Items/test.tres" id="9_os7n0"]
 [ext_resource type="PackedScene" uid="uid://b08cfcf37hcxe" path="res://OverWorld/Player/text_prompter.tscn" id="10_p4xre"]
-[ext_resource type="Texture2D" uid="uid://mjsdptbf5edn" path="res://Assets/Sprites/Players/McKinley.png" id="11_ll54d"]
+[ext_resource type="Texture2D" uid="uid://mjsdptbf5edn" path="res://Assets/Sprites/Players/OW/McKinley.png" id="11_ll54d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3no4w"]
 size = Vector2(10, 10)
@@ -23,7 +19,6 @@ collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_on7e7")
 pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh")])
-inv = Array[ExtResource("4_ccrel")]([ExtResource("5_aoip2"), ExtResource("6_tjnnl"), ExtResource("9_os7n0")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3no4w")
@@ -40,7 +35,7 @@ collide_with_bodies = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.25
+wait_time = 0.05
 one_shot = true
 autostart = true
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co8ump43aqsop"
-path="res://.godot/imported/Cook.png-288e02718ffdaec79c4862c3982502bb.ctex"
+uid="uid://mjsdptbf5edn"
+path="res://.godot/imported/McKinley.png-e3acbcbfe9939c42a7f115367c5c5330.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Players/Cook.png"
-dest_files=["res://.godot/imported/Cook.png-288e02718ffdaec79c4862c3982502bb.ctex"]
+source_file="res://Assets/Sprites/Players/OW/McKinley.png"
+dest_files=["res://.godot/imported/McKinley.png-e3acbcbfe9939c42a7f115367c5c5330.ctex"]
 
 [params]
 

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=6 format=3 uid="uid://b6ac1sfgfhjqc"]
+
+[ext_resource type="Texture2D" uid="uid://couv5rrux7lhb" path="res://Assets/Sprites/Players/WaveFight.png" id="1_ywjpv"]
+[ext_resource type="Texture2D" uid="uid://hrs2e06argfk" path="res://Assets/Sprites/Players/WaveTurn.png" id="2_lhmaa"]
+[ext_resource type="Texture2D" uid="uid://di43e1bx8kfhe" path="res://Assets/Sprites/Players/OW/Wave.png" id="3_0m0lg"]
+[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="4_qhtgv"]
+[ext_resource type="Texture2D" uid="uid://buwedfr5t8q5y" path="res://Assets/Sprites/Players/WaveInvSprite.png" id="4_ws1oa"]
+
+[resource]
+script = ExtResource("4_qhtgv")
+type = 0
+infected = false
+character = "Wave"
+max_hp = 1
+current_hp = 1
+damage = 5
+armor = 0
+turn_speed = 0
+overworld_sprite = ExtResource("3_0m0lg")
+portrait_sprite = ExtResource("4_ws1oa")
+battle_sprite = ExtResource("1_ywjpv")
+enemy_battle_sprite = ExtResource("2_lhmaa")

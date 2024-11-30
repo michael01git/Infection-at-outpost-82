@@ -1,110 +1,47 @@
-[gd_scene load_steps=12 format=3 uid="uid://jyq4wji2feey"]
+[gd_scene load_steps=15 format=3 uid="uid://jyq4wji2feey"]
 
 [ext_resource type="Script" path="res://TurnBased/enemy_battler.gd" id="1_7awni"]
-[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="2_sivh5"]
+[ext_resource type="Shader" path="res://Assets/hit_and_damage.gdshader" id="2_akarr"]
+[ext_resource type="Texture2D" uid="uid://i45dv1ivan0c" path="res://Assets/Sprites/Enemies/dogfight.png" id="3_gihgm"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="4_8lna1"]
 
-[sub_resource type="Animation" id="Animation_0i1k7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_c8vkj"]
-resource_name = "in_turn"
-step = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibnrp"]
-_data = {
-"RESET": SubResource("Animation_0i1k7"),
-"in_turn": SubResource("Animation_c8vkj")
-}
-
-[sub_resource type="Animation" id="Animation_ldsy4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_bc8jo"]
-resource_name = "play"
-step = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.0001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp21c"]
-_data = {
-"RESET": SubResource("Animation_ldsy4"),
-"play": SubResource("Animation_bc8jo")
-}
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p6m4b"]
+resource_local_to_scene = true
+shader = ExtResource("2_akarr")
+shader_parameter/get_attacked = null
+shader_parameter/hit_enemy = null
+shader_parameter/DamageColor = Color(0.45098, 0, 0, 1)
+shader_parameter/AttackColor = Color(0.929412, 0.929412, 0.929412, 1)
 
 [sub_resource type="Animation" id="Animation_xcx80"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_enemy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_sivh5")]
+"values": [null]
 }
 
 [sub_resource type="Animation" id="Animation_k7g88"]
 resource_name = "attack"
+step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_enemy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": []
+"values": [true, null]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1egu3"]
@@ -113,38 +50,133 @@ _data = {
 "attack": SubResource("Animation_k7g88")
 }
 
+[sub_resource type="Animation" id="Animation_24nlj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/get_attacked")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_gkq2n"]
+resource_name = "hit"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/get_attacked")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0vfa"]
+_data = {
+"RESET": SubResource("Animation_24nlj"),
+"hit": SubResource("Animation_gkq2n")
+}
+
+[sub_resource type="Animation" id="Animation_fe3fy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_o716g"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05, 1e-05),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 1), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gyi43"]
+_data = {
+"RESET": SubResource("Animation_fe3fy"),
+"idle": SubResource("Animation_o716g")
+}
+
 [node name="EnemyBattler" type="Node2D" groups=["EnemyBattler"]]
-scale = Vector2(0.5, 0.5)
 script = ExtResource("1_7awni")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_sivh5")
+material = SubResource("ShaderMaterial_p6m4b")
+texture = ExtResource("3_gihgm")
 
-[node name="TurnIndicator" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TurnIndicatorAnimation" type="AnimationPlayer" parent="TurnIndicator"]
-libraries = {
-"": SubResource("AnimationLibrary_ibnrp")
-}
-
-[node name="HitFX" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_sivh5")
-
-[node name="HitFXAnimation" type="AnimationPlayer" parent="HitFX"]
-libraries = {
-"": SubResource("AnimationLibrary_fp21c")
-}
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_top = -64.0
-offset_right = 4.0
-offset_bottom = -37.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AttackAnimation" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_1egu3")
 }
+
+[node name="HitAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_n0vfa")
+}
+
+[node name="IdlePlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gyi43")
+}
+autoplay = "idle"
+
+[node name="RectW" type="ColorRect" parent="."]
+offset_left = -17.0
+offset_top = -26.0
+offset_right = 17.0
+offset_bottom = -17.0
+color = Color(0.929412, 0.929412, 0.929412, 1)
+
+[node name="RectB" type="ColorRect" parent="RectW"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 8.0
+color = Color(0.45098, 0, 0, 1)
+
+[node name="HPLabel" type="Label" parent="RectW/RectB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_8lna1")
+theme_override_font_sizes/font_size = 8
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1

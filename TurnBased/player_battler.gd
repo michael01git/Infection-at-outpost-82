@@ -4,11 +4,13 @@ extends Node2D
 @export var stats_resource: BattlerStats = null
 @export var own_button: Label
 
-@onready var health_bar = $HealthBar
-@onready var turn_indicator_animation = $TurnIndicator/TurnIndicatorAnimation
-@onready var animation_player = $AnimationPlayer
-@onready var hit_fx_animation = $HitFX/HitFXAnimation
+@onready var hp_label = $RectW/RectB/HPLabel
+
+@onready var hit_fx_player = $HitFXPlayer
+@onready var damage_player = $DamagePlayer
+
 @onready var turn_based_combat_scene = $"../.."
+@onready var sprite_2d = $Sprite2D
 
 # NOTE: Character health is handled in its statistics.
 
@@ -26,16 +28,18 @@ func ready():
 	
 	own_button.set_up(self)
 	
+	set_up_icon()
+	
 	update_health_bar()
 
+func set_up_icon():
+	sprite_2d.texture = stats_resource.battle_sprite
 
 func update_health_bar() -> void:
-	health_bar.max_value = stats_resource.max_hp
-	health_bar.value = stats_resource.current_hp
+	hp_label.text = str(stats_resource.current_hp)+" / "+str(stats_resource.max_hp)
 
 func start_turn() -> void:
 	
-	turn_indicator_animation.play("in_turn")
 	
 	## If infected, check if turn.
 	if stats_resource.infected != true:
@@ -54,9 +58,8 @@ func start_turn() -> void:
 
 
 func stop_turn() -> void:
-	turn_indicator_animation.play("RESET")
-	animation_player.play("RESET")
-	hit_fx_animation.play("RESET")
+	hit_fx_player.play("RESET")
+	damage_player.play("RESET")
 
 func start_attacking(enemy_target: Node2D) -> void:
 	play_attack_anim()
@@ -68,13 +71,13 @@ func start_attacking(enemy_target: Node2D) -> void:
 	turn_ended.emit()
 
 func play_attack_anim() -> void:
-	animation_player.play("attack")
+	hit_fx_player.play("play")
 
 func get_attack_damage() -> int:
 	return stats_resource.damage
 
 func play_hit_fx_anim() -> void:
-	hit_fx_animation.play("play")
+	damage_player.play("play")
 
 func be_damaged(amount: int) -> void:
 	AudioManager.play_sfx(1)

@@ -19,10 +19,12 @@ var time_now: float = 0
 var look_for_player_state: bool = false
 
 func _ready():
+	GameManager.get_ID(self)
+	
 	if GameManager.check_defeated_enemies(get_parent().name, ID):
 		queue_free()
 	
-	GameManager.get_ID(self)
+	
 	
 	icon.texture = encounter_enemies[0].overworld_sprite
 
@@ -99,9 +101,6 @@ func walk(pos: Vector2):
 		current_path.pop_front()
 		
 	
-
-
-
 
 func kill_enemy():
 	GameManager.insert_dead_enemy(get_parent().name, ID)

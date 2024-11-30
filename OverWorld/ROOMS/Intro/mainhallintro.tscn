@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=4 uid="uid://bfis3w1rhcmek"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_ccuwo"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_w7j2a"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_uhega"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_pk2b0"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_s7nkx"]
+
+[node name="mainhallintro" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAAEAAwAAAAEAAMAAFAEAA0AAAACAAEAAAAAAA0AAAAAAAEAAAAAAAwAAAAEAAMAAGAAAAgAAAAAAAEAAAAAAAkAAAAEAAMAAGAAAAoAAAAAAAEAAAAAAAsAAAAAAAEAAAAAAA4AAAAAAAEAAAAAAA8AAAAEAAMAAGAAABAAAAAAAAEAAAAAABEAAAAAAAEAAAAEAAgAAAACAAEAAAAEAAkAAAAEAAMAAFAEAAoAAAACAAEAAAAEAAsAAAACAAEAAAAEAA4AAAACAAEAAAAEAA8AAAAEAAMAAFAEABAAAAACAAEAAAAEABEAAAACAAEAAAABABIAAAABAAIAAAACABIAAAABAAIAAAADABIAAAABAAIAAAAEABIAAAACAAIAAAAAABIAAAAAAAIAAAAAAAcAAAAAAAAAAAAEAAcAAAACAAAAAAADAAcAAAABAAAAAAACAAcAAAAEAAMAAAABAAcAAAABAAAAAAABAAgAAAAGAAMAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAABAA0AAAADAAIAAAACAAgAAAADAAIAAAACAAkAAAADAAIAAAACAAoAAAADAAIAAAACAAsAAAADAAIAAAACAAwAAAADAAIAAAACAA0AAAADAAIAAAADAAgAAAADAAIAAAADAAkAAAADAAIAAAADAAoAAAAGAAMAAAADAAsAAAADAAIAAAADAAwAAAADAAIAAAADAA0AAAAGAAMAAAABAA4AAAAGAAMAAAABAA8AAAAGAAMAAAABABAAAAAGAAMAAAABABEAAAAGAAMAAAACAA4AAAADAAIAAAACAA8AAAADAAIAAAACABAAAAADAAIAAAACABEAAAAGAAMAAAADAA4AAAAGAAMAAAADAA8AAAADAAIAAAADABAAAAADAAIAAAADABEAAAADAAIAAAA=")
+tile_set = ExtResource("1_ccuwo")
+script = ExtResource("2_w7j2a")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_uhega")]
+position = Vector2(40, 136)
+light = false
+
+[node name="DoorArea" parent="." instance=ExtResource("4_pk2b0")]
+position = Vector2(40, 120)
+next_scene = "res://OverWorld/ROOMS/Intro/hub1intro.tscn"
+
+[node name="DoorArea2" parent="." instance=ExtResource("4_pk2b0")]
+position = Vector2(72, 248)
+next_scene = "res://OverWorld/ROOMS/Intro/startroomintro.tscn"
+need_key = "K106"
+no_key_prompt = Array[String](["I don't yet have my key. I should pick it up from someone in the main hall."])
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_s7nkx")
+modulat = false

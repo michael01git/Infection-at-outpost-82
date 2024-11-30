@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mjsdptbf5edn"
-path="res://.godot/imported/McKinley.png-2e90f44696d4ac1c31408b2f9ec75d9c.ctex"
+uid="uid://5v6cdvloer24"
+path="res://.godot/imported/fleshblobfight.png-6f765b28ee18293993689cd5d9f4baeb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Players/McKinley.png"
-dest_files=["res://.godot/imported/McKinley.png-2e90f44696d4ac1c31408b2f9ec75d9c.ctex"]
+source_file="res://Assets/Sprites/Enemies/fleshblobfight.png"
+dest_files=["res://.godot/imported/fleshblobfight.png-6f765b28ee18293993689cd5d9f4baeb.ctex"]
 
 [params]
 

@@ -6,14 +6,22 @@ extends Area2D
 @export_multiline var text_on_interact: Array[String]
 @export_multiline var already_interact: Array[String]
 @export var queue_free_on_use: bool = false
+@export var solid: bool = false
 
 ## You can add stuff trhu the multiline string arrays by typing an MARKres://resourcefilepath.tre.  @ for item, £ for member, % for key, $ for events.
 @export_category("Member Adding")
 @export_multiline var can_fit_in_party_text: Array[String]
 @export_multiline var cant_fit_in_party_text: Array[String]
 
+func _ready():
+	if !solid:
+		$StaticBody2D.queue_free()
+	
+	$Icon.queue_free()
 
 func interact():
+	
+	
 	print("interacted")
 	
 	if !prompter.prompts_empty:

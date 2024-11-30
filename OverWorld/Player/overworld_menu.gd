@@ -18,6 +18,10 @@ extends Control
 @onready var mc_sprite_3 = $Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3/MCSprite3
 @onready var mc_name_3 = $Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3/MCName3
 
+@onready var mc_health_1 = $Menu/MarginContainer/Sections/CharacterIcons/MCIcon1/MCIcon1/MCHealth1
+@onready var mc_health_2 = $Menu/MarginContainer/Sections/CharacterIcons/MCIcon2/MCIcon2/MCHealth2
+@onready var mc_health_3 = $Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3/MCHealth3
+
 
 
 @onready var armor_1_label = $Menu/MarginContainer/Sections/Options/Armor1/ArmorIcon/Armor1Label
@@ -80,6 +84,11 @@ func setup_data():
 	mc_name_2.text = "NONE"
 	mc_name_3.text = "NONE"
 	
+	mc_health_1.text = "0 / 0"
+	mc_health_2.text = "0 / 0"
+	mc_health_3.text = "0 / 0"
+	
+	
 	mc_sprite_1.texture = null
 	mc_sprite_2.texture = null
 	mc_sprite_3.texture = null
@@ -90,6 +99,7 @@ func setup_data():
 		
 		mc_sprite_1.texture = player_1.portrait_sprite
 		mc_name_1.text = player_1.character
+		mc_health_1.text = str(player_1.current_hp)+" / "+str(player_1.max_hp)
 		
 		if !player_1.Armor == null:
 			armor_1_label.text = player_1.Armor.item_name
@@ -106,6 +116,7 @@ func setup_data():
 		
 		mc_sprite_2.texture = player_2.portrait_sprite
 		mc_name_2.text = player_2.character
+		mc_health_2.text = str(player_2.current_hp)+" / "+str(player_2.max_hp)
 		
 		if !player_2.Armor == null:
 			armor_2_label.text = player_2.Armor.item_name
@@ -122,6 +133,7 @@ func setup_data():
 		
 		mc_sprite_3.texture = player_3.portrait_sprite
 		mc_name_3.text = player_3.character
+		mc_health_3.text = str(player_3.current_hp)+" / "+str(player_3.max_hp)
 		
 		if !player_3.Armor == null:
 			armor_3_label.text = player_3.Armor.item_name

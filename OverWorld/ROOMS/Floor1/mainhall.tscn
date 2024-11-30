@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=4 uid="uid://hhfhyqx5xeg2"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_u7crg"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_ftkor"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_b0h63"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_wqepc"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_23mp7"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="5_swkdw"]
+[ext_resource type="PackedScene" uid="uid://kpcbincq4tvt" path="res://OverWorld/Level/Interact/ssfx_tracker.tscn" id="6_f4mui"]
+[ext_resource type="Texture2D" uid="uid://b5n1rdh3glq80" path="res://Assets/Sprites/Players/OW/Hound.png" id="6_kuuqb"]
+
+[node name="mainhall" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAAEAAwAAAAEAAMAAFAEAA0AAAACAAEAAAAAAA0AAAAAAAEAAAAAAAwAAAAEAAMAAGAAAAgAAAAAAAEAAAAAAAkAAAAEAAMAAGAAAAoAAAAAAAEAAAAAAAsAAAAAAAEAAAAAAA4AAAAAAAEAAAAAAA8AAAAEAAMAAGAAABAAAAAAAAEAAAAAABEAAAAAAAEAAAAEAAgAAAACAAEAAAAEAAkAAAAEAAMAAFAEAAoAAAACAAEAAAAEAAsAAAACAAEAAAAEAA4AAAACAAEAAAAEAA8AAAAEAAMAAFAEABAAAAACAAEAAAAEABEAAAACAAEAAAABABIAAAABAAIAAAACABIAAAABAAIAAAADABIAAAABAAIAAAAEABIAAAACAAIAAAAAABIAAAAAAAIAAAAAAAcAAAAAAAAAAAAEAAcAAAACAAAAAAADAAcAAAABAAAAAAACAAcAAAAEAAMAAAABAAcAAAABAAAAAAABAAgAAAAGAAMAAAABAAkAAAADAAIAAAABAAoAAAADAAIAAAABAAsAAAADAAIAAAABAAwAAAADAAIAAAABAA0AAAADAAIAAAACAAgAAAADAAIAAAACAAkAAAADAAIAAAACAAoAAAADAAIAAAACAAsAAAADAAIAAAACAAwAAAADAAIAAAACAA0AAAADAAIAAAADAAgAAAADAAIAAAADAAkAAAADAAIAAAADAAoAAAAGAAMAAAADAAsAAAADAAIAAAADAAwAAAADAAIAAAADAA0AAAAGAAMAAAABAA4AAAAGAAMAAAABAA8AAAAGAAMAAAABABAAAAAGAAMAAAABABEAAAAGAAMAAAACAA4AAAADAAIAAAACAA8AAAADAAIAAAACABAAAAADAAIAAAACABEAAAAGAAMAAAADAA4AAAAGAAMAAAADAA8AAAADAAIAAAADABAAAAADAAIAAAADABEAAAADAAIAAAA=")
+tile_set = ExtResource("1_u7crg")
+script = ExtResource("2_ftkor")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_b0h63")]
+position = Vector2(56, 248)
+
+[node name="DoorArea" parent="." instance=ExtResource("4_wqepc")]
+position = Vector2(40, 120)
+next_scene = "res://OverWorld/ROOMS/Floor1/hub1.tscn"
+
+[node name="DoorArea2" parent="." instance=ExtResource("4_wqepc")]
+position = Vector2(72, 248)
+next_scene = "res://OverWorld/ROOMS/Floor1/startroom.tscn"
+
+[node name="InteractArea" parent="." instance=ExtResource("5_swkdw")]
+position = Vector2(40, 216)
+queue_free_on_use = true
+solid = true
+can_fit_in_party_text = Array[String](["What's going on? The lights went off.", "Let me come with you to investigate. The generator is past the kennel on the left.", "£res://BattlerStats/Players/Hound.tres"])
+
+[node name="Hound" type="Sprite2D" parent="InteractArea"]
+texture = ExtResource("6_kuuqb")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_23mp7")
+
+[node name="SSFXTracker" parent="." instance=ExtResource("6_f4mui")]
+event_to_stop = "METDOG"
+ssfx_number = 2

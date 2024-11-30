@@ -14,7 +14,7 @@ extends Area2D
 
 @onready var follower = $Follower1
 @onready var follower_2 = $Follower2
-@onready var follower_pos_array: Array[Vector2] = [global_position, global_position, global_position]
+@onready var follower_pos_array: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO, Vector2.ZERO]
 
 @export var pc: Array[BattlerStats]
 @export var inv: Array[ItemStats]
@@ -55,7 +55,8 @@ func _ready():
 	check_if_previously_in_room()
 	
 	## Play track 3 ambiance
-	AudioManager.play_music(3)
+	if GameManager.events.has("SLEPT"):
+		AudioManager.play_music(3)
 	
 	## After fight
 	if GameManager.last_player_pos != Vector2.ZERO:
@@ -67,12 +68,21 @@ func _ready():
 		#global_position = global_position.snapped(Vector2.ONE * tile_size)
 		#global_position += Vector2.ONE * tile_size/2
 	
+	if !light:
+		point_light_2d.enabled = false
+	
 	## Handles sprites and overworld visible party size.
 	change_follower_size()
 	
 
 func change_follower_size() -> void:
 	
+	## Fix pos clipping with followers after fight
+	var new_array: Array[Vector2]
+	for i in follower_pos_array.size():
+		new_array.append(global_position)
+	follower_pos_array.clear()
+	follower_pos_array = new_array
 	
 	
 	if GameManager.player_characters.size() == 1:

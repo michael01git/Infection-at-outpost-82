@@ -21,47 +21,57 @@ script = ExtResource("1_3fk0c")
 position = Vector2(96, 57.5)
 texture = ExtResource("2_51246")
 
-[node name="PlayerBattleOrganizer" type="Node2D" parent="."]
-script = ExtResource("2_tnov0")
-
-[node name="PlayerBattler" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
-position = Vector2(39, 94)
-own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player1")
-
-[node name="PlayerBattler2" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
-position = Vector2(96, 93)
-own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player2")
-
-[node name="PlayerBattler3" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
-position = Vector2(151, 97)
-own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player3")
-
 [node name="EnemyBattleOrganiser" type="Node2D" parent="."]
 script = ExtResource("3_cijeu")
 
 [node name="EnemyBattler" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(93, 58)
+z_index = 6
+position = Vector2(38, 66)
 own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy1")
 
 [node name="EnemyBattler2" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(56, 60)
+z_index = 5
+position = Vector2(69, 81)
 own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy2")
 
 [node name="EnemyBattler3" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(22, 61)
+z_index = 4
+position = Vector2(122, 81)
 own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy3")
 
 [node name="EnemyBattler4" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(131, 62)
+z_index = 3
+position = Vector2(79, 53)
 own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy4")
 
 [node name="EnemyBattler5" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(168, 63)
+z_index = 2
+position = Vector2(165, 66)
 own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy5")
 
 [node name="EnemyBattler6" parent="EnemyBattleOrganiser" node_paths=PackedStringArray("own_button") instance=ExtResource("3_auti2")]
-position = Vector2(172, 58)
+z_index = 1
+position = Vector2(114, 53)
 own_button = NodePath("../../CanvasLayer/MobSelectMenu/MarginContainer/MobSelect/Enemy6")
+
+[node name="PlayerBattleOrganizer" type="Node2D" parent="."]
+z_index = 10
+script = ExtResource("2_tnov0")
+
+[node name="PlayerBattler" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
+position = Vector2(41, 87)
+scale = Vector2(1, 1)
+own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player1")
+
+[node name="PlayerBattler2" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
+position = Vector2(96, 87)
+scale = Vector2(1, 1)
+own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player2")
+
+[node name="PlayerBattler3" parent="PlayerBattleOrganizer" node_paths=PackedStringArray("own_button") instance=ExtResource("2_wnruc")]
+position = Vector2(151, 87)
+scale = Vector2(1, 1)
+own_button = NodePath("../../CanvasLayer/HealMenu/MarginContainer/PlayerSelect/Player3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

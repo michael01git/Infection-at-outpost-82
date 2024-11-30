@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5n1rdh3glq80"
-path="res://.godot/imported/Hound.png-fab2bbca626e26c80411c385942d85cd.ctex"
+uid="uid://bmle3k7p3gbrs"
+path="res://.godot/imported/McKinleyTurn.png-183dcdc6af53e005746c07f8d292258e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Players/Hound.png"
-dest_files=["res://.godot/imported/Hound.png-fab2bbca626e26c80411c385942d85cd.ctex"]
+source_file="res://Assets/Sprites/Players/McKinleyTurn.png"
+dest_files=["res://.godot/imported/McKinleyTurn.png-183dcdc6af53e005746c07f8d292258e.ctex"]
 
 [params]
 

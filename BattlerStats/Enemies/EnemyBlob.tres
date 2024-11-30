@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BattlerStats" load_steps=3 format=3 uid="uid://dahtny0r6e8hs"]
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=4 format=3 uid="uid://dahtny0r6e8hs"]
 
 [ext_resource type="Texture2D" uid="uid://cer2dkm6py7dr" path="res://Assets/Sprites/Enemies/fleshblob.png" id="1_6rr1r"]
+[ext_resource type="Texture2D" uid="uid://5v6cdvloer24" path="res://Assets/Sprites/Enemies/fleshblobfight.png" id="1_dsql2"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_hekou"]
 
 [resource]
@@ -14,3 +15,4 @@ damage = 3
 armor = 0
 turn_speed = 5
 overworld_sprite = ExtResource("1_6rr1r")
+enemy_battle_sprite = ExtResource("1_dsql2")

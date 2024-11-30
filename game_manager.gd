@@ -35,7 +35,7 @@ var infected: Array[BattlerStats]
 var items: Array[ItemStats]
 var keys: Array[String]
 
-var events: Array[String]
+var events: Array[String] = ["START"]
 
 
 func add_party_member(member_string_path: String) -> void:

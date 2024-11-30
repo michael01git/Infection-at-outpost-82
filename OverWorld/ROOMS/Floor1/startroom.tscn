@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=4 uid="uid://v1mmxcgbpvc0"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_mglto"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_1chk1"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_n45ly"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_x01lr"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_cwa48"]
+[ext_resource type="PackedScene" uid="uid://kpcbincq4tvt" path="res://OverWorld/Level/Interact/ssfx_tracker.tscn" id="6_d0nqd"]
+
+[node name="startroom" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAGAP//AAACAAAAAAAGAAUAAAACAAIAAAD//wUAAAAAAAIAAAD//wQAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAGAAAAAAACAAEAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAFAAUAAAABAAIAAAAEAAUAAAABAAIAAAADAAUAAAAEAAMAADACAAUAAAABAAIAAAABAAUAAAABAAIAAAAAAAUAAAABAAIAAAAAAAAAAAAGAAMAAAAAAAEAAAAFAAIAAAAAAAIAAAADAAIAAAAAAAMAAAAGAAMAAAAAAAQAAAAGAAMAAAABAAAAAAAGAAMAAAABAAEAAAADAAIAAAABAAIAAAADAAIAAAABAAMAAAADAAIAAAABAAQAAAAGAAMAAAACAAAAAAAFAAIAAAACAAEAAAADAAIAAAACAAIAAAADAAIAAAACAAMAAAADAAIAAAACAAQAAAADAAIAAAADAAAAAAADAAIAAAADAAEAAAADAAIAAAADAAIAAAADAAIAAAADAAMAAAADAAIAAAADAAQAAAADAAIAAAAEAAAAAAADAAIAAAAEAAEAAAADAAIAAAAEAAIAAAADAAIAAAAEAAMAAAADAAIAAAAEAAQAAAADAAIAAAAFAAAAAAAHAAEAAAAFAAEAAAAHAAIAAAAFAAIAAAADAAIAAAAFAAMAAAADAAIAAAAFAAQAAAADAAIAAAA=")
+tile_set = ExtResource("1_mglto")
+script = ExtResource("2_1chk1")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_n45ly")]
+position = Vector2(72, 8)
+
+[node name="DoorArea" parent="." instance=ExtResource("4_x01lr")]
+position = Vector2(56, 88)
+next_scene = "res://OverWorld/ROOMS/Intro/mainhallintro.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_cwa48")
+
+[node name="SSFXTracker" parent="." instance=ExtResource("6_d0nqd")]
+event_to_stop = "METDOG"
+ssfx_number = 2

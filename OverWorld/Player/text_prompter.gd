@@ -6,15 +6,15 @@ extends Control
 @onready var color_rect = $ColorRect
 @onready var use_timer = $UseTimer
 
-var show_percentage: float = 0
-
 var prompts_array: Array[String]
 
 var prompts_empty: bool = true
 
 var process_next: bool = true
 
-var can_use: bool = true
+var can_use: bool = false
+
+
 
 func prompt_array(array: Array[String]) -> void:
 	## Get an array of propmts to process
@@ -32,6 +32,7 @@ func prompt_array(array: Array[String]) -> void:
 	
 	prompts_empty = false
 	
+	use_timer.start()
 
 
 func process_prompts_array():
@@ -79,6 +80,7 @@ func end_prompts():
 	prompts_empty = true
 	process_next = true
 	GameManager.pause_mobs = false
+	use_timer.stop()
 	color_rect.hide()
 	hide()
 
@@ -97,12 +99,16 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("use") and can_use:
 		can_use = false
+		AudioManager.play_sfx(4)
 		use_timer.start()
 		change_text()
 
 ## Show text
 func prompt(text_to_add: String) -> void:
 	show()
+	
+	
+	
 	
 	text.text = ""
 	text.text += text_to_add

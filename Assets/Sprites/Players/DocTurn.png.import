@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://di43e1bx8kfhe"
-path="res://.godot/imported/Wave.png-4dbdc1227c185d74623e58ca0bcfeae8.ctex"
+uid="uid://dsfsxhc4plss7"
+path="res://.godot/imported/DocTurn.png-d3c781cc43541030715cfab74180231e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Players/Wave.png"
-dest_files=["res://.godot/imported/Wave.png-4dbdc1227c185d74623e58ca0bcfeae8.ctex"]
+source_file="res://Assets/Sprites/Players/DocTurn.png"
+dest_files=["res://.godot/imported/DocTurn.png-d3c781cc43541030715cfab74180231e.ctex"]
 
 [params]
 

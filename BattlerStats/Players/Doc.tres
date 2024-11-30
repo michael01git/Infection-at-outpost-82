@@ -1,7 +1,9 @@
-[gd_resource type="Resource" script_class="BattlerStats" load_steps=4 format=3 uid="uid://bqgt8jxgangd"]
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=6 format=3 uid="uid://bqgt8jxgangd"]
 
-[ext_resource type="Texture2D" uid="uid://cqyadanu57m2o" path="res://Assets/Sprites/Players/Doc.png" id="1_5u66n"]
+[ext_resource type="Texture2D" uid="uid://0s6thl1qa8p0" path="res://Assets/Sprites/Players/DocFight.png" id="1_5g17f"]
+[ext_resource type="Texture2D" uid="uid://cqyadanu57m2o" path="res://Assets/Sprites/Players/OW/Doc.png" id="1_5u66n"]
 [ext_resource type="Texture2D" uid="uid://c23v5ji57d4ys" path="res://Assets/Sprites/Players/DocInvSprite.png" id="2_eu3ni"]
+[ext_resource type="Texture2D" uid="uid://dsfsxhc4plss7" path="res://Assets/Sprites/Players/DocTurn.png" id="2_t5be1"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="3_fjme8"]
 
 [resource]
@@ -16,3 +18,5 @@ armor = 0
 turn_speed = 0
 overworld_sprite = ExtResource("1_5u66n")
 portrait_sprite = ExtResource("2_eu3ni")
+battle_sprite = ExtResource("1_5g17f")
+enemy_battle_sprite = ExtResource("2_t5be1")

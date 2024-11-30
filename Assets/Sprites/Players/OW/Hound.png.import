@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqyadanu57m2o"
-path="res://.godot/imported/Doc.png-4a84b3cbddf0444f49ab08057fc2030e.ctex"
+uid="uid://b5n1rdh3glq80"
+path="res://.godot/imported/Hound.png-d3559649c2ef71a4c412e073b3ef959f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Players/Doc.png"
-dest_files=["res://.godot/imported/Doc.png-4a84b3cbddf0444f49ab08057fc2030e.ctex"]
+source_file="res://Assets/Sprites/Players/OW/Hound.png"
+dest_files=["res://.godot/imported/Hound.png-d3559649c2ef71a4c412e073b3ef959f.ctex"]
 
 [params]
 

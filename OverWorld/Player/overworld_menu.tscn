@@ -78,6 +78,7 @@ size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
 
 [node name="MCSprite1" type="TextureRect" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon1/MCIcon1"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_nnew4")
@@ -87,6 +88,12 @@ stretch_mode = 3
 layout_mode = 2
 size_flags_vertical = 6
 text = "AAA"
+horizontal_alignment = 1
+
+[node name="MCHealth1" type="Label" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon1/MCIcon1"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0 / 0"
 horizontal_alignment = 1
 
 [node name="MCIcon2" type="PanelContainer" parent="Menu/MarginContainer/Sections/CharacterIcons"]
@@ -107,6 +114,7 @@ size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
 
 [node name="MCSprite2" type="TextureRect" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon2/MCIcon2"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_nnew4")
@@ -116,6 +124,12 @@ stretch_mode = 3
 layout_mode = 2
 size_flags_vertical = 6
 text = "AAA"
+horizontal_alignment = 1
+
+[node name="MCHealth2" type="Label" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon2/MCIcon2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0 / 0"
 horizontal_alignment = 1
 
 [node name="MCIcon3" type="PanelContainer" parent="Menu/MarginContainer/Sections/CharacterIcons"]
@@ -136,6 +150,7 @@ size_flags_vertical = 3
 theme = ExtResource("3_7hadp")
 
 [node name="MCSprite3" type="TextureRect" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("4_nnew4")
@@ -145,6 +160,12 @@ stretch_mode = 3
 layout_mode = 2
 size_flags_vertical = 6
 text = "AAA"
+horizontal_alignment = 1
+
+[node name="MCHealth3" type="Label" parent="Menu/MarginContainer/Sections/CharacterIcons/MCIcon3/MCIcon3"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "0 / 0"
 horizontal_alignment = 1
 
 [node name="Options" type="GridContainer" parent="Menu/MarginContainer/Sections"]

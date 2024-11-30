@@ -1,116 +1,129 @@
-[gd_scene load_steps=12 format=3 uid="uid://cmnacos40qlc5"]
+[gd_scene load_steps=15 format=3 uid="uid://cmnacos40qlc5"]
 
 [ext_resource type="Script" path="res://TurnBased/player_battler.gd" id="1_s6hyn"]
-[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="1_t70dg"]
+[ext_resource type="Shader" path="res://Assets/hit_and_damage.gdshader" id="2_se5si"]
+[ext_resource type="Texture2D" uid="uid://b4c2xowrgqt6h" path="res://Assets/Sprites/Players/McKinleyFight.png" id="3_j5btb"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="3_rvgh2"]
 
-[sub_resource type="Animation" id="Animation_0i1k7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wio42"]
+resource_local_to_scene = true
+shader = ExtResource("2_se5si")
+shader_parameter/get_attacked = null
+shader_parameter/hit_enemy = null
+shader_parameter/DamageColor = Color(0.45098, 0, 0, 1)
+shader_parameter/AttackColor = Color(0.929412, 0.929412, 0.929412, 1)
+
+[sub_resource type="Animation" id="Animation_embr8"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_enemy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
+"update": 1,
+"values": [null]
 }
 
-[sub_resource type="Animation" id="Animation_c8vkj"]
-resource_name = "in_turn"
+[sub_resource type="Animation" id="Animation_dyr37"]
+resource_name = "play"
 step = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_enemy")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, null]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibnrp"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5rg8p"]
 _data = {
-"RESET": SubResource("Animation_0i1k7"),
-"in_turn": SubResource("Animation_c8vkj")
+"RESET": SubResource("Animation_embr8"),
+"play": SubResource("Animation_dyr37")
 }
 
-[sub_resource type="Animation" id="Animation_ldsy4"]
+[sub_resource type="Animation" id="Animation_guyf3"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/get_attacked")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_4qsi2"]
+resource_name = "play"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/get_attacked")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iukb0"]
+_data = {
+"RESET": SubResource("Animation_guyf3"),
+"play": SubResource("Animation_4qsi2")
+}
+
+[sub_resource type="Animation" id="Animation_c7nvi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bc8jo"]
-resource_name = "play"
+[sub_resource type="Animation" id="Animation_qa5ix"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
 step = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
+tracks/0/path = NodePath("Sprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1, 1.0001),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1e-05, 1e-05, 1e-05, 1e-05),
 "update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+"values": [Vector2(0, 0), Vector2(1, 0), Vector2(-1, 0), Vector2(0, 0)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_fp21c"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rukgf"]
 _data = {
-"RESET": SubResource("Animation_ldsy4"),
-"play": SubResource("Animation_bc8jo")
-}
-
-[sub_resource type="Animation" id="Animation_80s2o"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1_t70dg")]
-}
-
-[sub_resource type="Animation" id="Animation_fw4ub"]
-resource_name = "attack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_elme1"]
-_data = {
-"RESET": SubResource("Animation_80s2o"),
-"attack": SubResource("Animation_fw4ub")
+"RESET": SubResource("Animation_c7nvi"),
+"idle": SubResource("Animation_qa5ix")
 }
 
 [node name="PlayerBattler" type="Node2D" groups=["PlayerBattler"]]
@@ -118,31 +131,53 @@ scale = Vector2(0.25, 0.25)
 script = ExtResource("1_s6hyn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_t70dg")
+material = SubResource("ShaderMaterial_wio42")
+texture = ExtResource("3_j5btb")
 
-[node name="TurnIndicator" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TurnIndicatorAnimation" type="AnimationPlayer" parent="TurnIndicator"]
+[node name="HitFXPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_ibnrp")
+"": SubResource("AnimationLibrary_5rg8p")
 }
 
-[node name="HitFX" type="Sprite2D" parent="."]
-texture = ExtResource("1_t70dg")
-
-[node name="HitFXAnimation" type="AnimationPlayer" parent="HitFX"]
+[node name="DamagePlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fp21c")
+"": SubResource("AnimationLibrary_iukb0")
 }
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_top = -64.0
-offset_right = 4.0
-offset_bottom = -37.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Idle" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_elme1")
+"": SubResource("AnimationLibrary_rukgf")
 }
+autoplay = "idle"
+
+[node name="RectW" type="ColorRect" parent="."]
+offset_left = -17.0
+offset_top = 16.0
+offset_right = 17.0
+offset_bottom = 25.0
+color = Color(0.929412, 0.929412, 0.929412, 1)
+
+[node name="RectB" type="ColorRect" parent="RectW"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 33.0
+offset_bottom = 8.0
+color = Color(0, 0, 0, 1)
+
+[node name="HPLabel" type="Label" parent="RectW/RectB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_rvgh2")
+theme_override_font_sizes/font_size = 8
+text = "0 / 0"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BattlerStats" load_steps=3 format=3 uid="uid://dbs8snnacre4i"]
+[gd_resource type="Resource" script_class="BattlerStats" load_steps=4 format=3 uid="uid://dbs8snnacre4i"]
 
+[ext_resource type="Texture2D" uid="uid://i45dv1ivan0c" path="res://Assets/Sprites/Enemies/dogfight.png" id="1_4eqj2"]
 [ext_resource type="Texture2D" uid="uid://dvqw5yct8752e" path="res://Assets/Sprites/Enemies/dog.png" id="1_eqrl5"]
 [ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_k6mll"]
 
@@ -14,3 +15,4 @@ damage = 3
 armor = 0
 turn_speed = 5
 overworld_sprite = ExtResource("1_eqrl5")
+enemy_battle_sprite = ExtResource("1_4eqj2")

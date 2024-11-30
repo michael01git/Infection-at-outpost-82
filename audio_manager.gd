@@ -13,8 +13,43 @@ extends Node
 @export var ambient_station: AudioStreamWAV
 
 
+@export_subgroup("SSFX")
+@export var wind: AudioStreamWAV
+@export var bark: AudioStreamWAV
+@export var heli: AudioStreamWAV
+
+@onready var ssfx_player = $SSFXPlayer
+var scene_tracker = GameManager.currentScene
+
 @onready var music_player = $MusicPlayer
 var music_player_stream: AudioStreamWAV
+
+func _process(delta):
+	if scene_tracker != GameManager.currentScene:
+		ssfx_player.stop()
+
+func play_special_sfx(track: int) -> void:
+	scene_tracker = GameManager.currentScene
+	
+	var play_track: AudioStreamWAV
+	
+	match track:
+		1:
+			ssfx_player.pitch_scale = 1
+			ssfx_player.volume_db = 0
+			play_track = wind
+		2:
+			ssfx_player.pitch_scale = 2
+			ssfx_player.volume_db = -30
+			play_track = bark
+		3:
+			ssfx_player.pitch_scale = 1
+			ssfx_player.volume_db = 0
+			play_track = heli
+	
+	ssfx_player.stream = play_track
+	ssfx_player.play()
+	
 
 func play_sfx(track: int) -> void:
 	match track:
@@ -68,3 +103,6 @@ func play_music(track: int) -> void:
 
 func _on_music_player_finished():
 	music_player.play()
+
+func _on_ssfx_player_finished():
+	ssfx_player.play()

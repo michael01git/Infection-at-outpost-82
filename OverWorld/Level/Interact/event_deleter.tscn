@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxjboylk0u343"]
 
-[ext_resource type="Script" path="res://event_deleter.gd" id="1_2tybb"]
+[ext_resource type="Script" path="res://event_deleter.gd" id="1_ubnbj"]
 
 [node name="EventDeleter" type="Node2D"]
 process_mode = 3
 process_priority = 1
-script = ExtResource("1_2tybb")
+script = ExtResource("1_ubnbj")

@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bch5pucaw3wh"]
+
+[ext_resource type="Script" path="res://OverWorld/MenuScenes/sleep_scene.gd" id="1_xmpvg"]
+
+[node name="SleepScene" type="Node"]
+script = ExtResource("1_xmpvg")
+next_scene = "res://OverWorld/ROOMS/Floor1/startroom.tscn"
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
