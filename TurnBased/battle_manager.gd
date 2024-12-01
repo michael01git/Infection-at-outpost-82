@@ -161,7 +161,8 @@ func show_battle_end_panel(message: String) -> void:
 	if enemy_battlers.is_empty():
 		GameManager.return_to_overworld()
 	else:
-		GameManager.GameOver()
+		GameManager.switch_Scene("res://OverWorld/MenuScenes/death_scene.tscn", "res://OverWorld/MenuScenes/death_scene.tscn")
+
 
 ## If danger level is high enough in battle. Done on a players turn.
 func start_encounter():

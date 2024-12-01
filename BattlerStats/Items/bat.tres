@@ -9,5 +9,5 @@ use_type = 0
 item_name = "Bat"
 damage = 3
 armor = 0
-turn_speed = 1
+turn_speed = -1
 health = 0

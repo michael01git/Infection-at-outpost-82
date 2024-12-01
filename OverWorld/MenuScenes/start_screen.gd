@@ -12,6 +12,9 @@ func _unhandled_input(event):
 			AudioManager.play_sfx(2)
 			animation_player.play("start")
 
+func _ready():
+	AudioManager.play_sfx(4)
+
 func _on_animation_player_animation_finished(anim_name):
 	
 	GameManager.reset()

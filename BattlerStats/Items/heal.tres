@@ -10,4 +10,4 @@ item_name = "Bandage"
 damage = 0
 armor = 0
 turn_speed = 0
-health = 5
+health = 10

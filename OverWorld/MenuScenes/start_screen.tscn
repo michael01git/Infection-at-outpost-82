@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://OverWorld/MenuScenes/start_screen.gd" id="1_6iqap"]
 [ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="1_knaa0"]
-[ext_resource type="Texture2D" uid="uid://cl5irob3klkpq" path="res://Assets/Sprites/icon.svg" id="2_is4fr"]
+[ext_resource type="Texture2D" uid="uid://bjomo2uetw5lk" path="res://Assets/normalstation.png" id="2_uuiir"]
 
 [sub_resource type="Animation" id="Animation_pfxvd"]
 length = 0.001
@@ -70,13 +70,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_is4fr")
+texture = ExtResource("2_uuiir")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Prestart"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -120.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -84,7 +85,7 @@ grow_vertical = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_knaa0")
-theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Infection at outpost 82"
 horizontal_alignment = 1
@@ -94,7 +95,7 @@ vertical_alignment = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_knaa0")
-theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 16
 text = "Press E to start"
 horizontal_alignment = 1

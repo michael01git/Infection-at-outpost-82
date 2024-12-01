@@ -30,6 +30,7 @@ position = Vector2(104, 136)
 next_scene = "res://OverWorld/ROOMS/Floor1/hut.tscn"
 
 [node name="SSFXTracker" parent="." instance=ExtResource("5_pxmu0")]
+event_to_start = "START"
 ssfx_number = 1
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -64,4 +65,4 @@ encounter_enemies = Array[ExtResource("8_rb1h1")]([ExtResource("9_8c5va")])
 [node name="WinArea" parent="." instance=ExtResource("10_ke64n")]
 position = Vector2(344, 56)
 win_event = "TNTICE"
-win_scene_path = "res://OverWorld/MenuScenes/out_win_scene.tscn"
+win_scene_path = "res://OverWorld/MenuScenes/out_win.tscn"

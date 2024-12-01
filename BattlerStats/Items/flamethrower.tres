@@ -9,5 +9,5 @@ use_type = 0
 item_name = "Flamethrower"
 damage = 15
 armor = 0
-turn_speed = 0
+turn_speed = 1
 health = 0

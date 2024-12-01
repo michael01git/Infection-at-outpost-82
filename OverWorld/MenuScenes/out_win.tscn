@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcgjfouor847j"]
+
+[ext_resource type="Script" path="res://OverWorld/MenuScenes/out_win.gd" id="1_sbmr2"]
+[ext_resource type="Texture2D" uid="uid://bjijgvwolnqvt" path="res://Assets/burnstation.png" id="2_65nsi"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="2_hu5hp"]
+
+[node name="out_win" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sbmr2")
+next_scene = "res://OverWorld/MenuScenes/start_screen.tscn"
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_65nsi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_hu5hp")
+theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+theme_override_font_sizes/font_size = 16
+text = "You escaped."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WinTImer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="WinTImer" to="." method="_on_win_t_imer_timeout"]

@@ -17,7 +17,7 @@ func set_up_box_info(item_stat: ItemStats, usable: bool, battler: String, battle
 	var stats = $VBoxContainer/Stats
 	
 	if item_stat != null:
-		stats.text = "D:"+str(item_stat.damage)+", A:"+str(item_stat.armor)+", S:"+str(item_stat.turn_speed)
+		stats.text = "D:"+str(item_stat.damage)+", A:"+str(item_stat.armor)+", S:"+str(-(item_stat.turn_speed))
 	
 	
 	if item_stat.type == 0:

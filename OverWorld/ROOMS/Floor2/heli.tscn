@@ -38,11 +38,12 @@ position = Vector2(160, 88)
 required_event_for_delete_parent = "TNT"
 
 [node name="WinArea" parent="." instance=ExtResource("8_jt65v")]
-position = Vector2(160, 88)
+position = Vector2(304, 88)
 win_event = "HELI"
-win_scene_path = "res://OverWorld/MenuScenes/heli_win_scene.tscn"
+win_scene_path = "res://OverWorld/MenuScenes/heli_win.tscn"
 
 [node name="Sprite2D" type="Sprite2D" parent="WinArea"]
+visible = false
 position = Vector2(0, -8)
 texture = ExtResource("7_slbjq")
 

@@ -195,12 +195,14 @@ func calculate_danger_level(players: Array[BattlerStats], enemies: Array[Battler
 	for i in players:
 		human_level += i.current_hp
 		human_level += i.damage
-		human_level += i.turn_speed
+		human_level += i.armor
+		human_level -= i.turn_speed
 	
 	for i in enemies:
 		enemy_level += i.current_hp
 		enemy_level += i.damage
-		enemy_level += i.turn_speed
+		human_level += i.armor
+		enemy_level -= i.turn_speed
 		enemy_level += i.test_danger
 	
 	if enemy_level > human_level:
