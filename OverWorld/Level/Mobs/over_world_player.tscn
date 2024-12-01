@@ -16,10 +16,6 @@ size = Vector2(10, 10)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_on7e7")
-pc = Array[String](["res://BattlerStats/Players/McKinley.tres"])
-inv = Array[String](["res://BattlerStats/Items/thickcoat.tres", "res://BattlerStats/Items/pipe.tres", "res://BattlerStats/Items/pillow.tres", "res://BattlerStats/Items/leatherjacket.tres", "res://BattlerStats/Items/kevlarjacket.tres", "res://BattlerStats/Items/fryingpan.tres", "res://BattlerStats/Items/bat.tres"])
-events = Array[String](["GENON", "TNTICE", "HELI"])
-keys = Array[String](["GENK", "F1K", "ALLK", "OUTK", "TNTICE"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3no4w")
@@ -36,7 +32,7 @@ collide_with_bodies = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="MoveTimer" type="Timer" parent="."]
-wait_time = 0.05
+wait_time = 0.3
 one_shot = true
 autostart = true
 

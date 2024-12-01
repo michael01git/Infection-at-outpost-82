@@ -48,15 +48,15 @@ func _ready():
 	danger_level_timer.start()
 	
 	## Debug
-	if GameManager.player_characters.is_empty():
-		for i in pc:
-			GameManager.add_party_member(i)
-		for i in inv:
-			GameManager.add_item(i)
-		for i in events:
-			GameManager.events.append(i)
-		for i in keys:
-			GameManager.keys.append(i)
+	#if GameManager.player_characters.is_empty():
+	#	for i in pc:
+	#		GameManager.add_party_member(i)
+	#	for i in inv:
+	#		GameManager.add_item(i)
+	#	for i in events:
+	#		GameManager.events.append(i)
+	#	for i in keys:
+	#		GameManager.keys.append(i)
 	
 	## Set infected after fight
 	GameManager.check_battle_inf()

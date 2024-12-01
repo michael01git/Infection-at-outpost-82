@@ -17,6 +17,7 @@ script = ExtResource("2_0nw8q")
 
 [node name="OverWorldPlayer" parent="." instance=ExtResource("3_ld5rn")]
 position = Vector2(56, 40)
+pc = Array[String](["res://BattlerStats/Players/McKinley.tres", "res://BattlerStats/Players/Hound.tres"])
 
 [node name="hub2f" parent="." instance=ExtResource("4_5wb27")]
 position = Vector2(56, 56)

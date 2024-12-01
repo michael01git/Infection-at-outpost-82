@@ -71,6 +71,7 @@ func be_damaged(amount: int) -> void:
 	AudioManager.play_sfx(1)
 	
 	stats_resource.current_hp -= amount
+	
 	update_health_bar()
 	if stats_resource.current_hp <= 0:
 		stats_resource.current_hp = 0

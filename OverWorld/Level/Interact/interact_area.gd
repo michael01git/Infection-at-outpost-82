@@ -55,10 +55,9 @@ func interact():
 		prompter.prompt_array(already_interact)
 
 func member_text():
-	if GameManager.player_characters.size() >= 3:
-		prompter.prompt_array(cant_fit_in_party_text)
-	else:
+	if GameManager.player_characters.size() == 3:
 		prompter.prompt_array(can_fit_in_party_text)
 		if queue_free_on_use:
 			queue_free()
-		
+	else:
+		prompter.prompt_array(cant_fit_in_party_text)

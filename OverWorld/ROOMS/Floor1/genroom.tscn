@@ -30,7 +30,7 @@ script = ExtResource("5_nudc8")
 
 [node name="InteractArea2" parent="." instance=ExtResource("6_a2ajn")]
 position = Vector2(40, 8)
-text_on_interact = Array[String](["You turn on the generator. The lights won't go on but the radio should now work.", "$RADON"])
+text_on_interact = Array[String](["You turn on the generator. The lights won't go on but the radio should now work.", "$GENON"])
 
 [node name="InteractArea" parent="." instance=ExtResource("6_a2ajn")]
 position = Vector2(40, 40)
@@ -43,4 +43,4 @@ cant_fit_in_party_text = Array[String](["Oh hi.", "$METWAVE", "%OUTK", "Listen, 
 texture = ExtResource("7_b4ei1")
 
 [node name="EventOrDeleter" parent="InteractArea" instance=ExtResource("8_8itja")]
-required_event_for_delete_parent = "TNT"
+required_event_for_delete_parent = "TNTICE"

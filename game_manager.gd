@@ -37,13 +37,12 @@ var events: Array[String] = ["START"]
 func reset():
 	items.clear()
 	keys.clear()
-	events.clear()
+	events = ["START"]
 	
 	humans.clear()
 	infected.clear()
 	
 	encounter_enemies.clear()
-	player_characters.clear()
 	
 	room_positions.clear()
 	pause_mobs = false

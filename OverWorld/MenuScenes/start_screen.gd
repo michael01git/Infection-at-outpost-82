@@ -15,9 +15,11 @@ func _unhandled_input(event):
 func _ready():
 	AudioManager.play_sfx(4)
 
-func _on_animation_player_animation_finished(anim_name):
+func _on_animation_player_animation_finished(_anim_name):
 	
 	GameManager.reset()
+	GameManager.player_characters.clear()
+	GameManager.add_party_member("res://BattlerStats/Players/McKinley.tres")
 	
 	GameManager.switch_Scene(next_scene, next_scene)
 

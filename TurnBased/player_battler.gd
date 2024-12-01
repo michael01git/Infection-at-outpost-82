@@ -82,7 +82,7 @@ func play_hit_fx_anim() -> void:
 func be_damaged(amount: int) -> void:
 	AudioManager.play_sfx(1)
 	
-	var damage_dealt: int = amount - stats_resource.armor
+	var damage_dealt: int = amount
 	if damage_dealt < 0:
 		damage_dealt = 0
 	else:
@@ -98,9 +98,9 @@ func be_damaged(amount: int) -> void:
 		dead.emit(self)
 		queue_free()
 
-func check_infection(damage_dealt: int) -> void:
+func check_infection(_damage_dealt: int) -> void:
 	var infection_resistance: int = randi_range(0, 10) + stats_resource.armor
-	var random: int = randi_range(0, 10) + damage_dealt
+	var random: int = randi_range(0, 10)
 	
 	if random > infection_resistance:
 		## Get infected

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cnd4tt4ce34a8"]
+[gd_scene load_steps=8 format=4 uid="uid://cnd4tt4ce34a8"]
 
 [ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_1lvtn"]
 [ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_u4fdk"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_p2266"]
 [ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_1568p"]
 [ext_resource type="Texture2D" uid="uid://co8ump43aqsop" path="res://Assets/Sprites/Players/OW/Cook.png" id="7_ahghs"]
-[ext_resource type="PackedScene" uid="uid://bxjboylk0u343" path="res://OverWorld/Level/Interact/event_deleter.tscn" id="8_moya8"]
 
 [node name="closet" type="Node2D"]
 
@@ -37,9 +36,6 @@ cant_fit_in_party_text = Array[String](["Hello?...", "Ah! It's you. You happen t
 
 [node name="Cook" type="Sprite2D" parent="InteractArea"]
 texture = ExtResource("7_ahghs")
-
-[node name="EventDeleter" parent="InteractArea" instance=ExtResource("8_moya8")]
-required_event_or_else_delete_parent = "GOTCOOK"
 
 [node name="InteractArea2" parent="." instance=ExtResource("6_1568p")]
 position = Vector2(40, 8)

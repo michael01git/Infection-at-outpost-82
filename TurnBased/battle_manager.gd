@@ -159,6 +159,11 @@ func show_battle_end_panel(message: String) -> void:
 	
 	await get_tree().create_timer(1).timeout
 	if enemy_battlers.is_empty():
+		
+		for i in GameManager.player_characters:
+			if i.current_hp <= 0:
+				GameManager.player_characters.erase(i)
+		
 		GameManager.return_to_overworld()
 	else:
 		GameManager.switch_Scene("res://OverWorld/MenuScenes/death_scene.tscn", "res://OverWorld/MenuScenes/death_scene.tscn")
