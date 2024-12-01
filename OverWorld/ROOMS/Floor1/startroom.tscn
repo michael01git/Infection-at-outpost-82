@@ -17,6 +17,7 @@ script = ExtResource("2_1chk1")
 
 [node name="OverWorldPlayer" parent="." instance=ExtResource("3_n45ly")]
 position = Vector2(72, 8)
+pc = Array[String](["res://BattlerStats/Players/McKinley.tres"])
 events = Array[String](["SLEPT"])
 keys = Array[String](["K106"])
 

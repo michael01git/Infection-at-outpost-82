@@ -19,7 +19,6 @@ script = ExtResource("2_pec2i")
 
 [node name="OverWorldPlayer" parent="." instance=ExtResource("3_frgk1")]
 position = Vector2(120, 40)
-pc = Array[String]([])
 
 [node name="lab1" parent="." instance=ExtResource("4_f4dy3")]
 position = Vector2(136, 40)
