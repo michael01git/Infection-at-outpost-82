@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://ckyq5gy8vjk8m"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_waria"]
+
+[resource]
+script = ExtResource("1_waria")
+type = 2
+use_type = 0
+item_name = "Frying Pan"
+damage = 3
+armor = 0
+turn_speed = 2
+health = 2

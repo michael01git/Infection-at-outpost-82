@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=4 uid="uid://cveugdtiv5ge3"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_rjy3o"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_t7oq6"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_cs4g6"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_ertiu"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_dnrsn"]
+[ext_resource type="PackedScene" uid="uid://kpcbincq4tvt" path="res://OverWorld/Level/Interact/ssfx_tracker.tscn" id="6_soh85"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="7_xxm3k"]
+
+[node name="room101" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAAGAP//AAACAAAAAAAGAAUAAAACAAIAAAD//wUAAAAAAAIAAAD//wQAAAAAAAEAAAD//wMAAAAAAAEAAAD//wIAAAAAAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAP//AAABAAAAAAABAP//AAABAAAAAAACAP//AAABAAAAAAADAP//AAABAAAAAAAEAP//AAABAAAAAAAFAP//AAABAAAAAAAGAAAAAAACAAEAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAFAAUAAAABAAIAAAAEAAUAAAABAAIAAAADAAUAAAAEAAMAADACAAUAAAABAAIAAAABAAUAAAABAAIAAAAAAAUAAAABAAIAAAAAAAAAAAADAAIAAAAAAAEAAAADAAIAAAAAAAIAAAADAAIAAAAAAAMAAAAGAAMAAAAAAAQAAAAGAAMAAAABAAAAAAADAAIAAAABAAEAAAADAAIAAAABAAIAAAADAAIAAAABAAMAAAADAAIAAAABAAQAAAAGAAMAAAACAAAAAAAHAAEAAAACAAEAAAAHAAIAAAACAAIAAAADAAIAAAACAAMAAAADAAIAAAACAAQAAAADAAIAAAADAAAAAAADAAIAAAADAAEAAAADAAIAAAADAAIAAAADAAIAAAADAAMAAAADAAIAAAADAAQAAAADAAIAAAAEAAAAAAADAAIAAAAEAAEAAAADAAIAAAAEAAIAAAADAAIAAAAEAAMAAAADAAIAAAAEAAQAAAADAAIAAAAFAAAAAAAFAAIAAAAFAAEAAAADAAIAAAAFAAIAAAADAAIAAAAFAAMAAAADAAIAAAAFAAQAAAADAAIAAAA=")
+tile_set = ExtResource("1_rjy3o")
+script = ExtResource("2_t7oq6")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_cs4g6")]
+position = Vector2(56, 72)
+
+[node name="DoorArea" parent="." instance=ExtResource("4_ertiu")]
+position = Vector2(56, 88)
+next_scene = "res://OverWorld/ROOMS/Floor1/mainhall.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_dnrsn")
+
+[node name="SSFXTracker" parent="." instance=ExtResource("6_soh85")]
+event_to_stop = "METDOG"
+ssfx_number = 2
+
+[node name="InteractArea" parent="." instance=ExtResource("7_xxm3k")]
+position = Vector2(88, 8)
+text_on_interact = Array[String](["There's a bandage in a small first aid kit. You take it.", "@res://BattlerStats/Items/heal.tres"])
+already_interact = Array[String](["You already took everything from the first aid kit."])

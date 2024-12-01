@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://v1mmxcgbpvc0"]
+[gd_scene load_steps=8 format=4 uid="uid://v1mmxcgbpvc0"]
 
 [ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_mglto"]
 [ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_1chk1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_x01lr"]
 [ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_cwa48"]
 [ext_resource type="PackedScene" uid="uid://kpcbincq4tvt" path="res://OverWorld/Level/Interact/ssfx_tracker.tscn" id="6_d0nqd"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="7_cvgjf"]
 
 [node name="startroom" type="Node2D"]
 
@@ -16,10 +17,12 @@ script = ExtResource("2_1chk1")
 
 [node name="OverWorldPlayer" parent="." instance=ExtResource("3_n45ly")]
 position = Vector2(72, 8)
+events = Array[String](["SLEPT"])
+keys = Array[String](["K106"])
 
 [node name="DoorArea" parent="." instance=ExtResource("4_x01lr")]
 position = Vector2(56, 88)
-next_scene = "res://OverWorld/ROOMS/Intro/mainhallintro.tscn"
+next_scene = "res://OverWorld/ROOMS/Floor1/mainhall.tscn"
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -29,3 +32,13 @@ script = ExtResource("5_cwa48")
 [node name="SSFXTracker" parent="." instance=ExtResource("6_d0nqd")]
 event_to_stop = "METDOG"
 ssfx_number = 2
+
+[node name="InteractArea" parent="." instance=ExtResource("7_cvgjf")]
+position = Vector2(40, 8)
+text_on_interact = Array[String](["It's your trusty old baseball bat. You take it.", "@res://BattlerStats/Items/bat.tres"])
+already_interact = Array[String](["You already took everything from the box."])
+
+[node name="InteractArea2" parent="." instance=ExtResource("7_cvgjf")]
+position = Vector2(8, 24)
+text_on_interact = Array[String](["There's a pair of warm mittens in the box. You take them.", "@res://BattlerStats/Items/mittens.tres"])
+already_interact = Array[String](["You already took everything from the box."])

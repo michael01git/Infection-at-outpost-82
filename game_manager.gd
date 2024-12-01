@@ -15,9 +15,6 @@ var interacted_array: Array[String]
 # Dictionary of dead enemies. Handled by persistance.
 var deadEnemies := Dictionary()
 
-# Handles special infectee spawn. Not implemented currently.
-var spawn_all_special_infected: bool = false
-
 ## NEEDED? var next_room_position: Vector2
 
 # Used to spawn player at door in room.
@@ -37,9 +34,32 @@ var keys: Array[String]
 
 var events: Array[String] = ["START"]
 
+func reset():
+	items.clear()
+	keys.clear()
+	events.clear()
+	
+	humans.clear()
+	infected.clear()
+	
+	encounter_enemies.clear()
+	player_characters.clear()
+	
+	room_positions.clear()
+	pause_mobs = false
+	
+	last_ID = 0
+	
+	
+	last_player_pos = Vector2.ZERO
+	
+	interacted_array.clear()
+	
+	deadEnemies.clear()
+	
 
 func add_party_member(member_string_path: String) -> void:
-	var member = ResourceLoader.load(member_string_path)
+	var member = ResourceLoader.load(member_string_path).duplicate()
 	
 	if member == null:
 		return
@@ -47,6 +67,8 @@ func add_party_member(member_string_path: String) -> void:
 	GameManager.player_characters.append(member)
 
 func add_item(item_string_path: String) -> void:
+	
+	## Create a duplicate of an item to give player.
 	var item = ResourceLoader.load(item_string_path).duplicate()
 	
 	if item == null:
@@ -87,7 +109,7 @@ func check_battle_inf():
 
 ## Go thru all players and see if they are all infected.
 func if_all_infected():
-	var all_inf: int
+	var all_inf: int = 0
 	for i in player_characters:
 		if i.infected == true:
 			all_inf += 1
@@ -167,8 +189,8 @@ func calculate_danger_level(players: Array[BattlerStats], enemies: Array[Battler
 	if infected.is_empty():
 		return false
 	
-	var human_level: int
-	var enemy_level: int
+	var human_level: int = 0
+	var enemy_level: int = 0
 	
 	for i in players:
 		human_level += i.current_hp
@@ -195,7 +217,7 @@ func start_encounter(enemies):
 	encounter_enemies = enemies
 	switch_Scene("res://TurnBased/turn_based_combat_scene.tscn", get_tree().current_scene.scene_file_path)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("Escape"):
 		get_tree().quit()
 

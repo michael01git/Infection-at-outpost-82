@@ -39,7 +39,7 @@ var is_menu_paused: bool = false
 func _ready():
 	close_menu()
 
-func _process(delta):
+func _process(_delta):
 	if !prompt.prompts_empty:
 		return
 	

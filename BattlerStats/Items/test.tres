@@ -6,7 +6,7 @@
 script = ExtResource("1_ilk4k")
 type = 0
 use_type = 1
-item_name = "Test"
+item_name = "Infection Test"
 damage = 0
 armor = 0
 turn_speed = 0

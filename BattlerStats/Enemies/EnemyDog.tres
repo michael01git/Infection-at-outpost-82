@@ -8,11 +8,11 @@
 script = ExtResource("2_k6mll")
 type = 1
 infected = false
-character = "Dog"
+character = "Infected Dog"
 max_hp = 10
 current_hp = 10
-damage = 3
-armor = 0
+damage = 5
+armor = 1
 turn_speed = 5
 overworld_sprite = ExtResource("1_eqrl5")
 enemy_battle_sprite = ExtResource("1_4eqj2")

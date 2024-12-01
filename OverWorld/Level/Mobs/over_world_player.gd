@@ -16,9 +16,13 @@ extends Area2D
 @onready var follower_2 = $Follower2
 @onready var follower_pos_array: Array[Vector2] = [Vector2.ZERO, Vector2.ZERO, Vector2.ZERO]
 
-@export var pc: Array[BattlerStats]
-@export var inv: Array[ItemStats]
 @export var light: bool = true
+
+@export_subgroup("Debug")
+@export var pc: Array[String]
+@export var inv: Array[String]
+@export var events: Array[String]
+@export var keys: Array[String]
 
 @onready var icon = $Icon
 @onready var follower_sprite = $Follower1/FollowerSprite
@@ -45,8 +49,14 @@ func _ready():
 	
 	## Debug
 	if GameManager.player_characters.is_empty():
-		GameManager.player_characters = pc
-		GameManager.items = inv
+		for i in pc:
+			GameManager.add_party_member(i)
+		for i in inv:
+			GameManager.add_item(i)
+		for i in events:
+			GameManager.events.append(i)
+		for i in keys:
+			GameManager.keys.append(i)
 	
 	## Set infected after fight
 	GameManager.check_battle_inf()
@@ -87,28 +97,29 @@ func change_follower_size() -> void:
 	
 	if GameManager.player_characters.size() == 1:
 		follower.hide()
-		follower.process_mode = Node.PROCESS_MODE_DISABLED
+		follower.disabled = true
 		
 		follower_2.hide()
-		follower_2.process_mode = Node.PROCESS_MODE_DISABLED
+		follower_2.disabled = true
+		
 		
 		icon.texture = GameManager.player_characters[0].overworld_sprite
 		
 	elif GameManager.player_characters.size() == 2:
 		follower_2.hide()
-		follower_2.process_mode = Node.PROCESS_MODE_DISABLED
+		follower_2.disabled = true
 		
 		follower.show()
-		follower.process_mode = Node.PROCESS_MODE_INHERIT
+		follower.disabled = false
 		
 		icon.texture = GameManager.player_characters[0].overworld_sprite
 		follower_sprite.texture = GameManager.player_characters[1].overworld_sprite
 	elif GameManager.player_characters.size() == 3:
 		follower.show()
-		follower.process_mode = Node.PROCESS_MODE_INHERIT
+		follower.disabled = false
 		
 		follower_2.show()
-		follower_2.process_mode = Node.PROCESS_MODE_INHERIT
+		follower_2.disabled = false
 		
 		icon.texture = GameManager.player_characters[0].overworld_sprite
 		follower_sprite.texture = GameManager.player_characters[1].overworld_sprite
@@ -216,4 +227,9 @@ func GameOver():
 ## When hit enemy
 func _on_area_entered(area):
 	area.kill_enemy()
+	
+	if GameManager.if_all_infected():
+		GameOver()
+		return
+	
 	GameManager.start_encounter(area.encounter_enemies)

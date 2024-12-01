@@ -7,7 +7,7 @@ extends TextureRect
 
 var cursor_index: int = 0
 
-func _process(delta):
+func _process(_delta):
 	var input = Vector2.ZERO
 	
 	if Input.is_action_just_pressed("up"):

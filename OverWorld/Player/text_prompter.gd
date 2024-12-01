@@ -86,7 +86,7 @@ func end_prompts():
 
 
 ## Get Shown percentage from timer.
-func _process(delta):
+func _process(_delta):
 	print(prompts_empty, process_next)
 	
 	

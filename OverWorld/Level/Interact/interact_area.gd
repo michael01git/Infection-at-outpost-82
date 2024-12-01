@@ -17,6 +17,10 @@ func _ready():
 	if !solid:
 		$StaticBody2D.queue_free()
 	
+	if queue_free_on_use:
+		if GameManager.interacted_array.has(get_parent().name+name):
+			queue_free()
+	
 	$Icon.queue_free()
 
 func interact():
@@ -38,9 +42,10 @@ func interact():
 			member_text()
 		else:
 			prompter.prompt_array(text_on_interact)
+			if queue_free_on_use:
+				queue_free()
 		
-		if queue_free_on_use:
-			queue_free()
+		
 		
 	
 	## Has interacted before.
@@ -54,3 +59,6 @@ func member_text():
 		prompter.prompt_array(cant_fit_in_party_text)
 	else:
 		prompter.prompt_array(can_fit_in_party_text)
+		if queue_free_on_use:
+			queue_free()
+		

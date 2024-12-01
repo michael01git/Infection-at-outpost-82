@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://cxfvjykbit6i0"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_bmkqt"]
+
+[resource]
+script = ExtResource("1_bmkqt")
+type = 2
+use_type = 0
+item_name = "Pipe"
+damage = 3
+armor = 0
+turn_speed = 0
+health = 0

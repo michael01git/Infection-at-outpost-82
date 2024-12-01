@@ -31,6 +31,9 @@ func hide_use_targets():
 	
 
 func _ready():
+	
+	
+	
 	turn_cursor.cursor_index = 0
 	use_cursor.cursor_index = 0
 	
@@ -56,8 +59,6 @@ func no_healing_more():
 	
 	healing_items = false
 	
-	var call = Callable(turn_based_combat_scene, "show_use_buttons")
-	use_item_button.disconnect("pressed", call)
 	
 	use_item_button.text = "No Healing Items"
 

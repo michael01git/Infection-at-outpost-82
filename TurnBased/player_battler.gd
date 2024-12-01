@@ -85,10 +85,12 @@ func be_damaged(amount: int) -> void:
 	var damage_dealt: int = amount - stats_resource.armor
 	if damage_dealt < 0:
 		damage_dealt = 0
+	else:
+		check_infection(damage_dealt)
 	
 	stats_resource.current_hp -= damage_dealt
 	
-	check_infection()
+	
 	
 	update_health_bar()
 	if stats_resource.current_hp <= 0:
@@ -96,9 +98,10 @@ func be_damaged(amount: int) -> void:
 		dead.emit(self)
 		queue_free()
 
-func check_infection() -> void:
+func check_infection(damage_dealt: int) -> void:
 	var infection_resistance: int = randi_range(0, 10) + stats_resource.armor
-	var random: int = randi_range(0, 10)
+	var random: int = randi_range(0, 10) + damage_dealt
+	
 	if random > infection_resistance:
 		## Get infected
 		if randi_range(0,1) == 1:

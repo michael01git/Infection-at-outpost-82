@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=4 uid="uid://bjh8ghbc0my0k"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_15o1p"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_fdshi"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_yn38r"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_odhbh"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_gjlu4"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_ukw8t"]
+
+[node name="Armory" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAAAAAQAAAACAAEAADABAAQAAAADAAIAAAACAAQAAAADAAIAAAAAAAUAAAAAAAEAAAAAAAYAAAAAAAIAAAABAAUAAAADAAIAAAABAAYAAAABAAIAAAACAAUAAAADAAIAAAACAAYAAAABAAIAAAADAAUAAAAGAAMAAAADAAYAAAABAAIAAAADAAQAAAADAAIAAAAAAAMAAAAAAAEAAAABAAMAAAAFAAIAAAACAAMAAAADAAIAAAADAAMAAAADAAIAAAAEAAMAAAADAAIAAAAEAAQAAAADAAIAAAAEAAUAAAAGAAMAAAAEAAYAAAABAAIAAAAFAAYAAAABAAIAAAAFAAQAAAADAAIAAAAFAAMAAAADAAIAAAAFAAUAAAADAAIAAAAGAAMAAAACAAEAAAAGAAQAAAAEAAMAAFAGAAUAAAACAAEAAAAGAAYAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAEAAAABAAAAAAABAAAAAAABAAEAAAAGAAMAAAABAAIAAAAGAAMAAAACAAAAAAABAAAAAAACAAEAAAAGAAMAAAACAAIAAAAFAAIAAAADAAAAAAABAAAAAAADAAEAAAAFAAQAAAADAAIAAAADAAIAAAAEAAAAAAABAAAAAAAEAAEAAAAFAAQAAAAEAAIAAAADAAIAAAAFAAAAAAABAAAAAAAFAAEAAAAFAAQAAAAFAAIAAAADAAIAAAAGAAAAAAACAAAAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAA=")
+tile_set = ExtResource("1_15o1p")
+script = ExtResource("2_fdshi")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_yn38r")]
+position = Vector2(88, 72)
+
+[node name="hub2" parent="." instance=ExtResource("4_odhbh")]
+position = Vector2(104, 72)
+next_scene = "res://OverWorld/ROOMS/Floor1/hub2.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_gjlu4")
+
+[node name="InteractArea" parent="." instance=ExtResource("6_ukw8t")]
+position = Vector2(40, 40)
+text_on_interact = Array[String](["There's a kevlar vest it the crate. I take it.", "@res://BattlerStats/Items/kevlarjacket.tres"])
+already_interact = Array[String](["It's empty. I took everything already."])
+
+[node name="InteractArea2" parent="." instance=ExtResource("6_ukw8t")]
+position = Vector2(24, 56)
+text_on_interact = Array[String](["There are three bandages in the box. I take them all.", "@res://BattlerStats/Items/heal.tres", "@res://BattlerStats/Items/heal.tres", "@res://BattlerStats/Items/heal.tres"])
+already_interact = Array[String](["It's empty. I took everything already."])

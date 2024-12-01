@@ -42,4 +42,4 @@ size_flags_stretch_ratio = 2.0
 theme = ExtResource("2_nh87u")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 3
+autowrap_mode = 2

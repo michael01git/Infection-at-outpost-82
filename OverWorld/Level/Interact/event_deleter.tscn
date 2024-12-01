@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bxjboylk0u343"]
 
-[ext_resource type="Script" path="res://event_deleter.gd" id="1_ubnbj"]
+[ext_resource type="Script" path="res://OverWorld/Level/Interact/event_deleter.gd" id="1_ubnbj"]
 
 [node name="EventDeleter" type="Node2D"]
 process_mode = 3

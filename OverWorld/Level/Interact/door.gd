@@ -7,7 +7,7 @@ extends Area2D
 @onready var player := get_tree().get_first_node_in_group("Player")
 @export var next_scene: String
 @export var need_key: String
-@export var no_key_prompt: Array[String]
+@export_multiline var no_key_prompt: Array[String]
 
 func _ready():
 	$Icon.hide()

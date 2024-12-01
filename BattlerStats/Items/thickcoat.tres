@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://csnhnlchvjixe"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_ibea0"]
+
+[resource]
+script = ExtResource("1_ibea0")
+type = 1
+use_type = 0
+item_name = "Warm Jacket"
+damage = 0
+armor = 4
+turn_speed = 2
+health = 0

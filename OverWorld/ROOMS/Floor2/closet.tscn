@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=4 uid="uid://cnd4tt4ce34a8"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_1lvtn"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_u4fdk"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_6fokf"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_xrdr1"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_p2266"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_1568p"]
+[ext_resource type="Texture2D" uid="uid://co8ump43aqsop" path="res://Assets/Sprites/Players/OW/Cook.png" id="7_ahghs"]
+[ext_resource type="PackedScene" uid="uid://bxjboylk0u343" path="res://OverWorld/Level/Interact/event_deleter.tscn" id="8_moya8"]
+
+[node name="closet" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wMAAAACAAIAAFD//wIAAAAAAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAP//AAABAAAAAAABAP//AAAEAAMAAAACAP//AAABAAAAAAAAAAAAAAAFAAIAAAAAAAEAAAAGAAMAAAAAAAIAAAAGAAMAAAAAAAMAAAABAAIAAAABAAAAAAADAAIAAAABAAEAAAADAAIAAAABAAIAAAADAAIAAAABAAMAAAABAAIAAAACAAAAAAAFAAIAAAACAAEAAAAGAAMAAAACAAIAAAADAAIAAAACAAMAAAABAAIAAAADAAMAAAACAAIAAAADAP//AAACAAIAAGADAAIAAAACAAEAAAADAAEAAAACAAEAAAADAAAAAAACAAEAAAA=")
+tile_set = ExtResource("1_1lvtn")
+script = ExtResource("2_u4fdk")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_6fokf")]
+position = Vector2(24, 8)
+
+[node name="kitchen" parent="." instance=ExtResource("4_xrdr1")]
+position = Vector2(24, -8)
+next_scene = "res://OverWorld/ROOMS/Floor2/kitchen.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_p2266")
+
+[node name="InteractArea" parent="." instance=ExtResource("6_1568p")]
+position = Vector2(40, 40)
+queue_free_on_use = true
+solid = true
+can_fit_in_party_text = Array[String](["Hello?...", "Ah! It's you. You happen to know what that thing outside is? Scared me.", "The power went out and i went to hide in this freezer. You happen to know what's going on?", "Regardless, mind if i join you? I'd rather not sit here the whole day.", "£res://BattlerStats/Players/Cook.tres", "Thank you.", "$GOTCOOK"])
+cant_fit_in_party_text = Array[String](["Hello?...", "Ah! It's you. You happen to know what that thing outside is? Scared me.", "The power went out and i went to hide in this freezer. You happen to know what's going on?", "Regardless, I'm just gonna stay here. You and your gang better get going. Better not to make more noise and pull more of those things here."])
+
+[node name="Cook" type="Sprite2D" parent="InteractArea"]
+texture = ExtResource("7_ahghs")
+
+[node name="EventDeleter" parent="InteractArea" instance=ExtResource("8_moya8")]
+required_event_or_else_delete_parent = "GOTCOOK"
+
+[node name="InteractArea2" parent="." instance=ExtResource("6_1568p")]
+position = Vector2(40, 8)
+text_on_interact = Array[String](["There are some bandages in a box on the shelf. Hopefully nobody has needed them in the kitchen.", "@res://BattlerStats/Items/heal.tres"])
+already_interact = Array[String](["There are just fruits and vegetables in the box."])

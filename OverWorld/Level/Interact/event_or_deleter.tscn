@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg2mhlqgu1n8r"]
+
+[ext_resource type="Script" path="res://OverWorld/Level/Interact/event_or_deleter.gd" id="1_1xckq"]
+
+[node name="EventOrDeleter" type="Node2D"]
+process_mode = 3
+process_priority = 1
+script = ExtResource("1_1xckq")

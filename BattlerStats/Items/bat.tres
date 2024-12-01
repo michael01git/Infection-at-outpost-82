@@ -6,8 +6,8 @@
 script = ExtResource("1_7xpy6")
 type = 2
 use_type = 0
-item_name = "BAT"
-damage = 10
+item_name = "Bat"
+damage = 3
 armor = 0
-turn_speed = 0
+turn_speed = 1
 health = 0

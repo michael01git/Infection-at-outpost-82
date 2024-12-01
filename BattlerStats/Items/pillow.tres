@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://k4ge4lky8pho"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_3ssij"]
+
+[resource]
+script = ExtResource("1_3ssij")
+type = 1
+use_type = 0
+item_name = "Pillow"
+damage = 0
+armor = 1
+turn_speed = 0
+health = 2

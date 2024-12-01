@@ -108,6 +108,9 @@ func hide_target_buttons() -> void:
 
 ## Show heal targets
 func show_use_buttons() -> void:
+	if !heal_menu.healing_items:
+		return
+	
 	turn_action_buttons.hide_TA()
 	
 	heal_menu.show_use_targets()

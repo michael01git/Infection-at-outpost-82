@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=4 uid="uid://droowsqkrt4xw"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_3568g"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_u0q17"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_nm2qx"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_y6rtg"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_qbdup"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="8_0l7e7"]
+
+[node name="clothescloset" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAAAAAQAAAAEAAMAAGABAAQAAAADAAIAAAACAAQAAAADAAIAAAAAAAUAAAAAAAEAAAAAAAYAAAAAAAIAAAABAAUAAAADAAIAAAABAAYAAAABAAIAAAACAAUAAAADAAIAAAACAAYAAAABAAIAAAADAAUAAAADAAIAAAADAAYAAAABAAIAAAADAAQAAAADAAIAAAAAAAMAAAAAAAEAAAABAAMAAAADAAIAAAACAAMAAAADAAIAAAADAAMAAAAFAAMAAAAEAAMAAAADAAIAAAAEAAQAAAADAAIAAAAEAAUAAAAGAAMAAAAEAAYAAAABAAIAAAAFAAYAAAABAAIAAAAFAAQAAAAGAAMAAAAFAAMAAAADAAIAAAAFAAUAAAAGAAMAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAEAAAABAAAAAAABAAAAAAABAAEAAAADAAIAAAABAAIAAAADAAIAAAACAAAAAAABAAAAAAACAAEAAAAFAAIAAAACAAIAAAADAAIAAAADAAAAAAABAAAAAAADAAEAAAAFAAIAAAADAAIAAAADAAIAAAAEAAAAAAABAAAAAAAEAAEAAAAFAAIAAAAEAAIAAAADAAIAAAAFAAAAAAABAAAAAAAFAAEAAAAFAAMAAAAFAAIAAAADAAIAAAAGAAAAAAACAAAAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAA=")
+tile_set = ExtResource("1_3568g")
+script = ExtResource("2_u0q17")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_nm2qx")]
+position = Vector2(24, 72)
+
+[node name="DoorArea1" parent="." instance=ExtResource("4_y6rtg")]
+position = Vector2(8, 72)
+next_scene = "res://OverWorld/ROOMS/Floor1/hub1.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("8_0l7e7")
+
+[node name="InteractArea" parent="." instance=ExtResource("6_qbdup")]
+position = Vector2(40, 24)
+text_on_interact = Array[String](["There are some winter clothing in this box. I take the warmest jacket I can find.", "@res://BattlerStats/Items/thickcoat.tres"])
+already_interact = Array[String](["It's empty."])
+
+[node name="InteractArea2" parent="." instance=ExtResource("6_qbdup")]
+position = Vector2(72, 24)
+text_on_interact = Array[String](["There are mainly pillows in this box. Better than nothing I guess.", "@res://BattlerStats/Items/pillow.tres"])
+already_interact = Array[String](["It's empty."])
+
+[node name="InteractArea3" parent="." instance=ExtResource("6_qbdup")]
+position = Vector2(56, 24)
+text_on_interact = Array[String](["There is a thick leather jacket in this box. Should offer some good protection. It also looks good.", "@res://BattlerStats/Items/leatherjacket.tres"])
+already_interact = Array[String](["It's empty."])

@@ -5,5 +5,5 @@ extends Label
 func cursor_select() -> void:
 	own_enemy.on_select_button_pressed()
 
-func set_up(name: String) -> void:
-	text = name
+func set_up(name_label: String) -> void:
+	text = name_label

@@ -1,6 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw6fwr5e3c7kh"]
+[gd_scene load_steps=6 format=3 uid="uid://dw6fwr5e3c7kh"]
 
 [ext_resource type="Script" path="res://OverWorld/MenuScenes/death_scene.gd" id="1_myexv"]
+[ext_resource type="Theme" uid="uid://d4bp6srhi37i8" path="res://Assets/text_theme.tres" id="2_4cgdw"]
+
+[sub_resource type="Animation" id="Animation_mi8ij"]
+resource_name = "dark"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+
+[sub_resource type="Animation" id="Animation_xs6ut"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["You died. Press E to restart."]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpof5"]
+_data = {
+"RESET": SubResource("Animation_xs6ut"),
+"dark": SubResource("Animation_mi8ij")
+}
 
 [node name="DeathScene" type="Control"]
 layout_mode = 3
@@ -10,7 +48,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_myexv")
-reset_scene = "res://OverWorld/MenuScenes/restart_scene.tscn"
+reset_scene = "res://OverWorld/MenuScenes/start_screen.tscn"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vpof5")
+}
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -19,7 +62,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "You died. Press E to reset console."
+theme = ExtResource("2_4cgdw")
+theme_override_colors/font_color = Color(0.929412, 0.929412, 0.929412, 1)
+text = "You died. Press E to restart."
+horizontal_alignment = 1
+vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="Timer" type="Timer" parent="."]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -392,22 +392,6 @@ text = "Inv.
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Map" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
-self_modulate = Color(1, 1, 1, 0)
-texture_filter = 1
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("3_7hadp")
-script = ExtResource("3_v38ul")
-
-[node name="Label" type="Label" parent="Menu/MarginContainer/Sections/Options/Map"]
-layout_mode = 2
-size_flags_vertical = 1
-text = "Map"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Keys" type="PanelContainer" parent="Menu/MarginContainer/Sections/Options"]
 self_modulate = Color(1, 1, 1, 0)
 texture_filter = 1

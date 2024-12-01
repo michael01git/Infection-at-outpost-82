@@ -24,7 +24,7 @@ var scene_tracker = GameManager.currentScene
 @onready var music_player = $MusicPlayer
 var music_player_stream: AudioStreamWAV
 
-func _process(delta):
+func _process(_delta):
 	if scene_tracker != GameManager.currentScene:
 		ssfx_player.stop()
 
@@ -34,17 +34,19 @@ func play_special_sfx(track: int) -> void:
 	var play_track: AudioStreamWAV
 	
 	match track:
+		0:
+			ssfx_player.playing = false
 		1:
-			ssfx_player.pitch_scale = 1
-			ssfx_player.volume_db = 0
+			ssfx_player.pitch_scale = 0.5
+			ssfx_player.volume_db = -15
 			play_track = wind
 		2:
 			ssfx_player.pitch_scale = 2
 			ssfx_player.volume_db = -30
 			play_track = bark
 		3:
-			ssfx_player.pitch_scale = 1
-			ssfx_player.volume_db = 0
+			ssfx_player.pitch_scale = 4
+			ssfx_player.volume_db = -25
 			play_track = heli
 	
 	ssfx_player.stream = play_track
@@ -54,18 +56,19 @@ func play_special_sfx(track: int) -> void:
 func play_sfx(track: int) -> void:
 	match track:
 		1:
-			create_sfx(positive)
+			create_sfx(positive, 0)
 		2:
-			create_sfx(negative)
+			create_sfx(negative, 0)
 		3:
-			create_sfx(suprise)
+			create_sfx(suprise, -15)
 		4:
-			create_sfx(action)
+			create_sfx(action, 0)
 
-func create_sfx(sound: AudioStreamWAV):
+func create_sfx(sound: AudioStreamWAV, db: int):
 	var sfx: AudioStreamPlayer = AudioStreamPlayer.new()
 	add_child(sfx)
 	sfx.stream = sound
+	sfx.volume_db = db
 	sfx.play()
 	sfx.finished.connect(sfx.queue_free)
 
@@ -73,6 +76,8 @@ func play_music(track: int) -> void:
 	var played_track: AudioStreamWAV
 	
 	match track:
+		0:
+			music_player.playing = false
 		1:
 			played_track = normal_fight
 		2:

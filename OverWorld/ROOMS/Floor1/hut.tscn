@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=4 uid="uid://00np7vg78ted"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_psvu5"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_141l4"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_w1ola"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_5c8va"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_d2vgl"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_wgi6m"]
+
+[node name="hut" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wMAAAACAAIAAFD//wIAAAAAAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAP//AAABAAAAAAABAP//AAABAAIAADACAP//AAABAAAAAAAAAAAAAAAFAAIAAAAAAAEAAAADAAIAAAAAAAIAAAADAAIAAAAAAAMAAAABAAIAAAABAAAAAAAFAAIAAAABAAEAAAADAAIAAAABAAIAAAADAAIAAAABAAMAAAAEAAMAADACAAAAAAAGAAMAAAACAAEAAAADAAIAAAACAAIAAAAGAAMAAAACAAMAAAABAAIAAAADAAMAAAACAAIAAAADAP//AAACAAIAAGADAAIAAAACAAEAAAADAAEAAAACAAEAAAADAAAAAAACAAEAAAA=")
+tile_set = ExtResource("1_psvu5")
+script = ExtResource("2_141l4")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_w1ola")]
+position = Vector2(24, 40)
+
+[node name="out" parent="." instance=ExtResource("4_5c8va")]
+position = Vector2(24, 56)
+next_scene = "res://OverWorld/ROOMS/Floor1/outside.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_d2vgl")
+
+[node name="InteractArea" parent="." instance=ExtResource("6_wgi6m")]
+position = Vector2(24, 8)
+text_on_interact = Array[String](["There's a crate full of TNT. You take the whole box.", "$TNT"])
+already_interact = Array[String](["You already took the TNT."])
+
+[node name="InteractArea2" parent="." instance=ExtResource("6_wgi6m")]
+position = Vector2(8, 8)
+text_on_interact = Array[String](["There's a flamethrower in the corner of the room. You take it and test it. A few sparks come out and you ignite a gentle flame.", "@res://BattlerStats/Items/flamethrower.tres"])
+already_interact = Array[String](["There's nothing else in the corner besides a few frozen spiders."])

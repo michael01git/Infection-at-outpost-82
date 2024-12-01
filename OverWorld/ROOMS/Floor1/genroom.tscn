@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=4 uid="uid://bgtpnp0am6me1"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_cietp"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_dw2sd"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_6wxen"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_ia53h"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_nudc8"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_a2ajn"]
+[ext_resource type="Texture2D" uid="uid://di43e1bx8kfhe" path="res://Assets/Sprites/Players/OW/Wave.png" id="7_b4ei1"]
+[ext_resource type="PackedScene" uid="uid://cg2mhlqgu1n8r" path="res://OverWorld/Level/Interact/event_or_deleter.tscn" id="8_8itja"]
+
+[node name="Genroom" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAD/////AAAAAAAAAAD//wMAAAACAAEAADD//wIAAAAAAAEAAAD//wEAAAAAAAEAAAD//wAAAAAAAAEAAAAAAP//AAABAAAAAAABAP//AAABAAIAADACAP//AAABAAAAAAAAAAAAAAAFAAUAAAAAAAEAAAAFAAEAAGAAAAIAAAAGAAEAAFAAAAMAAAAFAAEAAAABAAAAAAAFAAUAAAABAAEAAAAFAAEAAGABAAIAAAAFAAEAAGABAAMAAAAGAAEAAFACAAAAAAAFAAYAAAACAAEAAAAFAAEAAGACAAIAAAAFAAEAAGACAAMAAAAFAAEAAGADAAMAAAAFAAEAAGADAP//AAABAAIAADADAAIAAAAFAAEAAGADAAEAAAAFAAEAAGADAAAAAAAFAAUAAAAEAAMAAAADAAIAAAAFAAMAAAAFAAEAAGAGAAMAAAADAAIAAAAHAAIAAAACAAEAAAAHAAEAAAAEAAMAAFAHAAAAAAABAAIAAGAGAP//AAABAAIAADAFAP//AAABAAIAADAEAP//AAABAAIAADAEAAAAAAAFAAUAAAAFAAAAAAAFAAEAADAGAAEAAAADAAIAAAAGAAIAAAADAAIAAAAFAAIAAAAFAAEAAGAEAAIAAAADAAIAAAAEAAEAAAAGAAEAADAFAAEAAAAGAAEAAAAGAAAAAAAFAAEAADAHAAMAAAACAAEAAAAHAP//AAACAAIAAGAHAAQAAAACAAEAAAAHAAUAAAAAAAIAAGAGAAUAAAACAAEAAFAFAAUAAAACAAEAAFAEAAUAAAACAAEAAFADAAUAAAACAAEAAFACAAUAAAACAAEAAFABAAUAAAACAAEAAFAAAAUAAAACAAEAAFD//wQAAAACAAEAADD//wUAAAAAAAIAAAAGAAQAAAADAAIAAAAAAAQAAAADAAIAAAABAAQAAAADAAIAAAACAAQAAAAFAAEAAGADAAQAAAAFAAEAAGAEAAQAAAADAAIAAAAFAAQAAAAFAAEAAGA=")
+tile_set = ExtResource("1_cietp")
+script = ExtResource("2_dw2sd")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_6wxen")]
+position = Vector2(104, 24)
+
+[node name="kennel" parent="." instance=ExtResource("4_ia53h")]
+position = Vector2(120, 24)
+next_scene = "res://OverWorld/ROOMS/Floor1/kennel.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_nudc8")
+
+[node name="InteractArea2" parent="." instance=ExtResource("6_a2ajn")]
+position = Vector2(40, 8)
+text_on_interact = Array[String](["You turn on the generator. The lights won't go on but the radio should now work.", "$RADON"])
+
+[node name="InteractArea" parent="." instance=ExtResource("6_a2ajn")]
+position = Vector2(40, 40)
+queue_free_on_use = true
+solid = true
+can_fit_in_party_text = Array[String](["Oh hi.", "$METWAVE", "%OUTK", "Listen, you can't trust the Doc. There's something seriously wrong with him.", "The only way we can make sure this thing doesn't spread is by blowing up this place.", "There's some TNT in the shed outside. We have to get it and place it on the block of ice Doc has in his lab.", "I'll join you. Let's go.", "£res://BattlerStats/Players/Wave.tres"])
+cant_fit_in_party_text = Array[String](["Oh hi.", "$METWAVE", "%OUTK", "Listen, you can't trust the Doc. There's something seriously wrong with him.", "The only way we can make sure this thing doesn't spread is by blowing up this place.", "There's some TNT in the shed outside. We have to get it and place it on the block of ice Doc has in his lab.", "I'd join you, but I have to finish things here."])
+
+[node name="Wave" type="Sprite2D" parent="InteractArea"]
+texture = ExtResource("7_b4ei1")
+
+[node name="EventOrDeleter" parent="InteractArea" instance=ExtResource("8_8itja")]
+required_event_for_delete_parent = "TNT"

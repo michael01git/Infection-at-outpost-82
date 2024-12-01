@@ -1,8 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cfqfl0mspjhl3"]
+[gd_scene load_steps=8 format=3 uid="uid://cfqfl0mspjhl3"]
 
 [ext_resource type="Script" path="res://OverWorld/Level/Mobs/over_world_player.gd" id="1_on7e7"]
-[ext_resource type="Script" path="res://BattlerStats/battler_stats_res.gd" id="2_kudrg"]
-[ext_resource type="Resource" uid="uid://bfw1l3u4gilwr" path="res://BattlerStats/Players/McKinley.tres" id="3_s44bh"]
 [ext_resource type="PackedScene" uid="uid://b0fwanaepm4y3" path="res://OverWorld/Player/overworld_menu.tscn" id="5_vqbcp"]
 [ext_resource type="Texture2D" uid="uid://dtd25fhkld5vk" path="res://Assets/Sprites/FlashLight.png" id="7_y1hlh"]
 [ext_resource type="PackedScene" uid="uid://b08cfcf37hcxe" path="res://OverWorld/Player/text_prompter.tscn" id="10_p4xre"]
@@ -18,7 +16,10 @@ size = Vector2(10, 10)
 collision_layer = 2
 collision_mask = 4
 script = ExtResource("1_on7e7")
-pc = Array[ExtResource("2_kudrg")]([ExtResource("3_s44bh")])
+pc = Array[String](["res://BattlerStats/Players/McKinley.tres", "res://BattlerStats/Players/Hound.tres", "res://BattlerStats/Players/Cook.tres"])
+inv = Array[String](["res://BattlerStats/Items/thickcoat.tres", "res://BattlerStats/Items/pipe.tres", "res://BattlerStats/Items/pillow.tres", "res://BattlerStats/Items/leatherjacket.tres", "res://BattlerStats/Items/kevlarjacket.tres", "res://BattlerStats/Items/fryingpan.tres", "res://BattlerStats/Items/bat.tres"])
+events = Array[String](["GENON"])
+keys = Array[String](["GENK", "F1K", "ALLK", "OUTK"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3no4w")
@@ -54,12 +55,14 @@ autostart = true
 
 [node name="Follower2" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wo0op")
+disabled = true
 
 [node name="FollowerSprite" type="Sprite2D" parent="Follower2"]
 texture = ExtResource("11_ll54d")
 
 [node name="Follower1" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wo0op")
+disabled = true
 
 [node name="FollowerSprite" type="Sprite2D" parent="Follower1"]
 texture = ExtResource("11_ll54d")

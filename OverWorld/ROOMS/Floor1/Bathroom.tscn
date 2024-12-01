@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=4 uid="uid://b6mj5quit2ys3"]
+
+[ext_resource type="TileSet" uid="uid://cs8rmfm7b1tkx" path="res://Assets/world_tile_set.tres" id="1_q1eom"]
+[ext_resource type="Script" path="res://OverWorld/worldtilemap.gd" id="2_t8l51"]
+[ext_resource type="PackedScene" uid="uid://cfqfl0mspjhl3" path="res://OverWorld/Level/Mobs/over_world_player.tscn" id="3_7x2qo"]
+[ext_resource type="PackedScene" uid="uid://b6jttkuemcqrp" path="res://OverWorld/Level/Interact/door.tscn" id="4_x7x35"]
+[ext_resource type="Script" path="res://OverWorld/Player/canvas_modulate.gd" id="5_cjo5q"]
+[ext_resource type="PackedScene" uid="uid://cpogqt0y20no6" path="res://OverWorld/Level/Interact/interact_area.tscn" id="6_hhbor"]
+
+[node name="Bathroom" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." groups=["tilemap"]]
+tile_map_data = PackedByteArray("AAAAAAQAAAAEAAMAAGABAAQAAAADAAIAAAACAAQAAAADAAIAAAAAAAUAAAAAAAEAAAAAAAYAAAAAAAIAAAABAAUAAAADAAIAAAABAAYAAAABAAIAAAACAAUAAAADAAIAAAACAAYAAAABAAIAAAADAAUAAAAGAAMAAAADAAYAAAABAAIAAAADAAQAAAADAAIAAAAAAAMAAAAAAAEAAAABAAMAAAAGAAMAAAACAAMAAAADAAIAAAADAAMAAAADAAIAAAAEAAMAAAADAAIAAAAEAAQAAAADAAIAAAAEAAUAAAAGAAMAAAAEAAYAAAABAAIAAAAFAAYAAAABAAIAAAAFAAQAAAAGAAMAAAAFAAMAAAAGAAMAAAAFAAUAAAAGAAMAAAAGAAMAAAACAAEAAAAGAAQAAAACAAEAAAAGAAUAAAACAAEAAAAGAAYAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAEAAAABAAAAAAABAAAAAAABAAEAAAAGAAMAAAABAAIAAAAGAAMAAAACAAAAAAABAAAAAAACAAEAAAAGAAMAAAACAAIAAAAGAAMAAAADAAAAAAABAAAAAAADAAEAAAAFAAIAAAADAAIAAAADAAIAAAAEAAAAAAABAAAAAAAEAAEAAAAGAAMAAAAEAAIAAAAFAAIAAAAFAAAAAAABAAAAAAAFAAEAAAAGAAMAAAAFAAIAAAAGAAMAAAAGAAAAAAACAAAAAAAGAAEAAAACAAEAAAAGAAIAAAACAAEAAAA=")
+tile_set = ExtResource("1_q1eom")
+script = ExtResource("2_t8l51")
+
+[node name="OverWorldPlayer" parent="." instance=ExtResource("3_7x2qo")]
+position = Vector2(24, 72)
+
+[node name="hub2" parent="." instance=ExtResource("4_x7x35")]
+position = Vector2(8, 72)
+next_scene = "res://OverWorld/ROOMS/Floor1/hub2.tscn"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)
+script = ExtResource("5_cjo5q")
+
+[node name="InteractArea" parent="." instance=ExtResource("6_hhbor")]
+position = Vector2(56, 24)
+text_on_interact = Array[String](["The bathroom is still being built. I take a pipe off the box.", "@res://BattlerStats/Items/pipe.tres"])

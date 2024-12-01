@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemStats" load_steps=2 format=3 uid="uid://0rbjr4r05ies"]
+
+[ext_resource type="Script" path="res://BattlerStats/Items/item_stats_res.gd" id="1_mu8ua"]
+
+[resource]
+script = ExtResource("1_mu8ua")
+type = 2
+use_type = 0
+item_name = "Axe"
+damage = 4
+armor = 0
+turn_speed = 0
+health = 0
